@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { makeServer } from "./server";
 import {BrowserRouter as Router} from "react-router-dom"
-import { LoginProvider } from "./Context/LoginContext";
+import { LoginProvider } from "./Context/AuthContext";
 
 // Call make Server
 makeServer();

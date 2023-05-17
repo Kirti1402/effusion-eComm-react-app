@@ -1,10 +1,10 @@
 import { useContext } from "react"
-import { LoginContext } from "../../Context/LoginContext"
+import { AuthContext } from "../../Context/AuthContext"
 import { CartItems } from "./CartItem";
 import { useNavigate } from "react-router-dom";
 
 export const Cart = () => {
-    const {isLoggedIn} = useContext(LoginContext);
+    const {isLoggedIn} = useContext(AuthContext);
     const navigate = useNavigate()
 
     const onClickHandle = () => {
