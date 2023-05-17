@@ -7,6 +7,7 @@ import { ProfilePage } from "./Components/Profile/ProfilePage";
 import { WishList } from "./Components/WishList/WishListPage";
 import { Login } from "./Components/Login/LoginPage";
 import { Header } from "./Components/Home/Header";
+import { SignUp } from "./Components/SignUp/SignUpPage";
 function App() {
   return (
     <div className="App">
@@ -18,6 +19,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage/>}/>
         <Route path="/wishlist" element={<WishList/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/signUp" element={<SignUp/>}/>
       </Routes>
     </div>
   );
