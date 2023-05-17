@@ -9,8 +9,10 @@ export const LoginProvider = ({ children }) => {
     email: null,
     password: null,
   });
+  const [signUpData, setSignUpData] = useState({firstName:null,lastName:null,email:null,password:null});
 
   const getLoginData = async () => {
+    const cred = loginData ?? signUpData;
     console.log(loginInputData);
     try {
       const res = await fetch("/api/auth/login", {
@@ -40,7 +42,9 @@ export const LoginProvider = ({ children }) => {
           setLoginInputData,
           loginInputData,
           loginData,
-          isEncodedToken
+          isEncodedToken,
+          setSignUpData,
+          signUpData
         }}
       >
         {children}

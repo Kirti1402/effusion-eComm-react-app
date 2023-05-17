@@ -19,7 +19,6 @@ const submitForm = (e) =>{
     e.preventDefault();
     alert("success");
     getLoginData();
-
     navigate('/')
 }
   return (
