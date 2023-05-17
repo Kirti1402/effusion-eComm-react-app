@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
-import {BrouserRouter as Router} from "react-router-dom"
+import {BrowserRouter as Router} from "react-router-dom"
+import { LoginProvider } from "./Context/LoginContext";
 
 // Call make Server
 makeServer();
@@ -11,7 +11,9 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-    <App />
+      <LoginProvider>
+          <App />
+      </LoginProvider>
     </Router>
     
   </React.StrictMode>,
