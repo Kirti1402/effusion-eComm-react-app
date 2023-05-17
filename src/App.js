@@ -8,6 +8,7 @@ import { WishList } from "./Components/WishList/WishListPage";
 import { Login } from "./Components/Login/LoginPage";
 import { Header } from "./Components/Home/Header";
 import { SignUp } from "./Components/SignUp/SignUpPage";
+import { PrivateRoutes } from "./PrivateRoutes";
 
 
 function App() {
@@ -17,9 +18,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/mockman" element={<Mockman/>}/>
-        <Route path="/cart" element={<Cart/>}/>
+        <Route element={<PrivateRoutes/>}>
+          <Route path="/cart" element={<Cart/>}/>
+          <Route path="/wishlist" element={<WishList/>}/>
+        </Route>
         <Route path="/profile" element={<ProfilePage/>}/>
-        <Route path="/wishlist" element={<WishList/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signUp" element={<SignUp/>}/>
       </Routes>

@@ -2,12 +2,9 @@ import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-export const Login = ({path}) => {
+export const Login = () => {
   const { getLoginData ,setLoginInputData,loginInputData} = useContext(AuthContext);
   const navigate = useNavigate();
-//   const setData = (name,value) =>{
-//     console.log(name,value)
-//   }
 
 const  updateForm = (e) =>{
     let name = e.target.name;
@@ -19,14 +16,11 @@ const  updateForm = (e) =>{
 }
 
 const submitForm = (e) =>{
-    let defaultPath = '/'
-    path = path??defaultPath
-    console.log(path)
     e.preventDefault();
     alert("success");
     getLoginData();
 
-    navigate(path)
+    navigate('/')
 }
   return (
     <div>

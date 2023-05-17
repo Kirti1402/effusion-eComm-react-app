@@ -12,27 +12,21 @@ export const LoginProvider = ({ children }) => {
 
   const getLoginData = async () => {
     console.log(loginInputData);
-    const cred = {
-      email: "adarshbalika@gmail.com",
-      password: "12345678",
-    };
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         body: JSON.stringify(loginInputData),
       });
-
       const response = await res.json();
-      // console.log("ResponseData",response.foundUser.firstName);
-
-      // const { encodedToken, foundUser } = await res.json()
-      // console.log("response",await res.json());
+      localStorage.setItem("Encodedtoken",response.encodedToken)
       setIsEncodedToken(response.encodedToken);
       setLoginData(response.foundUser);
       setIsLoggedIn(true);
     } catch (errors) {
       console.log(errors[0]);
     }
+
+    
 
     console.log("logged in");
   };
@@ -46,6 +40,7 @@ export const LoginProvider = ({ children }) => {
           setLoginInputData,
           loginInputData,
           loginData,
+          isEncodedToken
         }}
       >
         {children}

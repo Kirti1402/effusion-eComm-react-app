@@ -18,7 +18,7 @@ export const Cart = () => {
             {isLoggedIn ? <CartItems/> : <div>
                 <p>Please Sign up to see Cart</p>
                 {/* <button onClick={onClickHandle}>Login</button> */}
-                <Login path={'/cart'}/>
+                <Login/>
                 </div>}
         </div>
     )
