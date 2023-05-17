@@ -1,23 +1,54 @@
-import { useContext } from "react"
-import { AuthContext } from "../../Context/AuthContext"
-import { useNavigate } from "react-router-dom"
+import { useContext } from "react";
+import { AuthContext } from "../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
-    const {getLoginData} = useContext(AuthContext)
-    const navigate = useNavigate()
-    return (
-        <div>
-            <p>Login Page</p> 
-            <form >
-                    <label>userName
-                        <input type="email" required/>
-                    </label>
-                    <label>Password
-                        <input type="password" required/>
-                    </label>
-                    <button type="submit" onClick={getLoginData}>Log In</button>
-                    <button onClick={()=>navigate('/signUp')}>Create New account</button>
-            </form>         
-        </div>
-    )
+export const Login = ({path}) => {
+  const { getLoginData ,setLoginInputData,loginInputData} = useContext(AuthContext);
+  const navigate = useNavigate();
+//   const setData = (name,value) =>{
+//     console.log(name,value)
+//   }
+
+const  updateForm = (e) =>{
+    let name = e.target.name;
+    let value = e.target.value;
+    console.log("", loginInputData);
+    setLoginInputData({
+        ...loginInputData,
+        [name]:value})
 }
+
+const submitForm = (e) =>{
+    let defaultPath = '/'
+    path = path??defaultPath
+    console.log(path)
+    e.preventDefault();
+    alert("success");
+    getLoginData();
+
+    navigate(path)
+}
+  return (
+    <div>
+      <p>Login Page</p> 
+      <form onSubmit={submitForm}>
+        <div >
+          <label >UserEmail</label>
+          <input type="text" id="useremail" name="email" onBlur={updateForm} required />
+        </div>
+        <div >
+          <label>Password</label>
+          <input type="password" id="password" name="password" onBlur  ={updateForm} required />
+        </div>
+        <div >
+          <button type="submit">
+            Log In
+          </button>
+          <button onClick={() => navigate("/signUp")}>
+            Create New account
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};

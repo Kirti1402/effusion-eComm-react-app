@@ -5,30 +5,49 @@ export const LoginProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isEncodedToken, setIsEncodedToken] = useState("");
   const [loginData, setLoginData] = useState("");
+  const [loginInputData, setLoginInputData] = useState({
+    email: null,
+    password: null,
+  });
 
   const getLoginData = async () => {
+    console.log(loginInputData);
     const cred = {
-      email: "kirt@gmail.com",
-      password: "adarshbal",
+      email: "adarshbalika@gmail.com",
+      password: "12345678",
     };
     try {
-      const response = await fetch("/api/auth/login", {
+      const res = await fetch("/api/auth/login", {
         method: "POST",
-        body: JSON.stringify(cred),
+        body: JSON.stringify(loginInputData),
       });
-    //   const { encodedToken, foundUser } = await response.json();
-    //   setLoginData(foundUser);
-    //   setIsEncodedToken(encodedToken);
-    //   setIsLoggedIn(true);
-      console.log("response",await response.json());
+
+      const response = await res.json();
+      // console.log("ResponseData",response.foundUser.firstName);
+
+      // const { encodedToken, foundUser } = await res.json()
+      // console.log("response",await res.json());
+      setIsEncodedToken(response.encodedToken);
+      setLoginData(response.foundUser);
+      setIsLoggedIn(true);
     } catch (errors) {
       console.log(errors[0]);
     }
+
+    console.log("logged in");
   };
 
   return (
     <>
-      <AuthContext.Provider value={{ isLoggedIn, getLoginData }}>
+      <AuthContext.Provider
+        value={{
+          isLoggedIn,
+          getLoginData,
+          setLoginInputData,
+          loginInputData,
+          loginData,
+        }}
+      >
         {children}
       </AuthContext.Provider>
     </>

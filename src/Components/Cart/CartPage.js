@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { AuthContext } from "../../Context/AuthContext"
 import { CartItems } from "./CartItem";
 import { useNavigate } from "react-router-dom";
+import { Login } from "../Login/LoginPage";
 
 export const Cart = () => {
     const {isLoggedIn} = useContext(AuthContext);
@@ -16,7 +17,8 @@ export const Cart = () => {
             <p>Cart Page</p>  
             {isLoggedIn ? <CartItems/> : <div>
                 <p>Please Sign up to see Cart</p>
-                <button onClick={onClickHandle}>Login</button>
+                {/* <button onClick={onClickHandle}>Login</button> */}
+                <Login path={'/cart'}/>
                 </div>}
         </div>
     )
