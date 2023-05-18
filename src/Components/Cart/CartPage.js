@@ -6,20 +6,11 @@ import { Login } from "../Login/LoginPage";
 
 export const Cart = () => {
     const {isLoggedIn} = useContext(AuthContext);
-    const navigate = useNavigate()
 
-    const onClickHandle = () => {
-        navigate("/login");
-    }
     console.log(isLoggedIn);
     return (
         <div>
-            <p>Cart Page</p>  
-            {isLoggedIn ? <CartItems/> : <div>
-                <p>Please Sign up to see Cart</p>
-                {/* <button onClick={onClickHandle}>Login</button> */}
-                <Login/>
-                </div>}
+         <CartItems/> 
         </div>
     )
 }

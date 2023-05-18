@@ -18,10 +18,16 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/mockman" element={<Mockman/>}/>
-        <Route element={<PrivateRoutes/>}>
+        {/* <Route element={<PrivateRoutes/>}>
           <Route path="/cart" element={<Cart/>}/>
           <Route path="/wishlist" element={<WishList/>}/>
-        </Route>
+        </Route> */}
+        <Route path="/cart" element={
+          <PrivateRoutes>
+        <Cart/>
+        </PrivateRoutes>
+        } />
+        {/* <PrivateRoutes exact path="/cart" component={Cart}/> */}
         <Route path="/profile" element={<ProfilePage/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signUp" element={<SignUp/>}/>

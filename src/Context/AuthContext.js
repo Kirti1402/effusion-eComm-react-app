@@ -9,26 +9,40 @@ export const LoginProvider = ({ children }) => {
     email: null,
     password: null,
   });
-  const [signUpData, setSignUpData] = useState({firstName:null,lastName:null,email:null,password:null});
+  const [signUpData, setSignUpData] = useState({
+    firstName: null,
+    lastName: null,
+    email: null,
+    password: null,
+  });
 
   const getLoginData = async () => {
-    const cred = loginData ?? signUpData;
-    console.log(loginInputData);
+    let cred = {
+        "email": "adarshbalika@gmail.com",
+         "password": "12345678"
+        }
+    
+    // if(loginData.email) {
+    //   cred = loginData;
+    // } else{
+    //   cred = signUpData;
+    // }
+
+    console.log(cred);
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
-        body: JSON.stringify(loginInputData),
+        body: JSON.stringify(cred),
       });
       const response = await res.json();
-      localStorage.setItem("Encodedtoken",response.encodedToken)
+      // console.log("response",await res.json())
+      localStorage.setItem("Encodedtoken", response.encodedToken);
       setIsEncodedToken(response.encodedToken);
       setLoginData(response.foundUser);
       setIsLoggedIn(true);
     } catch (errors) {
       console.log(errors[0]);
     }
-
-    
 
     console.log("logged in");
   };
@@ -44,7 +58,7 @@ export const LoginProvider = ({ children }) => {
           loginData,
           isEncodedToken,
           setSignUpData,
-          signUpData
+          signUpData,
         }}
       >
         {children}

@@ -17,7 +17,7 @@ export const SignUp = () => {
         e.preventDefault();
         alert("success");
         getLoginData();
-        navigate('/')
+        // navigate('/')
     }
     return <>
     <p>Sign UP Page</p>

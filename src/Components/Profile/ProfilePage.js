@@ -3,8 +3,15 @@ import { AuthContext } from "../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export const ProfilePage = () => {
-  const { loginData, isLoggedIn } = useContext(AuthContext);
-  const {firstName,lastName,email} = loginData;
+  const { loginData,signUpData ,isLoggedIn } = useContext(AuthContext);
+  let profileData;
+  if(loginData.email) {
+    profileData = loginData;
+  } else{
+    profileData = signUpData;
+  }
+  
+  const {firstName,lastName,email} = profileData;
   console.log("loginData",loginData)
   const navigate = useNavigate();
   return (

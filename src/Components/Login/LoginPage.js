@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export const Login = () => {
+  const { state } = useLocation();
   const { getLoginData ,setLoginInputData,loginInputData} = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -17,9 +19,10 @@ const  updateForm = (e) =>{
 
 const submitForm = (e) =>{
     e.preventDefault();
-    alert("success");
+    // alert("success");
     getLoginData();
-    navigate('/')
+    console.log("state",state)
+    // navigate(state.path);
 }
   return (
     <div>
