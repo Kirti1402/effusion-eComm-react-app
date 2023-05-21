@@ -26,7 +26,7 @@ export const SignUp = () => {
     }
     return <div className="signup-container">
     
-    <form onSubmit={submitForm}>
+    <form  onSubmit={submitForm}>
     <p className="heading">Sign UP Page</p>
         <div className="firstName">
           <label >First Name</label>
@@ -44,12 +44,13 @@ export const SignUp = () => {
           <label>Password</label>
           <input type="password" id="password" name="password" placeholder="Enter Password" onBlur  ={updateForm} required />
         </div>
-        <div  className="btn-container">
-          <button type="submit">
+        
+          <button type="submit" className="signupBtn">
            Sign UP
           </button>
-          <button onClick={()=> navigate('/login')}>Log In</button>
-        </div>
+
+          <span >Already have account?</span>
+          <span className="loginLink" onClick={()=> navigate('/login')}>Log In</span>
       </form>
     </div>
 }
