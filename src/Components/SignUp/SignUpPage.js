@@ -24,30 +24,32 @@ export const SignUp = () => {
         signupHandler();
         navigate('/')
     }
-    return <>
-    <p>Sign UP Page</p>
+    return <div className="signup-container">
+    
     <form onSubmit={submitForm}>
-        <div >
+    <p className="heading">Sign UP Page</p>
+        <div className="firstName">
           <label >First Name</label>
-          <input type="text" id="firstName" name="firstName" onBlur={updateForm} required />
+          <input type="text" id="firstName" name="firstName" placeholder="Enter FirstName" onBlur={updateForm} required />
         </div>
-        <div >
+        <div className="lastName" >
           <label >Last Name</label>
-          <input type="text" id="lastName" name="lastName" onBlur={updateForm} required />
+          <input type="text" id="lastName" name="lastName" placeholder="Enter LastName" onBlur={updateForm} required />
         </div>
-        <div >
+        <div className="email">
           <label >Email</label>
-          <input type="email" id="email" name="email" onBlur={updateForm} required />
+          <input type="email" id="email" name="email" placeholder="Enter Email" onBlur={updateForm} required />
         </div>
         <div className="password">
           <label>Password</label>
-          <input type="password" id="password" name="password" onBlur  ={updateForm} required />
+          <input type="password" id="password" name="password" placeholder="Enter Password" onBlur  ={updateForm} required />
         </div>
-        <div >
-          <button>
+        <div  className="btn-container">
+          <button type="submit">
            Sign UP
           </button>
+          <button onClick={()=> navigate('/login')}>Log In</button>
         </div>
       </form>
-    </>
+    </div>
 }

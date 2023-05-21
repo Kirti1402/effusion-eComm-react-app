@@ -1,11 +1,38 @@
-.password{
-    background: hsl(0deg 0% 100%);
-		box-shadow: 0 0 2em hsl(231deg 62% 94%);
-		padding: 1em;
-        display: flex;
-		flex-direction: column;
-		gap: 0.5em;
-		border-radius: 20px;
-		color: hsl(0deg 0% 30%);
-		
+.signup-container {
+    /* width: 600px; */
+	user-select: none;
+	/* overflow-y: hidden; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: hsl(218deg 50% 91%);
+	height: 100vh;
 }
+input {
+    outline: none;
+    border: none;
+    &::placeholder {
+        color: hsl(0deg 0% 0%);
+        font-size: 0.9em;
+    }
+}
+.heading{
+    text-align: center;
+}
+.password,.email,.firstName,.lastName {
+    width: 300px;
+    background: hsl(0deg 0% 100%);
+    box-shadow: 0 0 2em hsl(231deg 62% 94%);
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    border-radius: 20px;
+    color: hsl(0deg 0% 30%);
+    margin: 0.5rem;
+}
+
+.btn-container{
+    
+}
+
