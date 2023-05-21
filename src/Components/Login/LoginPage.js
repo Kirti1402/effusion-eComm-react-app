@@ -21,8 +21,8 @@ const submitForm = (e) =>{
     e.preventDefault();
     // alert("success");
     getLoginData();
-    console.log("state",state)
-    // navigate(state.path);
+        console.log("state",state)
+
 }
   return (
     <div>

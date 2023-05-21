@@ -3,11 +3,12 @@ import { useContext } from "react";
 import { LoginAuthContext } from "./Context/LoginAuthContext";
 export const PrivateRoutes = ({children}) => {
   const { isLoggedIn ,isEncodedToken} = useContext(LoginAuthContext);
+  const token = localStorage.getItem("Encodedtoken");
   const location = useLocation();
   console.log("Location",location)
   console.log("encodedToken", isEncodedToken);
 
-  if (!isEncodedToken) {
+  if (!token) {
     return (
       <>
         <Navigate to='/login' replace state={{ path: location.pathname }} />
@@ -16,10 +17,4 @@ export const PrivateRoutes = ({children}) => {
     );
   }
   return children;
-//   return (
-
-
-//     isLoggedIn ? children :<Navigate to='/login' replace state={{ path: location.pathname }}/>
-
-//   );
 };
