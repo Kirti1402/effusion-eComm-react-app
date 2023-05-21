@@ -1,23 +1,25 @@
 import { useContext } from "react";
-import { AuthContext } from "../../Context/AuthContext";
+import { SignUpAuthContext } from "../../Context/SignupAuthContext";
 import { useNavigate } from "react-router-dom";
 export const SignUp = () => {
-    const {setSignUpData,
-        signUpData,getLoginData} = useContext(AuthContext)
+
+  const { signUpInput, setSignUpInput, signupHandler} = useContext(SignUpAuthContext);
+
     const navigate = useNavigate();
     const  updateForm = (e) =>{
         let name = e.target.name;
         let value = e.target.value;
-        console.log("", signUpData);
-        setSignUpData({
-            ...signUpData,
+        console.log("", signUpInput);
+        console.log(name,value)
+        setSignUpInput({
+            ...signUpInput,
             [name]:value})
     }
     const submitForm = (e) =>{
         e.preventDefault();
         alert("success");
-        getLoginData();
-        // navigate('/')
+        signupHandler();
+        navigate('/')
     }
     return <>
     <p>Sign UP Page</p>

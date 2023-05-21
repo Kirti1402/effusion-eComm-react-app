@@ -1,16 +1,21 @@
 import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "./Context/AuthContext";
+import { LoginAuthContext } from "./Context/LoginAuthContext";
 export const PrivateRoutes = ({children}) => {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn ,isEncodedToken} = useContext(LoginAuthContext);
   const location = useLocation();
   console.log("Location",location)
-  console.log("encodedToken", isLoggedIn);
+  console.log("encodedToken", isEncodedToken);
 
-  if(!isLoggedIn){
-    return <Navigate to='/login' replace state={{ path: location.pathname }}/>}
-    return children
-
+  if (!isEncodedToken) {
+    return (
+      <>
+        <Navigate to='/login' replace state={{ path: location.pathname }} />
+        {/* <Navigate to='/signup' replace state={{ path: location.pathname }} /> */}
+      </>
+    );
+  }
+  return children;
 //   return (
 
 

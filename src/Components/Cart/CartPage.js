@@ -1,11 +1,11 @@
 import { useContext } from "react"
-import { AuthContext } from "../../Context/AuthContext"
+import { LoginAuthContext } from "../../Context/LoginAuthContext"
 import { CartItems } from "./CartItem";
 import { useNavigate } from "react-router-dom";
 import { Login } from "../Login/LoginPage";
 
 export const Cart = () => {
-    const {isLoggedIn} = useContext(AuthContext);
+    const {isLoggedIn} = useContext(LoginAuthContext);
 
     console.log(isLoggedIn);
     return (

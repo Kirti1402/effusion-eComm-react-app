@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../Context/AuthContext"
+import { LoginAuthContext } from "../../Context/LoginAuthContext"
 import { useContext } from "react";
 export const Header = () => {
-  const {isLoggedIn} = useContext(AuthContext)
+  const {isLoggedIn} = useContext(LoginAuthContext)
     return<>
     <nav>
         <Link to="/">Home</Link>

@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { AuthContext } from "../../Context/AuthContext";
+import { LoginAuthContext } from "../../Context/LoginAuthContext";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 export const Login = () => {
   const { state } = useLocation();
-  const { getLoginData ,setLoginInputData,loginInputData} = useContext(AuthContext);
+  const { getLoginData ,setLoginInputData,loginInputData} = useContext(LoginAuthContext);
   const navigate = useNavigate();
 
 const  updateForm = (e) =>{
