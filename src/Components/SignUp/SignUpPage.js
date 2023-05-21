@@ -1,6 +1,9 @@
 import { useContext } from "react";
-import { SignUpAuthContext } from "../../Context/SignupAuthContext";
 import { useNavigate } from "react-router-dom";
+
+import { SignUpAuthContext } from "../../Context/SignupAuthContext";
+import "./SignUp.css"
+
 export const SignUp = () => {
 
   const { signUpInput, setSignUpInput, signupHandler} = useContext(SignUpAuthContext);
@@ -36,7 +39,7 @@ export const SignUp = () => {
           <label >Email</label>
           <input type="email" id="email" name="email" onBlur={updateForm} required />
         </div>
-        <div >
+        <div className="password">
           <label>Password</label>
           <input type="password" id="password" name="password" onBlur  ={updateForm} required />
         </div>

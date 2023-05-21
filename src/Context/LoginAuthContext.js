@@ -36,11 +36,11 @@ export const LoginProvider = ({ children }) => {
       console.log(response);
 
       if(!response.error){
-        // setIsLoggedIn(true);
-      // localStorage.setItem("loginItem", response.foundUser);
-      // localStorage.setItem("firstName", response.foundUser.firstName);
-      // localStorage.setItem("lastName", response.foundUser.lastName);
-      // localStorage.setItem("email", response.foundUser.email);
+        setIsLoggedIn(true);
+      localStorage.setItem("loginItem", response.foundUser);
+      localStorage.setItem("firstName", response.foundUser.firstName);
+      localStorage.setItem("lastName", response.foundUser.lastName);
+      localStorage.setItem("email", response.foundUser.email);
       localStorage.setItem("Encodedtoken", response.encodedToken);
       console.log("logged in")
       navigate(state.path)      
