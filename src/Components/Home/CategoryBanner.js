@@ -7,7 +7,7 @@ export const CategoryBanner = () =>{
     console.log(category)
 
     return <section>
-        {isLoading ? <p>Loading...</p> 
+        {isLoading ? <div>Loading...</div> 
         :
         category.map(categoryItem =>
             {  const {id,categoryName,description} = categoryItem

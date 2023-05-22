@@ -1,14 +1,15 @@
 
-import { Header } from "./Header";
+import { useContext } from "react";
 import { CategoryBanner } from "./CategoryBanner";
+import {ProductCategoryContext} from "../../Context/ProductCategoryContext"
+import { Loader } from "../Loader/Loader";
 
 
 export const Home = () => {
-
+  const {isLoading} = useContext(ProductCategoryContext);
   return (
     <div>
-      <p>HomePage</p>
-      <CategoryBanner/>
+      {isLoading ? <Loader/>:<CategoryBanner/>}
     </div>
   );
 };
