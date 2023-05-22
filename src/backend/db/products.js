@@ -14,7 +14,7 @@ export const products = [
     rated:3900,
     price: 500,
     discount:10,
-    categoryName: "women",
+    categoryName: "Women",
   },
   {
     _id: uuid(),
@@ -23,7 +23,7 @@ export const products = [
     rating:3.2,
     price: 1000,
     discount:50,
-    categoryName: "men",
+    categoryName: "Men",
   },
   {
     _id: uuid(),
@@ -32,7 +32,7 @@ export const products = [
     rating:3,
     price: 2050,
     discount:40,
-    categoryName: "men",
+    categoryName: "Men",
   },
   {
     _id: uuid(),
@@ -41,7 +41,7 @@ export const products = [
     rating:4.6,
     price: 8100,
     discount:50,
-    categoryName: "women",
+    categoryName: "Women",
   },
   {
     _id: uuid(),
@@ -51,7 +51,7 @@ export const products = [
     rated:3900,
     price: 500,
     discount:10,
-    categoryName: "juniors",
+    categoryName: "Juniors",
   },
   {
     _id: uuid(),

@@ -1,26 +1,40 @@
-import { createContext, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 
-export const ProductListingcontext = createContext()
+export const ProductListingcontext = createContext();
 
-export const ProductListProvider = ({children})=>{
+export const ProductListProvider = ({ children }) => {
+  const [selectedRadioFilter, setselectedRadioFilter] = useState();
+  const [productList, setProductList] = useState();
+  const [isLoading, setLoading] = useState(true);
+  const [filterCategory, setFilterCategory] = useState();
 
-    const [productList, setProductList] = useState()
+  const getProductData = async () => {
+    const response = await fetch("/api/products", {
+      method: "GET",
+    });
 
-    const getProductData = async () => {
-        
-        const product = await fetch('/api/products',{
-            method: "GET",
-        })
+    // console.log(await response.json())
+    const productData = await response.json();
+    setLoading(false);
+    setProductList(productData.products);
+    setFilterCategory(productData.products);
+  };
+  useEffect(() => {
+    getProductData();
+  }, []);
 
-        console.log(await product.json())
-
-    }
-    useEffect(()=>{
-        getProductData
-    },[])
-
-    return <ProductListingcontext.Provider
-    value={{productList}}>
-        {children}
+  return (
+    <ProductListingcontext.Provider
+      value={{
+        productList,
+        isLoading,
+        filterCategory,
+        setFilterCategory,
+        selectedRadioFilter,
+        setselectedRadioFilter,
+      }}
+    >
+      {children}
     </ProductListingcontext.Provider>
-}
+  );
+};

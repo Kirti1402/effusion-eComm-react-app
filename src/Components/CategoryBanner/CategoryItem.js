@@ -9,9 +9,7 @@ export const CategoryBanner = () => {
 
   return (
     <section>
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
+      {!isLoading && (
         <div className="banner-container">
           {category.map((categoryItem) => {
             const { id, categoryName, description,url } = categoryItem;
