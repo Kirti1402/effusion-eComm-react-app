@@ -9,6 +9,7 @@ export const Header = () => {
     <nav className="nav-container">
         <Link className="link" to="/"><span className="link-title">Home</span></Link>
         <div className="right-container">
+          <Link className="link" to='/product'><span className="link-title">Shop</span></Link>
         {isEncodedToken ?<Link className="link" to="/profile"><span className="link-title">Profile</span></Link> : <Link className="link" to="/login"><span className="link-title">Login</span></Link>}
         <Link className="link" to="/wishlist"><span className="link-title">Wishlist</span></Link>
         <Link className="link" to="/cart"><span className="link-title">Cart</span></Link>

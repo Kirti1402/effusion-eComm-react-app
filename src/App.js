@@ -9,6 +9,7 @@ import { Login } from "./Components/Login/LoginPage";
 import { Header } from "./Components/Home/Header";
 import { SignUp } from "./Components/SignUp/SignUpPage";
 import { PrivateRoutes } from "./PrivateRoutes";
+import { Product } from "./Components/Product/Product";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
             </PrivateRoutes>
           }
         />
+        <Route path="/product" element={<Product/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
       </Routes>
