@@ -43,5 +43,34 @@ export const products = [
     discount:50,
     categoryName: "women",
   },
-
+  {
+    _id: uuid(),
+    title: "Perfume",
+    description: "by Titan Women Celeste Eau de Parfum 20 ml",
+    rating:4.5,
+    rated:3900,
+    price: 500,
+    discount:10,
+    categoryName: "juniors",
+  },
+  {
+    _id: uuid(),
+    title: "SKINN",
+    description: "by Titan Women Celeste Eau de Parfum 20 ml",
+    rating:4.5,
+    rated:4082,
+    price: 500,
+    discount:10,
+    categoryName: "men",
+  },
+  {
+    _id: uuid(),
+    title: "SKINN",
+    description: "by Titan Women Celeste Eau de Parfum 20 ml",
+    rating:4.5,
+    rated:3900,
+    price: 500,
+    discount:10,
+    categoryName: "women",
+  }
 ];

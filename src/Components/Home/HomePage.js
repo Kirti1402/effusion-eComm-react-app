@@ -1,6 +1,6 @@
 
 import { useContext } from "react";
-import { CategoryBanner } from "./CategoryBanner";
+import { CategoryBanner } from "../CategoryBanner/CategoryItem";
 import {ProductCategoryContext} from "../../Context/ProductCategoryContext"
 import { Loader } from "../Loader/Loader";
 

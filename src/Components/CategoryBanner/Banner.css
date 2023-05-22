@@ -1,0 +1,24 @@
+/* Banner.css */
+
+.banner-container {
+    display: flex;
+    height: 50vh;
+  }
+  
+  .banner {
+    flex: 1;
+    background-color: #f2f2f2;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    transition: flex 0.1s;
+  }
+  
+  .banner h2 {
+    margin: 0;
+  }
+  
+  .banner.expanded {
+    flex-grow: 3;
+  }
+  
