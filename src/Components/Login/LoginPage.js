@@ -13,6 +13,7 @@ const  updateForm = (e) =>{
     let name = e.target.name;
     let value = e.target.value;
     console.log("", loginInputData);
+    console.log("name:value",name,value)
     setLoginInputData({
         ...loginInputData,
         [name]:value})
@@ -31,11 +32,11 @@ const submitForm = (e) =>{
       <p className="heading">Login</p> 
         <div className="email">
           <label >Email</label>
-          <input type="text" id="useremail" placeholder="Enter your Email" name="email" onBlur={updateForm} required />
+          <input type="text" id="useremail" placeholder="Enter your Email" name="email" onchange={updateForm} required />
         </div>
         <div className="password">
           <label>Password</label>
-          <input type="password" id="password" placeholder="Enter your Password" name="password" onBlur  ={updateForm} required />
+          <input type="password" id="password" placeholder="Enter your Password" name="password" onchange  ={updateForm} required />
         </div>
         <span className="forgetPswd">Forget Password?</span>
         <div >

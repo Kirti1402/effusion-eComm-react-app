@@ -22,10 +22,7 @@ export const LoginProvider = ({ children }) => {
   },[])
 
   const getLoginData = async () => {
-    let cred = {
-        "email": "aman@gmail.com",
-         "password": "12345678"
-        }
+    let cred = loginInputData
     
     console.log(cred);
       const res = await fetch("/api/auth/login", {
@@ -35,7 +32,7 @@ export const LoginProvider = ({ children }) => {
       const response = await res.json();
       console.log(response);
 
-      if(!response.error){
+      if(!response.errors){
         setIsLoggedIn(true);
       localStorage.setItem("loginItem", response.foundUser);
       localStorage.setItem("firstName", response.foundUser.firstName);

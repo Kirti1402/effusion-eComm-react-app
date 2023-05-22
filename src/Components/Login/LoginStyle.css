@@ -1,5 +1,5 @@
 .heading{
-    margin-top: 70px;
+    /* margin-top: 70px; */
     text-align: center;
 }
 
@@ -9,28 +9,6 @@
 	align-items: center;
 	background: hsl(218deg 50% 91%);
 	height: 100vh;    
-}
-
-input {
-    outline: none;
-    border: none;
-    &::placeholder {
-        color: hsl(0deg 0% 0%);
-        font-size: 0.7rem;
-    }
-}
-
-.password,.email {
-    width: 300px;
-    background: hsl(0deg 0% 100%);
-    box-shadow: 0 0 2em hsl(231deg 62% 94%);
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    border-radius: 10px;
-    color: hsl(0deg 0% 30%);
-    margin: 0.5rem;
 }
 
 .loginBtn{

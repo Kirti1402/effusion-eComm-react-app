@@ -1,7 +1,7 @@
 
 
 .nav-container{
-    position: fixed;
+    /* position: fixed; */
     padding: 1rem;
 	background-color:hsl(233deg 36% 38%);
     width: 100%;

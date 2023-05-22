@@ -12,6 +12,7 @@ export const SignUpAuthContextProvider = ({ children }) => {
     lastName: null,
     email: null,
     password: null,
+    confirmPassword:null,
   });
   useEffect(() => {
     const token = localStorage.getItem("Encodedtoken");
