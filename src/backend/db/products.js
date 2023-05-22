@@ -14,6 +14,7 @@ export const products = [
     rated:3900,
     price: 500,
     discount:10,
+    size:'L',
     categoryName: "Women",
   },
   {
@@ -23,6 +24,7 @@ export const products = [
     rating:3.2,
     price: 1000,
     discount:50,
+    size:"XL",
     categoryName: "Men",
   },
   {
@@ -32,6 +34,7 @@ export const products = [
     rating:3,
     price: 2050,
     discount:40,
+    size:"XXL",
     categoryName: "Men",
   },
   {
@@ -41,6 +44,7 @@ export const products = [
     rating:4.6,
     price: 8100,
     discount:50,
+    size:"S",
     categoryName: "Women",
   },
   {
@@ -51,6 +55,7 @@ export const products = [
     rated:3900,
     price: 500,
     discount:10,
+    size:"S",
     categoryName: "Juniors",
   },
   {
@@ -61,6 +66,7 @@ export const products = [
     rated:4082,
     price: 500,
     discount:10,
+    size:"M",
     categoryName: "men",
   },
   {
@@ -71,6 +77,7 @@ export const products = [
     rated:3900,
     price: 500,
     discount:10,
+    size:"L",
     categoryName: "women",
   }
 ];
