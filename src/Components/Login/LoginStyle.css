@@ -1,12 +1,16 @@
+.heading{
+    margin-top: 70px;
+    text-align: center;
+}
 
-.signup-container {
+.login-container {
 	display: flex;
-    /* flex-direction: column; */
 	justify-content: center;
 	align-items: center;
 	background: hsl(218deg 50% 91%);
 	height: 100vh;    
 }
+
 input {
     outline: none;
     border: none;
@@ -15,11 +19,8 @@ input {
         font-size: 0.7rem;
     }
 }
-.heading{
-    margin-top: 70px;
-    text-align: center;
-}
-.password,.email,.firstName,.lastName,.confirmPassword {
+
+.password,.email {
     width: 300px;
     background: hsl(0deg 0% 100%);
     box-shadow: 0 0 2em hsl(231deg 62% 94%);
@@ -32,8 +33,7 @@ input {
     margin: 0.5rem;
 }
 
-
-.signupBtn{
+.loginBtn{
     width: 100%;
     padding: 1em;
     background: hsl(233deg 36% 38%);
@@ -44,11 +44,15 @@ input {
     cursor: pointer;
 }
 
-.loginLink{
+.signUpLink{
     color: hsl(233deg 36% 38%);;
     cursor: pointer;
     margin-left:0.3rem ;
 }
 
-
-
+.forgetPswd{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.3rem;
+    color: grey;
+}

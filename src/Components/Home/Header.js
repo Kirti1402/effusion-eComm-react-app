@@ -7,10 +7,13 @@ export const Header = () => {
   console.log("in header",isEncodedToken);
     return<div className="header-container">
     <nav className="nav-container">
-        <Link to="/">Home</Link>
-        {isEncodedToken ?<Link to="/profile">Profile</Link> : <Link to="/login">Login</Link>}
-        <Link to="/wishlist">WishList</Link>
-        <Link to="/cart">Cart</Link>
+        <Link className="link" to="/"><span className="link-title">Home</span></Link>
+        <div className="right-container">
+        {isEncodedToken ?<Link className="link" to="/profile"><span className="link-title">Profile</span></Link> : <Link className="link" to="/login"><span className="link-title">Login</span></Link>}
+        <Link className="link" to="/wishlist"><span className="link-title">Wishlist</span></Link>
+        <Link className="link" to="/cart"><span className="link-title">Cart</span></Link>
+        </div>
+       
         {/* <Link to="/login">Login</Link> */}
       </nav>
     </div>

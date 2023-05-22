@@ -27,7 +27,7 @@ export const SignUp = () => {
     return <div className="signup-container">
     
     <form  onSubmit={submitForm}>
-    <p className="heading">Sign UP Page</p>
+    <p className="heading">Sign UP</p>
         <div className="firstName">
           <label >First Name</label>
           <input type="text" id="firstName" name="firstName" placeholder="Enter FirstName" onBlur={updateForm} required />
@@ -44,7 +44,10 @@ export const SignUp = () => {
           <label>Password</label>
           <input type="password" id="password" name="password" placeholder="Enter Password" onBlur  ={updateForm} required />
         </div>
-        
+        <div className="confirmPassword">
+          <label>Password</label>
+          <input type="password" id="password" name="password" placeholder="Re-Enter Password" onBlur  ={updateForm} required />
+        </div>
           <button type="submit" className="signupBtn">
            Sign UP
           </button>
