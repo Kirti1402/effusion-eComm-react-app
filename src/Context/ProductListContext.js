@@ -7,7 +7,7 @@ export const ProductListProvider = ({ children }) => {
   const [productList, setProductList] = useState();
   const [isLoading, setLoading] = useState(true);
   const [filterCategory, setFilterCategory] = useState();
-  const [searchQuery, setSearchQuery] = useState('SearchHere');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const getProductData = async () => {
     const response = await fetch("/api/products", {
