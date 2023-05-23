@@ -20,6 +20,8 @@ export const ProductItem = () => {
 
   const [sizes, setSizes] = useState([]);
   const [rating, setRating] = useState(0);
+  const [sortOrder, setSortOrder] = useState('ascending');
+  const [searchQuery, setSearchQuery] = useState('');
   //settingSelectedRadioValue
   const handleFilterChange = (event) => {
     setselectedRadioFilter(event.target.value);
@@ -39,20 +41,46 @@ export const ProductItem = () => {
     setRating(Number(event.target.value));
   };
 
+  //sortingPrice
+  const handleSortChange = (event) => {
+    setSortOrder(event.target.value);
+  };
+
+  //searching
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   const filteredProducts = productList.filter((product) => {
     const isGenderMatched =
       selectedRadioFilter === "" ||
       product.categoryName === selectedRadioFilter;
     const isSizeMatched = sizes.length === 0 || sizes.includes(product.size);
     const isRatingMatched = rating === 0 || product.rating >= rating;
-    return isGenderMatched && isSizeMatched && isRatingMatched;
-  });
+    const isSearchMatched =
+        searchQuery === '' || product.title.toLowerCase().includes(searchQuery.toLowerCase());
+      return isGenderMatched && isSizeMatched && isRatingMatched && isSearchMatched;
+  }).sort((a, b) => {
+    if (sortOrder === 'ascending') {
+      return a.price - b.price;
+    } else if (sortOrder === 'descending') {
+      return b.price - a.price;
+    }
+    return 0;
+  });;
   const filterProductLength = filteredProducts.length;
 
   console.log("filteredProducts", filteredProducts);
 
   return (
     <div>
+      <div>
+        <label>
+          Search:
+          <input type="text" value={searchQuery} onChange={handleSearchChange} />
+        </label>
+      </div>
+      <div>
       <div>
         {category &&
           category.map(({ id, categoryName }) => (
@@ -67,6 +95,15 @@ export const ProductItem = () => {
               {categoryName}
             </label>
           ))}
+      </div>
+      <div>
+        <label>
+          Sort Order:
+          <select value={sortOrder} onChange={handleSortChange}>
+            <option value="ascending">Price: Low-to-High</option>
+            <option value="descending">Price: High-to-Low</option>
+          </select>
+        </label>
       </div>
       <div>
             {uniqueSize.map(size =>
@@ -96,6 +133,7 @@ export const ProductItem = () => {
           </label>
         ))}
       </div>
+      </div>
 
       <aside>
         {filterProductLength ?
@@ -109,11 +147,16 @@ export const ProductItem = () => {
               price,
               discount,
               categoryName,
+              size
             } = productItem;
             return (
               <div className="card-container" key={id}>
                 <p>{title}</p>
                 <p>{description}</p>
+                <p>{price}</p>
+                <p>{rating}</p>
+                <p>{categoryName}</p>
+                <p>{size}</p>
                 <button>Add to Cart</button>
               </div>
             );
