@@ -159,6 +159,7 @@ export const ProductItem = () => {
       <aside>
         {filterProductLength ? (
           filteredProducts.map((productItem) => {
+            console.log(productItem._id)
             const {
               id,
               title,
@@ -171,7 +172,7 @@ export const ProductItem = () => {
               size,
             } = productItem;
             return (
-              <Link>
+              <Link to='/productDetail'>
                 <div className="card-container" key={id}>
                   <p>{title}</p>
                   <p>{description}</p>

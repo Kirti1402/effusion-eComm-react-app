@@ -8,6 +8,7 @@ export const ProductListProvider = ({ children }) => {
   const [isLoading, setLoading] = useState(true);
   const [filterCategory, setFilterCategory] = useState();
   const [searchQuery, setSearchQuery] = useState('');
+  const [storeProductId,setProductId] = useState();
 
   const getProductData = async () => {
     const response = await fetch("/api/products", {
@@ -35,6 +36,8 @@ export const ProductListProvider = ({ children }) => {
         setFilterCategory,
         selectedRadioFilter,
         setselectedRadioFilter,
+        storeProductId,
+        setProductId
       }}
     >
       {children}
