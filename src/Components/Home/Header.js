@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { LoginAuthContext } from "../../Context/LoginAuthContext";
 import { ProductListingcontext } from "../../Context/ProductListContext";
 import "./headerStyle.css";
+import SearchBar from "../SearchBar/SearchBar";
 export const Header = () => {
   const { isEncodedToken } = useContext(LoginAuthContext);
   const { searchQuery, setSearchQuery } = useContext(ProductListingcontext);
@@ -13,6 +14,9 @@ export const Header = () => {
         <Link className="link" to="/">
           <span className="link-title">Home</span>
         </Link>
+        <div>
+        <SearchBar/>
+        </div>
         <div className="right-container">
           <Link className="link" to="/product">
             <span className="link-title">Shop</span>
