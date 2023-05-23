@@ -10,6 +10,7 @@ import { Header } from "./Components/Home/Header";
 import { SignUp } from "./Components/SignUp/SignUpPage";
 import { PrivateRoutes } from "./PrivateRoutes";
 import { Product } from "./Components/Product/Product";
+import ProductDetail from "./Components/ProductDetail/ProductDetail";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         <Route path="/product" element={<Product/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/productDetail" element={<ProductDetail/>}/>
       </Routes>
     </div>
   );
