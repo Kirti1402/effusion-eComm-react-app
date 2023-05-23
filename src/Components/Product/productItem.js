@@ -13,16 +13,18 @@ export const ProductItem = () => {
     selectedRadioFilter,
     setselectedRadioFilter,
     searchQuery,
-    setSearchQuery,
+    setProductId,
+    getProductDetail,
+    storeProductId
   } = useContext(ProductListingcontext);
   const { category } = useContext(ProductCategoryContext);
 
-  const uniqueSize = [...new Set(productList.map(({ size }) => size))];
+  const uniqueSize = [...new Set(productList && productList.map(({ size }) => size))];
 
   const [sizes, setSizes] = useState([]);
   const [rating, setRating] = useState(0);
   const [sortOrder, setSortOrder] = useState("ascending");
-  const [searchSuggestions, setSearchSuggestions] = useState([]);
+
 
   //settingSelectedRadioValue
   const handleFilterChange = (event) => {
@@ -34,7 +36,7 @@ export const ProductItem = () => {
     if (checked) {
       setSizes([...sizes, value]); // Add the size to the array
     } else {
-      setSizes(sizes.filter((size) => size !== value)); // Remove the size from the array
+      setSizes(sizes && sizes.filter((size) => size !== value)); // Remove the size from the array
     }
   };
 
@@ -48,22 +50,19 @@ export const ProductItem = () => {
     setSortOrder(event.target.value);
   };
 
-  //searching
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
+  const productOnClickHandle = (id) =>{
+    console.log("id",id)
+    setProductId(id)
+    // getProductDetail()
+    console.log('ProductID ProductItem',storeProductId)
+  }
 
-  //searchingSuggestion
-  // const handleSearchChange = (event) => {
-  //   const value = event.target.value;
-  //   setSearchQuery(value);
-  //   const suggestions = productList
-  //     .filter((product) => product.title.toLowerCase().includes(value.toLowerCase()))
-  //     .map((product) => product.title);
-  //   setSearchSuggestions(suggestions);
-  // };
 
-  const filteredProducts = productList
+
+
+
+
+  const filteredProducts =productList && productList
     .filter((product) => {
       const isGenderMatched =
         selectedRadioFilter === "" ||
@@ -85,22 +84,12 @@ export const ProductItem = () => {
       }
       return 0;
     });
-  const filterProductLength = filteredProducts.length;
+  const filterProductLength = filteredProducts && filteredProducts.length;
 
   console.log("filteredProducts", filteredProducts);
 
   return (
     <div>
-      {/* <div>
-        <label>
-          Search:
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
-        </label>
-      </div> */}
       <div>
         <div>
           {category &&
@@ -127,7 +116,7 @@ export const ProductItem = () => {
           </label>
         </div>
         <div>
-          {uniqueSize.map((size) => (
+          {uniqueSize && uniqueSize.map((size) => (
             <label>
               <input
                 type="checkbox"
@@ -142,7 +131,7 @@ export const ProductItem = () => {
         </div>
 
         <div>
-          {ratingNumber.map((ratingnum) => (
+          {ratingNumber && ratingNumber.map((ratingnum) => (
             <label>
               <input
                 type="radio"
@@ -165,14 +154,12 @@ export const ProductItem = () => {
               title,
               description,
               rating,
-              rated,
               price,
-              discount,
               categoryName,
               size,
             } = productItem;
             return (
-              <Link to='/productDetail'>
+              <Link to='/productDetail' onClick={()=>productOnClickHandle(productItem._id)}>
                 <div className="card-container" key={id}>
                   <p>{title}</p>
                   <p>{description}</p>

@@ -8,19 +8,23 @@ export const ProductListProvider = ({ children }) => {
   const [isLoading, setLoading] = useState(true);
   const [filterCategory, setFilterCategory] = useState();
   const [searchQuery, setSearchQuery] = useState('');
-  const [storeProductId,setProductId] = useState();
+  const [storeProductId,setProductId] = useState(0);
+  const [storeProductDetail,setProductDetail] = useState({});
 
   const getProductData = async () => {
     const response = await fetch("/api/products", {
       method: "GET",
     });
-
-    // console.log(await response.json())
     const productData = await response.json();
     setLoading(false);
     setProductList(productData.products);
     setFilterCategory(productData.products);
   };
+
+  
+
+
+
   useEffect(() => {
     getProductData();
   }, []);
@@ -37,7 +41,10 @@ export const ProductListProvider = ({ children }) => {
         selectedRadioFilter,
         setselectedRadioFilter,
         storeProductId,
-        setProductId
+        setProductId,
+        storeProductDetail,
+        setProductDetail,
+        // getProductDetail
       }}
     >
       {children}
