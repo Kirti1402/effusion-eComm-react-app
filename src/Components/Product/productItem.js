@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { ProductCategoryContext } from "../../Context/ProductCategoryContext";
@@ -14,17 +14,17 @@ export const ProductItem = () => {
     setselectedRadioFilter,
     searchQuery,
     setProductId,
-    getProductDetail,
-    storeProductId
+    storeProductId,
   } = useContext(ProductListingcontext);
   const { category } = useContext(ProductCategoryContext);
-
-  const uniqueSize = [...new Set(productList && productList.map(({ size }) => size))];
-
+  // new array to store unique size from product object
+  const uniqueSize = [
+    ...new Set(productList && productList.map(({ size }) => size)),
+  ];
+  //local states
   const [sizes, setSizes] = useState([]);
   const [rating, setRating] = useState(0);
   const [sortOrder, setSortOrder] = useState("ascending");
-
 
   //settingSelectedRadioValue
   const handleFilterChange = (event) => {
@@ -49,44 +49,42 @@ export const ProductItem = () => {
   const handleSortChange = (event) => {
     setSortOrder(event.target.value);
   };
-
-  const productOnClickHandle = (id) =>{
-    console.log("id",id)
-    setProductId(id)
+  //storing productiD for product detail page
+  const productOnClickHandle = (id) => {
+    console.log("id", id);
+    setProductId(id);
     // getProductDetail()
-    console.log('ProductID ProductItem',storeProductId)
-  }
+    console.log("ProductID ProductItem", storeProductId);
+  };
+  //implemented filter logic
+  const filteredProducts =
+    productList &&
+    productList
+      .filter((product) => {
+        const isGenderMatched =
+          selectedRadioFilter === "" ||
+          product.categoryName === selectedRadioFilter;
+        const isSizeMatched =
+          sizes.length === 0 || sizes.includes(product.size);
+        const isRatingMatched = rating === 0 || product.rating >= rating;
+        const isSearchMatched =
+          searchQuery === "" ||
+          product.title.toLowerCase().includes(searchQuery.toLowerCase());
+        return (
+          isGenderMatched && isSizeMatched && isRatingMatched && isSearchMatched
+        );
+      })
+      .sort((a, b) => {
+        if (sortOrder === "ascending") {
+          return a.price - b.price;
+        } else if (sortOrder === "descending") {
+          return b.price - a.price;
+        }
+        return 0;
+      });
 
-
-
-
-
-
-  const filteredProducts =productList && productList
-    .filter((product) => {
-      const isGenderMatched =
-        selectedRadioFilter === "" ||
-        product.categoryName === selectedRadioFilter;
-      const isSizeMatched = sizes.length === 0 || sizes.includes(product.size);
-      const isRatingMatched = rating === 0 || product.rating >= rating;
-      const isSearchMatched =
-        searchQuery === "" ||
-        product.title.toLowerCase().includes(searchQuery.toLowerCase());
-      return (
-        isGenderMatched && isSizeMatched && isRatingMatched && isSearchMatched
-      );
-    })
-    .sort((a, b) => {
-      if (sortOrder === "ascending") {
-        return a.price - b.price;
-      } else if (sortOrder === "descending") {
-        return b.price - a.price;
-      }
-      return 0;
-    });
+  //storing length for validating and rendering the item
   const filterProductLength = filteredProducts && filteredProducts.length;
-
-  console.log("filteredProducts", filteredProducts);
 
   return (
     <div>
@@ -116,39 +114,41 @@ export const ProductItem = () => {
           </label>
         </div>
         <div>
-          {uniqueSize && uniqueSize.map((size) => (
-            <label>
-              <input
-                type="checkbox"
-                name="size"
-                value={size}
-                checked={sizes.includes(size)}
-                onChange={handleSizeChange}
-              />
-              {size}
-            </label>
-          ))}
+          {uniqueSize &&
+            uniqueSize.map((size) => (
+              <label>
+                <input
+                  type="checkbox"
+                  name="size"
+                  value={size}
+                  checked={sizes.includes(size)}
+                  onChange={handleSizeChange}
+                />
+                {size}
+              </label>
+            ))}
         </div>
 
         <div>
-          {ratingNumber && ratingNumber.map((ratingnum) => (
-            <label>
-              <input
-                type="radio"
-                name="rating"
-                value={ratingnum}
-                onChange={handleRatingChange}
-              />
-              {ratingnum} & above
-            </label>
-          ))}
+          {ratingNumber &&
+            ratingNumber.map((ratingnum) => (
+              <label>
+                <input
+                  type="radio"
+                  name="rating"
+                  value={ratingnum}
+                  onChange={handleRatingChange}
+                />
+                {ratingnum} & above
+              </label>
+            ))}
         </div>
       </div>
 
       <aside>
         {filterProductLength ? (
           filteredProducts.map((productItem) => {
-            console.log(productItem._id)
+            console.log(productItem._id);
             const {
               id,
               title,
@@ -159,7 +159,10 @@ export const ProductItem = () => {
               size,
             } = productItem;
             return (
-              <Link to='/productDetail' onClick={()=>productOnClickHandle(productItem._id)}>
+              <Link
+                to="/productDetail"
+                onClick={() => productOnClickHandle(productItem._id)}
+              >
                 <div className="card-container" key={id}>
                   <p>{title}</p>
                   <p>{description}</p>

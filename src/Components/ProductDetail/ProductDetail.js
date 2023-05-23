@@ -25,7 +25,11 @@ const ProductDetail =() => {
   console.log("store",storeProductDetail)
   return (
     <div>ProductDetail
-      {storeProductDetail && <p>{storeProductDetail.title}</p>}
+      {storeProductDetail && <div>
+        <p>{storeProductDetail.title}</p>
+        <p>{storeProductDetail.size}</p>
+        <p>{storeProductDetail.rating}</p>
+        </div>}
     
     </div>
     
