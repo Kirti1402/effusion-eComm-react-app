@@ -1,7 +1,8 @@
-import { ProductListingcontext } from "../../Context/ProductListContext";
-import { ProductCategoryContext } from "../../Context/ProductCategoryContext";
-
 import { useContext, useEffect, useState } from "react";
+import {Link} from "react-router-dom";
+
+import { ProductCategoryContext } from "../../Context/ProductCategoryContext";
+import { ProductListingcontext } from "../../Context/ProductListContext";
 
 import "./Product.css";
 
@@ -13,6 +14,8 @@ export const ProductItem = () => {
     selectedRadioFilter,
     setFilterCategory,
     setselectedRadioFilter,
+    searchQuery, 
+        setSearchQuery
   } = useContext(ProductListingcontext);
   const { category } = useContext(ProductCategoryContext);
 
@@ -21,7 +24,8 @@ export const ProductItem = () => {
   const [sizes, setSizes] = useState([]);
   const [rating, setRating] = useState(0);
   const [sortOrder, setSortOrder] = useState('ascending');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchSuggestions, setSearchSuggestions] = useState([])
+
   //settingSelectedRadioValue
   const handleFilterChange = (event) => {
     setselectedRadioFilter(event.target.value);
@@ -51,6 +55,16 @@ export const ProductItem = () => {
     setSearchQuery(event.target.value);
   };
 
+  //searchingSuggestion
+  // const handleSearchChange = (event) => {
+  //   const value = event.target.value;
+  //   setSearchQuery(value);
+  //   const suggestions = productList
+  //     .filter((product) => product.title.toLowerCase().includes(value.toLowerCase()))
+  //     .map((product) => product.title);
+  //   setSearchSuggestions(suggestions);
+  // };
+
   const filteredProducts = productList.filter((product) => {
     const isGenderMatched =
       selectedRadioFilter === "" ||
@@ -74,7 +88,7 @@ export const ProductItem = () => {
 
   return (
     <div>
-      <div>
+       <div>
         <label>
           Search:
           <input type="text" value={searchQuery} onChange={handleSearchChange} />
@@ -150,6 +164,7 @@ export const ProductItem = () => {
               size
             } = productItem;
             return (
+              <Link>
               <div className="card-container" key={id}>
                 <p>{title}</p>
                 <p>{description}</p>
@@ -159,6 +174,7 @@ export const ProductItem = () => {
                 <p>{size}</p>
                 <button>Add to Cart</button>
               </div>
+              </Link>
             );
           })
           :<p>No Product found</p>
