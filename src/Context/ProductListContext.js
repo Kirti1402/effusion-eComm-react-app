@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 export const ProductListingcontext = createContext();
 
 export const ProductListProvider = ({ children }) => {
-  const [selectedRadioFilter, setselectedRadioFilter] = useState();
+  const [selectedRadioFilter, setselectedRadioFilter] = useState('');
   const [productList, setProductList] = useState();
   const [isLoading, setLoading] = useState(true);
   const [filterCategory, setFilterCategory] = useState();
