@@ -13,12 +13,6 @@ export default function SearchBar() {
   const findResult = (title) => {
     setResult(suggestions.find((suggestion) => suggestion.title === title));
   };
-  const filteredProducts = productList && productList.filter((product) =>
-
-    {   console.log("searcg",searchQuery,"pT",product.title)
-        console.log("bool",product.title.toLowerCase().includes(searchQuery.toLowerCase()))
-        return product.title.toLowerCase().includes(searchQuery.toLowerCase())}
-  );
 
   return <div>
   Search:
