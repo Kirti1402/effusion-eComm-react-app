@@ -2,16 +2,149 @@
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
-height: 100vh;
+height: auto;
+/* border: 2px solid black; */
+width: 350px;
+margin-top: 30px;
+margin-left: auto;
+margin-right: auto;
+box-shadow: 0 0 5px 2px #EDF6E5;
 }
 
 .btn-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    margin-bottom: 10px;
+    width: 100%;
+    background-color: hsl(218deg 50% 91%);
   }
+
+ .btn-container button{
+    width: 100%;
+    height: 40px;
+    border: none;
+  }
+
+.btnBack{
+    background-color: #F0FFC2;
+}
+
+.logOut{
+    background-color: tomato;
+    border: none;
+    height: 25px;
+    width:80px ;
+    margin: 5px;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.detail-container{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+
+
+
+/* .address-input{
+    border: none;
+    outline: none;
+    &::placeholder {
+        color: hsl(0deg 0% 0%);
+        font-size: 0.5rem;
+    }
+} */
+
+
+/* Form Container */
+.form-container {
+    max-width: 400px;
+    /* margin: 0 auto; */
+    margin-bottom: 10px ;
+  }
+  
+  /* Form Field Label */
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  /* Input Field Container */
+  .input-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Input Field */
+  .input-field {
+    flex: 1;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-right: 10px;
+  }
+  
+  /* Button */
+  .form-add-button {
+    padding: 10px 20px;
+    background-color: #D5ECC2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .form-cancel-button {
+    margin-left:5px ;
+    padding: 10px 20px;
+    background-color: #E99497;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .form-cancel-button:hover{
+    background-color: #C64756;
+  }
+  .form-add-button:hover{
+    background-color: #96BB7C;
+  }
+  
+
+  .add-button{
+    padding: 5px 5px;
+    background-color: tomato;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom:5px ;
+    width: 100%;
+  }
+
+  .address-detail-display{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px;
+    border: 3px solid orange;
+  }
+
+  .address-title{
+    margin-right: 5px;
+    font-size: 15px;
+    font-weight: bolder;
+  }
+
+  .address-value{
+    font-size: 12px;
+  }
+
 
   @media (max-width: 768px) {
     .btn-container {
@@ -21,5 +154,18 @@ height: 100vh;
 
     button {
       margin: 5px;
+      height: 20px;
     }
+
+    .profile-page-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        border: 2px solid black;
+        width: 300px;
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        }
   }

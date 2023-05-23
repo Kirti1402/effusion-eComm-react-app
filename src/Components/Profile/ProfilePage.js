@@ -25,19 +25,18 @@ export const ProfilePage = () => {
   return (
     <div className="profile-page-container">
       <div className="btn-container">
-      <button>Profile Information</button>
-      <button>Address Information</button>
+      <button className={selecttab.profile ? 'btnBack' : 'none' } onClick={() => setSelectTab({ profile: true, address: false })}>Profile Information</button>
+      <button className={selecttab.address ? 'btnBack' : 'none' } onClick={() => setSelectTab({ profile: false, address: true })}>Address Information</button>
       </div>
-      <div>
+      <div className="detail-container">
       {selecttab.profile && (
         <section>
-          <p>ProfilePage Page</p>
           <p>
             Name : {firstName}
             {lastName}
           </p>
           <p>Email :{email}</p>
-          <button onClick={() => logOutHandler()}>Log Out</button>
+          <button  className="logOut"onClick={() => logOutHandler()}>Log Out</button>
         </section>
       )}
       {selecttab.address && <Address />}
