@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { ProductCategoryContext } from "../../Context/ProductCategoryContext";
 import { ProductListingcontext } from "../../Context/ProductListContext";
-
+import { AddToCart } from "../Cart/AddToCart";
 import "./Product.css";
 
 export const ProductItem = () => {
@@ -86,6 +86,12 @@ export const ProductItem = () => {
   //storing length for validating and rendering the item
   const filterProductLength = filteredProducts && filteredProducts.length;
 
+  const addProductToCart = (productItem) =>{
+    let CardProduct = { product:productItem}
+    console.log("CardProduct",CardProduct)
+    AddToCart(CardProduct)
+  }
+
   return (
     <div>
       <div>
@@ -159,20 +165,28 @@ export const ProductItem = () => {
               size,
             } = productItem;
             return (
-              <Link
-                to="/productDetail"
-                onClick={() => productOnClickHandle(productItem._id)}
-              >
+              <div>
                 <div className="card-container" key={id}>
-                  <p>{title}</p>
-                  <p>{description}</p>
+                  <Link
+                    to="/productDetail"
+                    onClick={() => productOnClickHandle(productItem._id)}
+                  >
+                    <p>{title}</p>
+                    <p>{description}</p>
+                  </Link>
                   <p>{price}</p>
                   <p>{rating}</p>
                   <p>{categoryName}</p>
                   <p>{size}</p>
-                  <button>Add to Cart</button>
+
+                  <div>
+                    <button>Wishlist</button>
+                  </div>
+                  <button onClick={() => addProductToCart(productItem)}>
+                    Add to Cart
+                  </button>
                 </div>
-              </Link>
+              </div>
             );
           })
         ) : (

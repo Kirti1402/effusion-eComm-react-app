@@ -31,7 +31,7 @@ export const SignUpAuthContextProvider = ({ children }) => {
 
     
     const response = await res.json();
-    localStorage.setItem("LoginItem", JSON.stringify(response));
+    localStorage.setItem("SignUpItem", JSON.stringify(response));
     console.log(response);
 
     if (!response.error) {

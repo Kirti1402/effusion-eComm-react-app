@@ -30,6 +30,7 @@ export const LoginProvider = ({ children }) => {
         body: JSON.stringify(cred),
       });
       const response = await res.json();
+      localStorage.setItem("LoginItem", JSON.stringify(response));
       console.log(response);
 
       if(!response.errors){

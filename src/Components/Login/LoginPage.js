@@ -32,11 +32,11 @@ const submitForm = (e) =>{
       <p className="heading">Login</p> 
         <div className="email">
           <label >Email</label>
-          <input type="text" id="useremail" placeholder="Enter your Email" name="email" onchange={updateForm} required />
+          <input type="text" id="useremail" placeholder="Enter your Email" name="email" onChange={updateForm} required />
         </div>
         <div className="password">
           <label>Password</label>
-          <input type="password" id="password" placeholder="Enter your Password" name="password" onchange  ={updateForm} required />
+          <input type="password" id="password" placeholder="Enter your Password" name="password" onChange  ={updateForm} required />
         </div>
         <span className="forgetPswd">Forget Password?</span>
         <div >
