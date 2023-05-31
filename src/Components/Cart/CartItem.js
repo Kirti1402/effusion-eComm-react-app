@@ -1,9 +1,11 @@
 import { useContext, useEffect } from "react";
 import {ProductListingcontext} from "../../Context/ProductListContext"
-import { RemoveFromCart } from "./RemoveFromCart";
+import { cartContext } from "../../Context/CartContext";
+
 
 export const CartItems = () => {
   const {cartList, setCartList} =useContext(ProductListingcontext);
+  const {addedToCartList,setAddedToCartList} = useContext(cartContext);
   const token = localStorage.getItem("Encodedtoken");
 
   const getCartItem = async () => {
@@ -26,6 +28,10 @@ export const CartItems = () => {
   },[])
 
   const onClickRemoveFromCart =(id)=>{
+    console.log("added to cart list",addedToCartList)
+    const updatedList = addedToCartList.filter(item => item !== id)
+    console.log("removed from Cart",updatedList)
+    setAddedToCartList([...updatedList])
     console.log(id)
     RemoveFromCart(id)
   }

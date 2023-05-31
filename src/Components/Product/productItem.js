@@ -9,7 +9,7 @@ import "./Product.css";
 
 export const ProductItem = () => {
   const navigate = useNavigate();
-  // const {addedToCartList,setAddedToCartList} = useContext(AddToCart);
+  const {addedToCartList,setAddedToCartList} = useContext(cartContext);
   const [btnText,setBtn] = useState("Add To Cart")
   const ratingNumber = [1, 2, 3, 4, 5];
   const {
@@ -90,12 +90,13 @@ export const ProductItem = () => {
   //storing length for validating and rendering the item
   const filterProductLength = filteredProducts && filteredProducts.length;
 
-  const CartBtnHandle = (productItem) =>{
+  const CartBtnHandle = (productItem,event) =>{
+    console.log(event)
     let CardProduct = { product:productItem}
     console.log("CardProduct",CardProduct)
     if(btnText === "Add To Cart"){
       AddToCart(CardProduct)
-      // setAddedToCartList(productItem._id)
+      setAddedToCartList([...addedToCartList,productItem._id])
       // setBtn("Go To Cart")
 
     }else if(btnText == "Go To Cart"){
@@ -194,7 +195,7 @@ export const ProductItem = () => {
                     <button>Wishlist</button>
                   </div>
                   <button onClick={() => CartBtnHandle(productItem)}>
-                    Add To Cart 
+                   {addedToCartList.includes(productItem._id) ? 'Go To Cart' : 'Add To Cart' }
                   </button>
                 </div>
               </div>
