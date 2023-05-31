@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 export const Address = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [address, setAddress] = useState([
-    {
-      name: "Henry Potter",
-      phone: "9920397890",
-      address: "Bellandur, Banglore",
-      city: "Paris",
-      pincode: 234567,
-      state: "Punjab",
-    },
+    // {
+    //   name: "Henry Potter",
+    //   phone: "9920397890",
+    //   address: "Bellandur, Banglore",
+    //   city: "Paris",
+    //   pincode: 234567,
+    //   state: "Punjab",
+    // },
   ]);
   const [addObject, setAddObject] = useState({
     name: "Henry Potter",
@@ -102,6 +102,7 @@ export const Address = () => {
   return (
     <>
       {!isAddBtn && (
+        <div>
         <button
           className="add-button"
           type="submit"
@@ -109,6 +110,7 @@ export const Address = () => {
         >
           Add Address
         </button>
+        </div>
       )}
       {isAddBtn && (
         <div className="form-container">

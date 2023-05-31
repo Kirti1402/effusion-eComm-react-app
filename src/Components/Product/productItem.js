@@ -1,12 +1,16 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 
 import { ProductCategoryContext } from "../../Context/ProductCategoryContext";
 import { ProductListingcontext } from "../../Context/ProductListContext";
+import { cartContext } from "../../Context/CartContext";
 import { AddToCart } from "../Cart/AddToCart";
 import "./Product.css";
 
 export const ProductItem = () => {
+  const navigate = useNavigate();
+  const {addedToCartList,setAddedToCartList} = useContext(AddToCart);
+  const [btnText,setBtn] = useState("Add To Cart")
   const ratingNumber = [1, 2, 3, 4, 5];
   const {
     productList,
@@ -86,10 +90,15 @@ export const ProductItem = () => {
   //storing length for validating and rendering the item
   const filterProductLength = filteredProducts && filteredProducts.length;
 
-  const addProductToCart = (productItem) =>{
+  const CartBtnHandle = (productItem) =>{
     let CardProduct = { product:productItem}
     console.log("CardProduct",CardProduct)
-    AddToCart(CardProduct)
+    if(btnText === "Add To Cart"){
+      AddToCart(CardProduct)
+      setBtn("Go To Cart")
+    }else if(btnText == "Go To Cart"){
+      navigate('/cart')
+    }
   }
 
   return (
@@ -182,7 +191,7 @@ export const ProductItem = () => {
                   <div>
                     <button>Wishlist</button>
                   </div>
-                  <button onClick={() => addProductToCart(productItem)}>
+                  <button onClick={() => CartBtnHandle(productItem)}>
                     Add to Cart
                   </button>
                 </div>
