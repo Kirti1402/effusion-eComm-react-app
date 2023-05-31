@@ -6,8 +6,11 @@ import { ProductListingcontext } from "../../Context/ProductListContext";
 import { cartContext } from "../../Context/CartContext";
 import { AddToCart } from "../Cart/AddToCart";
 import "./Product.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ProductItem = () => {
+  <ToastContainer />
   const navigate = useNavigate();
   const {addedToCartList,setAddedToCartList} = useContext(cartContext);
   const [btnText,setBtn] = useState("Add To Cart")
@@ -91,17 +94,20 @@ export const ProductItem = () => {
   const filterProductLength = filteredProducts && filteredProducts.length;
 
   const CartBtnHandle = (productItem,event) =>{
-    console.log(event)
+
     let CardProduct = { product:productItem}
-    console.log("CardProduct",CardProduct)
-    if(btnText === "Add To Cart"){
+    console.log("bool",(!addedToCartList.includes(productItem._id)))
+    if(!addedToCartList.includes(productItem._id)){
       AddToCart(CardProduct)
       setAddedToCartList([...addedToCartList,productItem._id])
       // setBtn("Go To Cart")
-
-    }else if(btnText == "Go To Cart"){
+    }else{
       navigate('/cart')
     }
+
+    toast.success('Item added to cart!', {
+      position: toast.POSITION.TOP_CENTER
+    });
   }
 
   return (
