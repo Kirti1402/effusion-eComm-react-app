@@ -9,7 +9,7 @@ import "./Product.css";
 
 export const ProductItem = () => {
   const navigate = useNavigate();
-  const {addedToCartList,setAddedToCartList} = useContext(AddToCart);
+  // const {addedToCartList,setAddedToCartList} = useContext(AddToCart);
   const [btnText,setBtn] = useState("Add To Cart")
   const ratingNumber = [1, 2, 3, 4, 5];
   const {
@@ -95,7 +95,9 @@ export const ProductItem = () => {
     console.log("CardProduct",CardProduct)
     if(btnText === "Add To Cart"){
       AddToCart(CardProduct)
-      setBtn("Go To Cart")
+      // setAddedToCartList(productItem._id)
+      // setBtn("Go To Cart")
+
     }else if(btnText == "Go To Cart"){
       navigate('/cart')
     }
@@ -192,7 +194,7 @@ export const ProductItem = () => {
                     <button>Wishlist</button>
                   </div>
                   <button onClick={() => CartBtnHandle(productItem)}>
-                    Add to Cart
+                    Add To Cart 
                   </button>
                 </div>
               </div>

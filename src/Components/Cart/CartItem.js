@@ -22,13 +22,28 @@ export const CartItems = () => {
   console.log("CartList",cartList)
 
   useEffect(()=>{
-    getCartItem();
+      getCartItem();
   },[])
 
   const onClickRemoveFromCart =(id)=>{
     console.log(id)
     RemoveFromCart(id)
   }
+
+  const RemoveFromCart = async (id) =>{
+    console.log(`/api/user/cart/${id}`)
+    const token = localStorage.getItem("Encodedtoken");
+    const response = await fetch(`/api/user/cart/${id}`, {
+        method: 'DELETE',
+        headers: {
+            authorization: token
+          },
+           })
+        const cartProduct = await response.json();
+        setCartList(cartProduct.cart)
+}
+
+
   return <>
   <div>{cartList.length>0 ? <div>{cartList.map(cartItem =>{
     const {_id, title} = cartItem
