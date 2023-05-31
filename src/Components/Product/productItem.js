@@ -6,14 +6,12 @@ import { ProductListingcontext } from "../../Context/ProductListContext";
 import { cartContext } from "../../Context/CartContext";
 import { AddToCart } from "../Cart/AddToCart";
 import "./Product.css";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {  toast } from 'react-toastify';
+
 
 export const ProductItem = () => {
-  <ToastContainer />
   const navigate = useNavigate();
   const {addedToCartList,setAddedToCartList} = useContext(cartContext);
-  const [btnText,setBtn] = useState("Add To Cart")
   const ratingNumber = [1, 2, 3, 4, 5];
   const {
     productList,
@@ -106,7 +104,7 @@ export const ProductItem = () => {
     }
 
     toast.success('Item added to cart!', {
-      position: toast.POSITION.TOP_CENTER
+      position: toast.POSITION.TOP_RIGHT
     });
   }
 

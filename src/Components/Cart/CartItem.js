@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import {ProductListingcontext} from "../../Context/ProductListContext"
 import { cartContext } from "../../Context/CartContext";
+import {  toast } from 'react-toastify';
 
 
 export const CartItems = () => {
@@ -32,7 +33,9 @@ export const CartItems = () => {
     const updatedList = addedToCartList.filter(item => item !== id)
     console.log("removed from Cart",updatedList)
     setAddedToCartList([...updatedList])
-    console.log(id)
+    toast.error('Item removed from cart!', {
+      position: toast.POSITION.TOP_RIGHT
+    });
     RemoveFromCart(id)
   }
 

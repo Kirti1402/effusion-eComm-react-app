@@ -11,6 +11,8 @@ import { SignUp } from "./Components/SignUp/SignUpPage";
 import { PrivateRoutes } from "./PrivateRoutes";
 import { Product } from "./Components/Product/Product";
 import ProductDetail from "./Components/ProductDetail/ProductDetail";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
