@@ -17,6 +17,7 @@ export const ProfilePage = () => {
     console.log("clicked");
     localStorage.removeItem("Encodedtoken");
     localStorage.removeItem("LoginItem");
+    localStorage.removeItem("DefaultAddress")
     setIsLoggedIn(false);
     setIsEncodedToken("");
     navigate("/");
