@@ -5,6 +5,8 @@ import { ProductCategoryContext } from "../../Context/ProductCategoryContext";
 import { ProductListingcontext } from "../../Context/ProductListContext";
 import { cartContext } from "../../Context/CartContext";
 import { AddToCart } from "../Cart/AddToCart";
+import { wishListContext } from "../../Context/wishListContext";
+
 import "./Product.css";
 import {  toast } from 'react-toastify';
 
@@ -12,6 +14,8 @@ import {  toast } from 'react-toastify';
 export const ProductItem = () => {
   const navigate = useNavigate();
   const {addedToCartList,setAddedToCartList} = useContext(cartContext);
+  const {wishlist, setWishlist,isInWishlist, setIsInWishlist} = useContext(wishListContext);
+
   const ratingNumber = [1, 2, 3, 4, 5];
   const {
     productList,
@@ -98,7 +102,6 @@ export const ProductItem = () => {
     if(!addedToCartList.includes(productItem._id)){
       AddToCart(CardProduct)
       setAddedToCartList([...addedToCartList,productItem._id])
-      // setBtn("Go To Cart")
     }else{
       navigate('/cart')
     }
@@ -107,6 +110,15 @@ export const ProductItem = () => {
       position: toast.POSITION.TOP_RIGHT
     });
   }
+
+  const handleToggleWishlist = (productId) => {
+    if (wishlist.includes(productId)) {
+      const updatedWishlist = wishlist.filter((item) => item !== productId);
+      setWishlist(updatedWishlist);
+    } else {
+      setWishlist([...wishlist, productId]);
+    }
+  };
 
   return (
     <div>
@@ -172,6 +184,7 @@ export const ProductItem = () => {
           filteredProducts.map((productItem) => {
             console.log(productItem._id);
             const {
+              _id,
               id,
               title,
               description,
@@ -196,7 +209,12 @@ export const ProductItem = () => {
                   <p>{size}</p>
 
                   <div>
-                    <button>Wishlist</button>
+                  <button
+                  onClick={() => handleToggleWishlist(_id)}
+                  className={wishlist.includes(_id) ? 'wishlist-button active' : 'wishlist-button'}
+                >
+                  {wishlist.includes(_id) ? 'Remove from Wishlist' : 'Add to Wishlist'}
+                </button>
                   </div>
                   <button onClick={() => CartBtnHandle(productItem)}>
                    {addedToCartList.includes(productItem._id) ? 'Go To Cart' : 'Add To Cart' }
