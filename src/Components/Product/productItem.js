@@ -6,7 +6,7 @@ import { ProductListingcontext } from "../../Context/ProductListContext";
 import { cartContext } from "../../Context/CartContext";
 import { AddToCart } from "../Cart/AddToCart";
 import { wishListContext } from "../../Context/wishListContext";
-
+import { addWishList } from "../WishList/AddWishlist";
 import "./Product.css";
 import {  toast } from 'react-toastify';
 
@@ -95,10 +95,8 @@ export const ProductItem = () => {
   //storing length for validating and rendering the item
   const filterProductLength = filteredProducts && filteredProducts.length;
 
-  const CartBtnHandle = (productItem,event) =>{
-
+  const CartBtnHandle = (productItem) =>{
     let CardProduct = { product:productItem}
-    console.log("bool",(!addedToCartList.includes(productItem._id)))
     if(!addedToCartList.includes(productItem._id)){
       AddToCart(CardProduct)
       setAddedToCartList([...addedToCartList,productItem._id])
@@ -111,12 +109,14 @@ export const ProductItem = () => {
     });
   }
 
-  const handleToggleWishlist = (productId) => {
-    if (wishlist.includes(productId)) {
-      const updatedWishlist = wishlist.filter((item) => item !== productId);
+  const handleToggleWishlist = (productItem) => {
+    let wishListProduct = { product:productItem}
+    if (wishlist.includes(productItem._id)) {
+      const updatedWishlist = wishlist.filter((item) => item !== productItem._id);
       setWishlist(updatedWishlist);
     } else {
-      setWishlist([...wishlist, productId]);
+      addWishList(wishListProduct)
+      setWishlist([...wishlist, productItem._id]);
     }
   };
 
@@ -210,7 +210,7 @@ export const ProductItem = () => {
 
                   <div>
                   <button
-                  onClick={() => handleToggleWishlist(_id)}
+                  onClick={() => handleToggleWishlist(productItem)}
                   className={wishlist.includes(_id) ? 'wishlist-button active' : 'wishlist-button'}
                 >
                   {wishlist.includes(_id) ? 'Remove from Wishlist' : 'Add to Wishlist'}

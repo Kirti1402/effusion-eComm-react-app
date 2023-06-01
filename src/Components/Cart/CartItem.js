@@ -28,9 +28,7 @@ export const CartItems = () => {
   },[])
 
   const onClickRemoveFromCart =(id)=>{
-    console.log("added to cart list",addedToCartList)
     const updatedList = addedToCartList.filter(item => item !== id)
-    console.log("removed from Cart",updatedList)
     setAddedToCartList([...updatedList])
     toast.error('Item removed from cart!', {
       position: toast.POSITION.TOP_RIGHT
