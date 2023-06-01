@@ -17,7 +17,6 @@ export const CartItems = () => {
       },
     });
     const cartProduct = await response.json();
-    // console.log("Response get",await response.json());
     setCartList(cartProduct.cart)
 
   }
@@ -40,8 +39,7 @@ export const CartItems = () => {
   }
 
   const RemoveFromCart = async (id) =>{
-    console.log(`/api/user/cart/${id}`)
-    const token = localStorage.getItem("Encodedtoken");
+
     const response = await fetch(`/api/user/cart/${id}`, {
         method: 'DELETE',
         headers: {
@@ -52,15 +50,41 @@ export const CartItems = () => {
         setCartList(cartProduct.cart)
 }
 
+const incrementTheProduct = async (id) =>{
+  const response = await fetch(`/api/user/cart/${id}`, {
+      method: 'Post',
+      headers: {
+          authorization: token
+        },
+        action: {
+          type: "increment"
+        },
+         })
+         console.log("increment response",await response.json())
+}
+
+
+const totalPrice = cartList.length>0 && cartList.reduce((acc,curr) =>{
+  acc = acc + (curr.price * curr.qty)
+  return acc;
+},0)
 
   return <>
   <div>{cartList.length>0 ? <div>{cartList.map(cartItem =>{
-    const {_id, title} = cartItem
+    const {_id, title,qty,price} = cartItem
      return <div>
       {_id}
       {title}
+      <p>Price: {price}</p>
+      <p>Quantity:<button >-</button>{qty}<button onClick={()=>incrementTheProduct(_id)}>+</button></p>
       <button onClick={()=> onClickRemoveFromCart(_id)}>Remove from Cart</button>
     </div>
-    })}</div>:<p>Your Cart is Empty</p> }</div>
+    })}
+    <div>
+      Total Price {totalPrice}
+    </div>
+    </div>:<p>Your Cart is Empty</p> }</div>
+
+    
   </>
 };
