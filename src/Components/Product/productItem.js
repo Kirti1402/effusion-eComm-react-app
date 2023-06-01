@@ -9,12 +9,14 @@ import { wishListContext } from "../../Context/wishListContext";
 import { addWishList } from "../WishList/AddWishlist";
 import "./Product.css";
 import {  toast } from 'react-toastify';
+import { RemoveFromWishList } from "../WishList/RemoveWishList";
 
 
 export const ProductItem = () => {
   const navigate = useNavigate();
   const {addedToCartList,setAddedToCartList} = useContext(cartContext);
-  const {wishlist, setWishlist,isInWishlist, setIsInWishlist} = useContext(wishListContext);
+  const {wishlist, setWishlist,wishlistItem,
+    setWishlistItem,} = useContext(wishListContext);
 
   const ratingNumber = [1, 2, 3, 4, 5];
   const {
@@ -100,13 +102,14 @@ export const ProductItem = () => {
     if(!addedToCartList.includes(productItem._id)){
       AddToCart(CardProduct)
       setAddedToCartList([...addedToCartList,productItem._id])
+      toast.success(`${productItem.title} added to cart!`, {
+        position: toast.POSITION.TOP_RIGHT
+      });
     }else{
       navigate('/cart')
     }
 
-    toast.success('Item added to cart!', {
-      position: toast.POSITION.TOP_RIGHT
-    });
+   
   }
 
   const handleToggleWishlist = (productItem) => {
@@ -114,9 +117,13 @@ export const ProductItem = () => {
     if (wishlist.includes(productItem._id)) {
       const updatedWishlist = wishlist.filter((item) => item !== productItem._id);
       setWishlist(updatedWishlist);
+      RemoveFromWishList(productItem._id)
     } else {
       addWishList(wishListProduct)
       setWishlist([...wishlist, productItem._id]);
+      toast.success(`${productItem.title} added to wishlist!`, {
+        position: toast.POSITION.TOP_RIGHT
+      });
     }
   };
 
@@ -217,7 +224,7 @@ export const ProductItem = () => {
                 </button>
                   </div>
                   <button onClick={() => CartBtnHandle(productItem)}>
-                   {addedToCartList.includes(productItem._id) ? 'Go To Cart' : 'Add To Cart' }
+                   {addedToCartList.includes(_id) ? 'Go To Cart' : 'Add To Cart' }
                   </button>
                 </div>
               </div>

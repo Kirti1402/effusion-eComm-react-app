@@ -27,10 +27,10 @@ export const CartItems = () => {
       getCartItem();
   },[])
 
-  const onClickRemoveFromCart =(id)=>{
+  const onClickRemoveFromCart =(id,title)=>{
     const updatedList = addedToCartList.filter(item => item !== id)
     setAddedToCartList([...updatedList])
-    toast.error('Item removed from cart!', {
+    toast.warn(`${title} removed from cart!`, {
       position: toast.POSITION.TOP_RIGHT
     });
     RemoveFromCart(id)
@@ -75,7 +75,7 @@ const totalPrice = cartList.length>0 && cartList.reduce((acc,curr) =>{
       {title}
       <p>Price: {price}</p>
       <p>Quantity:<button >-</button>{qty}<button onClick={()=>incrementTheProduct(_id)}>+</button></p>
-      <button onClick={()=> onClickRemoveFromCart(_id)}>Remove from Cart</button>
+      <button onClick={()=> onClickRemoveFromCart(_id,title)}>Remove from Cart</button>
     </div>
     })}
     <div>
