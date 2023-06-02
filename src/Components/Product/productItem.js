@@ -118,6 +118,9 @@ export const ProductItem = () => {
       const updatedWishlist = wishlist.filter((item) => item !== productItem._id);
       setWishlist(updatedWishlist);
       RemoveFromWishList(productItem._id)
+      toast.warn(`${productItem.title} removed from wishlist!`, {
+        position: toast.POSITION.TOP_RIGHT
+      });
     } else {
       addWishList(wishListProduct)
       setWishlist([...wishlist, productItem._id]);
