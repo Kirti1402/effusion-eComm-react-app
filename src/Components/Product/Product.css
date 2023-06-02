@@ -7,3 +7,22 @@
 .active{
     background-color: bisque;
 }
+
+.product-page-container{
+    display: grid;
+    grid-template-columns: 200px 1fr; /* Adjust the width of the filter container */
+    grid-gap: 20px; /* Adjust the gap between the columns */
+}
+.filter-container{
+    flex: 0 0 auto; 
+    width: 200px;
+}
+.product-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px; /* Adjust the gap between the item cards */
+}
+
+.card-container{
+
+}

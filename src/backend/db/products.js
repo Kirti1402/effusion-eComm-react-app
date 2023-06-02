@@ -8,8 +8,9 @@ import { v4 as uuid } from "uuid";
 export const products = [
   {
     _id: uuid(),
-    title: "SKINN",
-    description: "by Titan Women Celeste Eau de Parfum 20 ml",
+    title: "Printed Tshirt",
+    description: "Regular fit round Neck",
+    url:"https://tse1.mm.bing.net/th?id=OIP.6pN5s66ma4e6o7e0kbDOOgHaHa&pid=Api&P=0&h=180",
     rating:4.5,
     rated:3900,
     price: 500,

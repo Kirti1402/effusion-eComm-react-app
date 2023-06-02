@@ -131,8 +131,8 @@ export const ProductItem = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div className="product-page-container">
+      <div className="filter-container">
         <div>
           {category &&
             category.map(({ id, categoryName }) => (
@@ -189,7 +189,7 @@ export const ProductItem = () => {
         </div>
       </div>
 
-      <aside>
+      <aside className="product-container">
         {filterProductLength ? (
           filteredProducts.map((productItem) => {
             console.log(productItem._id);
@@ -204,7 +204,7 @@ export const ProductItem = () => {
               size,
             } = productItem;
             return (
-              <div>
+
                 <div className="card-container" key={id}>
                   <Link
                     to="/productDetail"
@@ -213,6 +213,7 @@ export const ProductItem = () => {
                     <p>{title}</p>
                     <p>{description}</p>
                   </Link>
+                  <img src={productItem.url}/>
                   <p>{price}</p>
                   <p>{rating}</p>
                   <p>{categoryName}</p>
@@ -230,7 +231,6 @@ export const ProductItem = () => {
                    {addedToCartList.includes(_id) ? 'Go To Cart' : 'Add To Cart' }
                   </button>
                 </div>
-              </div>
             );
           })
         ) : (
