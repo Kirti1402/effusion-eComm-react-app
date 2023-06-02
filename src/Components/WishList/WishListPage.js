@@ -4,9 +4,7 @@ import { cartContext } from "../../Context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { AddToCart } from "../Cart/AddToCart";
 import {  toast } from 'react-toastify';
-import { addWishList } from "./AddWishlist";
 import { RemoveFromWishList } from "./RemoveWishList";
-import { Loader } from "../Loader/Loader";
 
 export const WishList = () => {
   const navigate =useNavigate()
@@ -23,7 +21,6 @@ export const WishList = () => {
       },
     });
     const wishListProduct = await response.json();
-    // console.log("wishlist",await response.json())
     setWishlistItem(wishListProduct.wishlist);
   };
   useEffect(() => {

@@ -21,6 +21,7 @@ export const ProfilePage = () => {
     setIsLoggedIn(false);
     setIsEncodedToken("");
     navigate("/");
+    window.location.reload();
   };
 
   return (

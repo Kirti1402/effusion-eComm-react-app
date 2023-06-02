@@ -10,13 +10,15 @@ import { addWishList } from "../WishList/AddWishlist";
 import "./Product.css";
 import {  toast } from 'react-toastify';
 import { RemoveFromWishList } from "../WishList/RemoveWishList";
+import { LoginAuthContext } from "../../Context/LoginAuthContext";
+
 
 
 export const ProductItem = () => {
   const navigate = useNavigate();
   const {addedToCartList,setAddedToCartList} = useContext(cartContext);
-  const {wishlist, setWishlist,wishlistItem,
-    setWishlistItem,} = useContext(wishListContext);
+  const {wishlist, setWishlist} = useContext(wishListContext);
+  const {isLoggedIn} = useContext(LoginAuthContext);
 
   const ratingNumber = [1, 2, 3, 4, 5];
   const {
@@ -114,20 +116,28 @@ export const ProductItem = () => {
 
   const handleToggleWishlist = (productItem) => {
     let wishListProduct = { product:productItem}
-    if (wishlist.includes(productItem._id)) {
-      const updatedWishlist = wishlist.filter((item) => item !== productItem._id);
-      setWishlist(updatedWishlist);
-      RemoveFromWishList(productItem._id)
-      toast.warn(`${productItem.title} removed from wishlist!`, {
-        position: toast.POSITION.TOP_RIGHT
-      });
-    } else {
-      addWishList(wishListProduct)
-      setWishlist([...wishlist, productItem._id]);
-      toast.success(`${productItem.title} added to wishlist!`, {
+    if(isLoggedIn){
+      if (wishlist.includes(productItem._id)) {
+        const updatedWishlist = wishlist.filter((item) => item !== productItem._id);
+        setWishlist(updatedWishlist);
+        RemoveFromWishList(productItem._id)
+        toast.warn(`${productItem.title} removed from wishlist!`, {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      } else {
+        addWishList(wishListProduct)
+        setWishlist([...wishlist, productItem._id]);
+        toast.success(`${productItem.title} added to wishlist!`, {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      }
+    }else{
+      toast.error("Please Login", {
         position: toast.POSITION.TOP_RIGHT
       });
     }
+
+   
   };
 
   return (
@@ -206,18 +216,19 @@ export const ProductItem = () => {
             return (
 
                 <div className="card-container" key={id}>
+
                   <Link
                     to="/productDetail"
                     onClick={() => productOnClickHandle(productItem._id)}
                   >
+                    <img src={productItem.url}/>
                     <p>{title}</p>
                     <p>{description}</p>
-                  </Link>
-                  <img src={productItem.url}/>
-                  <p>{price}</p>
+                    <p>{price}</p>
                   <p>{rating}</p>
-                  <p>{categoryName}</p>
-                  <p>{size}</p>
+                  </Link>
+                  
+                  
 
                   <div>
                   <button
