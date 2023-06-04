@@ -1,0 +1,12 @@
+.cart-page-container {
+    display: grid;
+    grid-template-columns: 50% 1fr;
+    grid-gap: 20px;
+  }
+.cart-product-container{
+    flex: 1;
+    display: grid;  
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-content: center;
+}
+
