@@ -27,18 +27,22 @@
     display: flex;
     flex-direction: column;
     width: 200px; /* Set a fixed width */
-    height: 350px; 
+    height: 450px; 
     border-radius: 3px;
     background-color: #F0EDD4;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     align-self: center;
   }
+
+  img{
+    height: 225px;
+  }
   
   .card-container img {
     border-radius: 3px;
     width: 100%;
-    height: 50%;
+    /* height: 45%; */
     object-fit: cover;
     margin-bottom: 10px;
   }

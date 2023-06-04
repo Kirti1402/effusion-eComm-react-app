@@ -52,8 +52,8 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "Boy's Cotton Printed T-Shirt with Denim Shorts",
-    description: "Googo Gaaga Boy's Cotton Printed T-Shirt with Denim Shorts Set in Red Color",
+    title: "T-Shirt with Denim Shorts",
+    description: "Googo Gaaga Boy's Cotton Printed T-Shirt",
     url:"https://m.media-amazon.com/images/I/51z0B0H2wLL.jpg",
     rating:3,
     price: 999,
@@ -68,6 +68,7 @@ export const products = [
     url:"https://m.media-amazon.com/images/I/713EWcF36KL._UL1500_.jpg",
     rating:4,
     price: 249,
+    discount:2,
     size:"S",
     categoryName: "Women",
   },
@@ -84,7 +85,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "DHRUVI TRENDZ Shirt for Men",
+    title: "DHRUVI TRENDZ Shirt",
     description: "Tropical Leaf Printed Shirt for Men,with turn down collar.",
     url:"https://m.media-amazon.com/images/I/519yrZ9qILL.jpg",
     rating:2.5,
@@ -127,8 +128,8 @@ export const products = [
     categoryName: "Men",
   },{
     _id: uuid(),
-    title: "Cotton Kid's T-Shirt with Dungaree",
-    description: "Bold N Elegant Half Sleeve Cotton Kid's T-Shirt with Dungaree & Bowtie Little Man Party Dress for Boys",
+    title: "Cotton Kid's T-Shirt",
+    description: "Bold N Elegant Half Sleeve Cotton Kid's T-Shirt",
     url:"https://m.media-amazon.com/images/I/61M0jzflioL._UL1018_.jpg",
     rating:2.9,
     price: 1999,

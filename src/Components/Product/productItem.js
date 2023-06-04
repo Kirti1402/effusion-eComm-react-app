@@ -206,11 +206,12 @@ export const ProductItem = () => {
             const {
               _id,
               id,
+              url,
               title,
               description,
               rating,
               price,
-              categoryName,
+              discount,
               size,
             } = productItem;
             return (
@@ -221,12 +222,13 @@ export const ProductItem = () => {
                     to="/productDetail"
                     onClick={() => productOnClickHandle(productItem._id)}
                   >
-                    <img src={productItem.url}/>
+                    <img src={url}/>
                     <div>
                     <p>{title}</p>
                     <p>{description}</p>
                     <p>{rating}</p>
-                    <p>{price}</p>
+                    <p><span>{ price -(price *(discount/100)) }</span><span style={{textDecoration:'line-through'}}>{price}</span></p>
+                    <p>{discount}% Off</p>
                     </div>
                   </Link>
                   <div>
