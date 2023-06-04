@@ -83,9 +83,9 @@ export const ProductItem = () => {
       })
       .sort((a, b) => {
         if (sortOrder === "ascending") {
-          return a.price - b.price;
+          return (a.price - (a.price * (a.discount /100))) - (b.price - (b.price * (b.discount/100)));
         } else if (sortOrder === "descending") {
-          return b.price - a.price;
+          return (b.price - (b.price * (b.discount/100))) - (a.price - (a.price * (a.discount/100)));
         }
         return 0;
       });
@@ -159,10 +159,8 @@ export const ProductItem = () => {
           <label>
             Sort Order:
             <select value={sortOrder} onChange={handleSortChange}>
-              <div className="dropdown-content">
               <option value="ascending">Price: Low-to-High</option>
               <option value="descending">Price: High-to-Low</option>
-              </div>
             </select>
           </label>
         </div>
