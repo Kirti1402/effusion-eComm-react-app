@@ -1,5 +1,4 @@
 import { v4 as uuid } from "uuid";
-import {menPoster} from "../../images/menPoster.png"
 
 
 /**

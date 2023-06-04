@@ -95,16 +95,24 @@ export const ProductItem = () => {
 
   const CartBtnHandle = (productItem) => {
     let CardProduct = { product: productItem };
-    if (!addedToCartList.includes(productItem._id)) {
-      AddToCart(CardProduct);
-      setAddedToCartList([...addedToCartList, productItem._id]);
-      toast.success(`${productItem.title} added to cart!`, {
+    if(isLoggedIn){
+      if (!addedToCartList.includes(productItem._id)) {
+        AddToCart(CardProduct);
+        setAddedToCartList([...addedToCartList, productItem._id]);
+        toast.success(`${productItem.title} added to cart!`, {
+          position: toast.POSITION.BOTTOM_LEFT,
+          autoClose: 1000,
+        });
+      } else {
+        navigate("/cart");
+      }
+    } else{
+      toast.error("Please Login!!!", {
         position: toast.POSITION.BOTTOM_LEFT,
         autoClose: 1000,
       });
-    } else {
-      navigate("/cart");
     }
+    
   };
 
   const handleToggleWishlist = (productItem) => {
@@ -129,7 +137,7 @@ export const ProductItem = () => {
         });
       }
     } else {
-      toast.error("Please Login", {
+      toast.error("Please Login!!!", {
         position: toast.POSITION.BOTTOM_LEFT,
         autoClose: 1000,
       });

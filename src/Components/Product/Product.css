@@ -1,9 +1,3 @@
-.wishlist-button {
-  background-color: green;
-}
-.active {
-  background-color: bisque;
-}
 
 .product-page-container {
   display: grid;
@@ -14,12 +8,12 @@
 }
 
 .product-container {
-  flex: 1;
   display: grid;  
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   justify-content: center;
   overflow-y: auto;
 }
+
 .product-container::-webkit-scrollbar {
   width: 8px; 
   background-color: #f1f1f1; 
@@ -165,6 +159,7 @@ img {
   border: none;
   cursor: pointer;
 }
+
 
 .wishlist-button-remove::before,
 .wishlist-button-remove::after {
