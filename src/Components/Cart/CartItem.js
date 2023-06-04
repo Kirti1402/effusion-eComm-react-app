@@ -70,10 +70,21 @@ export const CartItems = () => {
 
   const totalPrice =
     cartList.length > 0 &&
-    cartList.reduce((acc, curr) => {
-      acc = acc + curr.price * curr.qty;
-      return acc;
+    cartList.reduce((total, {qty,price,discount}) => {
+      total = total + qty *  Math.ceil((price - (price * (discount/100))));
+      return total;
     }, 0);
+
+    const totalItem = cartList.length>0 && cartList.reduce((totalItem,{qty})=>{
+      totalItem = totalItem + qty
+      return totalItem
+    },0)
+
+    const discountedPrice = cartList.length >0 && cartList.reduce((discountPrice,{qty,price,discount})=>{
+      discountPrice =(price * qty) -(qty *  Math.ceil((price - (price * (discount/100)))))
+
+      return discountPrice
+    },0)
 
   const handleToggleWishlist = (productItem) => {
     let wishListProduct = { product: productItem };
@@ -103,9 +114,7 @@ export const CartItems = () => {
             {cartList.map((cartItem) => {
               const { _id, id, url, title, rating, price, discount, qty } =
                 cartItem;
-              let discountedPrice = (price - price * (discount / 100)).toFixed(
-                2
-              );
+                let discountedPrice = Math.ceil((price - price * (discount / 100)));
               return (
                 <div className="card-container">
                   <div className="card-detail-container">
@@ -178,7 +187,9 @@ export const CartItems = () => {
           <p>Your Cart is Empty</p>
         )}
         <div className="checkout-detail">
-            total
+            <p>Total Item : <span>{totalItem}</span></p>
+            <p>Total Price : <span>{totalPrice}</span></p> 
+            <p>Discount: <span>{discountedPrice}</span></p>
         </div>
       </div>
     </>

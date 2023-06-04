@@ -210,7 +210,7 @@ export const ProductItem = () => {
               discount,
             } = productItem;
 
-            let discountedPrice = (price - price * (discount / 100)).toFixed(2);
+            let discountedPrice = Math.ceil((price - price * (discount / 100)));
             return (
               <div className="card-container" key={id}>
                 <div className="card-detail-container">
