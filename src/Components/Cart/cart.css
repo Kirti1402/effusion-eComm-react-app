@@ -72,3 +72,12 @@ background-color: skyblue;
     text-align: center;
     font-size:20px ;
 }
+
+.shop-btn{
+  font-weight: 500;
+  background-color: salmon;
+ border: none;
+ padding: 8px 16px;
+ border-radius: 4px;
+ cursor: pointer;
+}

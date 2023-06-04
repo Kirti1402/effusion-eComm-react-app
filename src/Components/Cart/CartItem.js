@@ -6,12 +6,16 @@ import { wishListContext } from "../../Context/wishListContext";
 import { RemoveFromWishList } from "../WishList/RemoveWishList";
 import { addWishList } from "../WishList/AddWishlist";
 import "./cart.css";
+import { useNavigate } from "react-router-dom";
+import PriceDetail from "./PriceDetail";
+
 
 export const CartItems = () => {
+  const navigate = useNavigate();
   const [type, setType] = useState("increment");
   const { cartList, setCartList } = useContext(ProductListingcontext);
   const { addedToCartList, setAddedToCartList } = useContext(cartContext);
-  const { wishlist, setWishlist, wishlistItem, setWishlistItem } =
+  const { wishlist, setWishlist,} =
     useContext(wishListContext);
   const token = localStorage.getItem("Encodedtoken");
 
@@ -69,29 +73,6 @@ export const CartItems = () => {
     console.log("increment response", await response.json());
   };
 
-  const totalPrice =
-    cartList.length > 0 &&
-    cartList.reduce((total, { qty, price, discount }) => {
-      total = total + qty * price;
-      return total;
-    }, 0);
-
-  const totalItem =
-    cartList.length > 0 &&
-    cartList.reduce((totalItem, { qty }) => {
-      totalItem = totalItem + qty;
-      return totalItem;
-    }, 0);
-
-  const discountedPrice =
-    cartList.length > 0 &&
-    totalPrice -
-      cartList.reduce((discountPrice, { qty, price, discount }) => {
-        console.log(qty, price, discount);
-        discountPrice =
-          discountPrice + qty * Math.ceil(price - price * (discount / 100));
-        return discountPrice;
-      }, 0);
 
   const handleToggleWishlist = (productItem) => {
     let wishListProduct = { product: productItem };
@@ -118,7 +99,7 @@ export const CartItems = () => {
   return (
     <>
 
-          {cartList.length >0 ? <p className="cart-text" style={{color:'black'}}>My Cart ({cartList.length})</p>:<p className="cart-text">There is Nothing in your cart.Let's add some items.</p>}
+          {cartList.length >0 ? <p className="cart-text" style={{color:'black'}}>My Cart ({cartList.length})</p>:<div className="cart-text"><p>There is Nothing in your cart.Let's add some items.</p><button className="shop-btn" onClick = {() =>navigate("/product")}>SHOP</button></div>}
 
       <div className="cart-page-container">
         {cartList.length > 0 && (
@@ -198,25 +179,7 @@ export const CartItems = () => {
           </div>
         )}
         {cartList.length > 0 && (
-          <div className="price-detail">
-            <p>Price Detail</p>
-            <hr/>
-            <p>
-              Total Item : <span className="item-price-detail">{totalItem}</span>
-            </p>
-            <p>
-              Total Price : <span className="item-price-detail">&#8377;{totalPrice}</span>
-            </p>
-            <p>
-              Discount: <span className="item-price-detail">-&#8377;{discountedPrice}</span>
-            </p>
-            <hr/>
-            <p>
-              Total Amount : <span className="item-price-detail">&#8377;{totalPrice - discountedPrice}</span>
-            </p>
-
-            <button className="checkout">CheckOut</button>
-          </div>
+          <PriceDetail/>
         )}
       </div>
     </>

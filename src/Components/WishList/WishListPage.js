@@ -37,7 +37,7 @@ export const WishList = () => {
     setWishlist([...updatedWishlist]);
     RemoveFromWishList(productItem._id);
     toast.warn(`${productItem.title} removed from wishlist!`, {
-      position: toast.POSITION.TOP_RIGHT,
+      position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 1000,
     });
   };
@@ -55,7 +55,7 @@ export const WishList = () => {
   return (
     <div>
       {wishlistItem.length>0 ? <p className="wishList-text">My WishList ({wishlistItem.length})</p>: <div className="wishList-text"><p>Add now, Buy Later.
-</p><p>Save your favourite items here!</p></div>}
+</p><p>Save your favourite items here!</p><button className="shop-btn" onClick = {() =>navigate("/product")}>SHOP</button></div>}
       
       <div className="wishlist-product-container">
         {wishlistItem.length > 0 &&

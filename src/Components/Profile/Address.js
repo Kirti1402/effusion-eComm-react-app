@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const Address = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -21,12 +21,6 @@ export const Address = () => {
     state: "Punjab",
   });
   let add;
-  // = JSON.stringify(address);
-  // localStorage.setItem("DefaultAddress", add);
-
-  // useEffect(() => {
-
-  // },[])
 
   const updateForm = (e) => {
     let name = e.target.name;
@@ -38,18 +32,18 @@ export const Address = () => {
       [name]: value,
     });
   };
-  console.log(addObject);
+  console.log("updateForm",addObject);
 
   const [isAddBtn, setIsAddBtn] = useState(false);
 
   const onClickAddAddress = (event) => {
     event.preventDefault();
+    console.log('clicked add button')
     console.log("addrss", address);
     const updatedAddress = [...address, addObject];
     console.log("updatedAddress", updatedAddress);
     localStorage.setItem("DefaultAddress", JSON.stringify([...updatedAddress]));
     setAddress([...address, addObject]);
-    // add = JSON.stringify(address);
     setIsAddBtn(!isAddBtn);
   };
   console.log(address);
@@ -67,7 +61,6 @@ export const Address = () => {
   console.log("getAddressLocalStorage", getAddress);
 
   const onClickEditBtn = (index) => {
-    // console.log(address)
     setIsEditing(!isEditing);
     console.log("address", address, "addObject", addObject);
     const addr = address[index];
@@ -88,7 +81,7 @@ export const Address = () => {
         addObject.name
       );
       if (item.name === addObject.name) {
-        return { ...addObject }; // Update the specific object's properties
+        return { ...addObject }; 
       }
       return item;
     });
@@ -100,7 +93,7 @@ export const Address = () => {
   };
 
   return (
-    <>
+    <div>
       {!isAddBtn && (
         <div>
         <button
@@ -254,7 +247,9 @@ export const Address = () => {
       {getAddress &&
         getAddress.map(
           ({ name, phone, city, pincode, state, address }, index) => (
-            <div className="address-detail-display">
+            
+            <div className="address-detail-display ">
+              <input type="radio" name='address'/>
               <p>
                 <span className="address-title">Name:</span>
                 <span className="address-value">{name}</span>
@@ -294,6 +289,6 @@ export const Address = () => {
             </div>
           )
         )}
-    </>
+    </div>
   );
 };

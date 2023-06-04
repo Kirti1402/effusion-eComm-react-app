@@ -13,6 +13,7 @@ export const ProductCategoryProvider = ({children}) => {
         });
 
         const response = await category.json();
+        console.log(response.categories)
         setCategory(response.categories)
         setIsLoading(false)
         // console.log("Category",await category.json())

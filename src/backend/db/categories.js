@@ -10,22 +10,18 @@ export const categories = [
   {
     _id: uuid(),
     categoryName: "Men",
-    url:'https://i.pinimg.com/originals/60/b0/a4/60b0a4ee7e032a6281444a82705a665c.jpg',
-    description:
-      "literature in the form of prose, especially novels, that describes imaginary events and people",
+    url:'https://images.pexels.com/photos/2445783/pexels-photo-2445783.jpeg',
+
   },
   {
     _id: uuid(),
     categoryName: "Women",
-    url:'https://i.pinimg.com/originals/60/b0/a4/60b0a4ee7e032a6281444a82705a665c.jpg',
-    description:
-      "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
+    url:'https://thumbs.dreamstime.com/b/fashion-shopping-girl-portrait-beauty-woman-shopping-bags-shopping-mall-shopper-sales-shopping-center-fashion-shopping-179147985.jpg',
+
   },
   {
     _id: uuid(),
     categoryName: "Juniors",
-    url:'https://i.pinimg.com/originals/60/b0/a4/60b0a4ee7e032a6281444a82705a665c.jpg',
-    description:
-      "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
+    url:'https://images.pexels.com/photos/3582865/pexels-photo-3582865.jpeg',
   },
 ];

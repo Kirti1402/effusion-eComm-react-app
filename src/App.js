@@ -13,6 +13,7 @@ import { Product } from "./Components/Product/Product";
 import ProductDetail from "./Components/ProductDetail/ProductDetail";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Checkout from "./Components/Checkout/Checkout";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
           }
         />
         <Route path="/product" element={<Product/>}/>
+        <Route path="/checkout" element={<Checkout/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/productDetail" element={<ProductDetail/>}/>
