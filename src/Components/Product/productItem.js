@@ -216,20 +216,19 @@ export const ProductItem = () => {
             return (
 
                 <div className="card-container" key={id}>
-
+                  <div className="card-detail">
                   <Link
                     to="/productDetail"
                     onClick={() => productOnClickHandle(productItem._id)}
                   >
                     <img src={productItem.url}/>
+                    <div>
                     <p>{title}</p>
                     <p>{description}</p>
+                    <p>{rating}</p>
                     <p>{price}</p>
-                  <p>{rating}</p>
+                    </div>
                   </Link>
-                  
-                  
-
                   <div>
                   <button
                   onClick={() => handleToggleWishlist(productItem)}
@@ -238,9 +237,10 @@ export const ProductItem = () => {
                   {wishlist.includes(_id) ? 'Remove from Wishlist' : 'Add to Wishlist'}
                 </button>
                   </div>
-                  <button onClick={() => CartBtnHandle(productItem)}>
+                  <button  className="cart-btn active" onClick={() => CartBtnHandle(productItem)}>
                    {addedToCartList.includes(_id) ? 'Go To Cart' : 'Add To Cart' }
                   </button>
+                  </div>
                 </div>
             );
           })
