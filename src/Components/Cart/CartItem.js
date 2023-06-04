@@ -36,7 +36,8 @@ export const CartItems = () => {
     const updatedList = addedToCartList.filter((item) => item !== id);
     setAddedToCartList([...updatedList]);
     toast.warn(`${title} removed from cart!`, {
-      position: toast.POSITION.TOP_RIGHT,
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 1000,
     });
     RemoveFromCart(id);
   };
@@ -101,21 +102,26 @@ export const CartItems = () => {
       setWishlist(updatedWishlist);
       RemoveFromWishList(productItem._id);
       toast.warn(`${productItem.title} removed from wishlist!`, {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 1000,
       });
     } else {
       addWishList(wishListProduct);
       setWishlist([...wishlist, productItem._id]);
       toast.success(`${productItem.title} added to wishlist!`, {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 1000,
       });
     }
   };
 
   return (
     <>
+
+          {cartList.length >0 ? <p className="cart-text" style={{color:'black'}}>My Cart ({cartList.length})</p>:<p className="cart-text">There is Nothing in your cart.Let's add some items.</p>}
+
       <div className="cart-page-container">
-        {cartList.length > 0 ? (
+        {cartList.length > 0 && (
           <div className="cart-product-container">
             {cartList.map((cartItem) => {
               const { _id, size, url, title, rating, price, discount, qty } =
@@ -190,25 +196,26 @@ export const CartItems = () => {
               );
             })}
           </div>
-        ) : (
-          <p>Your Cart is Empty</p>
         )}
         {cartList.length > 0 && (
           <div className="price-detail">
+            <p>Price Detail</p>
+            <hr/>
             <p>
-              Total Item : <span>{totalItem}</span>
+              Total Item : <span className="item-price-detail">{totalItem}</span>
             </p>
             <p>
-              Total Price : <span>&#8377;{totalPrice}</span>
+              Total Price : <span className="item-price-detail">&#8377;{totalPrice}</span>
             </p>
             <p>
-              Discount: <span>-&#8377;{discountedPrice}</span>
+              Discount: <span className="item-price-detail">-&#8377;{discountedPrice}</span>
             </p>
+            <hr/>
             <p>
-              Total Amount : <span>&#8377;{totalPrice - discountedPrice}</span>
+              Total Amount : <span className="item-price-detail">&#8377;{totalPrice - discountedPrice}</span>
             </p>
 
-            <button>CheckOut</button>
+            <button className="checkout">CheckOut</button>
           </div>
         )}
       </div>

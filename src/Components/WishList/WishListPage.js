@@ -1,9 +1,11 @@
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
+import { toast } from "react-toastify";
+
+//file import
 import { wishListContext } from "../../Context/wishListContext";
 import { cartContext } from "../../Context/CartContext";
-import { Link, useNavigate } from "react-router-dom";
 import { AddToCart } from "../Cart/AddToCart";
-import { toast } from "react-toastify";
 import { RemoveFromWishList } from "./RemoveWishList";
 import { ProductListingcontext } from "../../Context/ProductListContext";
 import "./wishlist.css"
@@ -52,22 +54,21 @@ export const WishList = () => {
   console.log("wishlist", wishlistItem);
   return (
     <div>
-      <p className="wishList-text">My WishList ({wishlistItem.length})</p>
+      {wishlistItem.length>0 ? <p className="wishList-text">My WishList ({wishlistItem.length})</p>: <div className="wishList-text"><p>Add now, Buy Later.
+</p><p>Save your favourite items here!</p></div>}
+      
       <div className="wishlist-product-container">
         {wishlistItem.length > 0 &&
           wishlistItem.map((wishListProduct) => {
             const {
               _id,
-              id,
               url,
               title,
-              description,
               rating,
               price,
               discount,
-              size,
             } = wishListProduct;
-            let discountedPrice = price -(price *(discount/100))
+            let discountedPrice =Math.ceil(price -(price *(discount/100))) 
             return (
               <div className="card-container">
                 <div className="card-detail-container">
