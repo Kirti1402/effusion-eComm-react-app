@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { LoginAuthContext } from "../../Context/LoginAuthContext";
-import { ProductListingcontext } from "../../Context/ProductListContext";
 import "./headerStyle.css";
 import SearchBar from "../SearchBar/SearchBar";
 import { wishListContext } from "../../Context/wishListContext";
@@ -13,7 +12,6 @@ export const Header = () => {
   const { wishlist } = useContext(wishListContext);
   const { addedToCartList } = useContext(cartContext);
   const { isEncodedToken } = useContext(LoginAuthContext);
-  const { searchQuery, setSearchQuery } = useContext(ProductListingcontext);
   console.log("in header", isEncodedToken);
   return (
     <div className="header-container">
