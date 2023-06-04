@@ -24,6 +24,13 @@ const submitForm = (e) =>{
     e.preventDefault();
     getLoginData();
         console.log("state",state)
+}
+
+const loginAsGuestHandle = () => {
+  setLoginInputData({
+    email:'JohnDeo@gmail.com',
+    password:'12345678'
+  })
 
 }
   return (
@@ -33,11 +40,11 @@ const submitForm = (e) =>{
       <p className="heading">Login</p> 
         <div className="email">
           <label >Email</label>
-          <input type="text" id="useremail" placeholder="Enter your Email" name="email" onChange={updateForm} required />
+          <input type="text" id="useremail" value={loginInputData.email} placeholder="Enter your Email" name="email" onChange={updateForm} required />
         </div>
         <div className="password">
           <label>Password</label>
-          <input type="password" id="password" placeholder="Enter your Password" name="password" onChange  ={updateForm} required />
+          <input type="password" id="password" value={loginInputData.password} placeholder="Enter your Password" name="password" onChange  ={updateForm} required />
         </div>
         <span className="forgetPswd">Forget Password?</span>
         <div >
@@ -48,7 +55,7 @@ const submitForm = (e) =>{
           <span >Dont have an Account?</span>
           <span className="signUpLink" onClick={()=> navigate('/signup')}> Sign Up</span>
         </div>
-        <div className="loginAsGuest">Login As Guest</div>
+        <div className="loginAsGuest" onClick={loginAsGuestHandle}>Login As Guest</div>
       </form>
     </div>
     <Footer/>

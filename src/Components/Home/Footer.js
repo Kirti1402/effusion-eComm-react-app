@@ -9,9 +9,7 @@ export default function Footer() {
       <div className="footer-container">
         <div>
             <a className='link' href='https://twitter.com/_kirtisingh_' target='#'><FontAwesomeIcon icon={faTwitter} /></a>
-            <a className='link' href="https://www.linkedin.com/in/kirti2714/" target='#'><FontAwesomeIcon icon={faLinkedin} /></a>
-            <a className='link' href="" target='#'><FontAwesomeIcon icon={faInstagram} /></a>
-      
+            <a className='link' href="https://www.linkedin.com/in/kirti2714/" target='#'><FontAwesomeIcon icon={faLinkedin} /></a>      
         </div>
         <p>© 2023 My Website. All rights reserved.</p>
       </div>
