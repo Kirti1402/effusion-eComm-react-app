@@ -90,11 +90,11 @@ export const WishList = () => {
                   <div className="wishList-container">
                   <button 
                   onClick={() => handleToggleWishlist(wishListProduct)}
-                  className={wishlist.includes(_id) ? 'wishlist-button added' : 'wishlist-button remove'}
+                  className={wishlist.includes(_id) ? 'wishlist-button-added' : 'wishlist-button-remove'}
                 >
                 </button>
                 </div>
-                <button className="cart-btn active" onClick={() => CartBtnHandle(wishListProduct)}>
+                <button className="cart-btn" onClick={() => CartBtnHandle(wishListProduct)}>
                   {addedToCartList.includes(wishListProduct._id)
                     ? "Go To Cart"
                     : "Add To Cart"}

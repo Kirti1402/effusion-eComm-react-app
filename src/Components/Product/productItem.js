@@ -232,11 +232,11 @@ export const ProductItem = () => {
                   <div className="wishList-container">
                   <button
                   onClick={() => handleToggleWishlist(productItem)}
-                  className={wishlist.includes(_id) ? 'wishlist-button added' : 'wishlist-button remove'}
+                  className={wishlist.includes(_id) ? 'wishlist-button-added' : 'wishlist-button-remove'}
                 >
                 </button>
                   </div>
-                  <button  className="cart-btn active" onClick={() => CartBtnHandle(productItem)}>
+                  <button  className="cart-btn" onClick={() => CartBtnHandle(productItem)}>
                    {addedToCartList.includes(_id) ? 'Go To Cart' : 'Add To Cart' }
                   </button>
                   </div>

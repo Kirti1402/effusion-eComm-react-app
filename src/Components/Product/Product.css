@@ -71,7 +71,7 @@
   right: 0;
   }
 
-  .wishlist-button {
+  .wishlist-button-added {
     position: relative;
     width: 30px;
     height: 30px;
@@ -80,8 +80,8 @@
     cursor: pointer;
   }
 
-  .wishlist-button.added::before,
-  .wishlist-button.added::after {
+  .wishlist-button-added::before,
+  .wishlist-button-added::after {
     content: "";
     position: absolute;
     top: 0;
@@ -92,36 +92,47 @@
     transform: rotate(-45deg);
   }
   
-  .wishlist-button.added::before {
+  .wishlist-button-added::before {
     left: 5px;
   }
   
-  .wishlist-button.added::after {
+  .wishlist-button-added::after {
     right: 5px;
     transform: rotate(45deg);
   }
+
+
+
+  .wishlist-button-remove {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
   
 
-  .wishlist-button.remove::before,
-  .heart-button.remove::after {
+  .wishlist-button-remove::before,
+  .wishlist-button-remove::after {
     content: "";
     position: absolute;
     top: 0;
     width: 14px;
     height: 22px;
-    background-color: transparent;
-    border: 2px solid red;
+    background-color: #FCE9F1;
+    /* border: 2px solid yellow; */
     border-radius: 50px 50px 0 0;
     transform: rotate(-45deg);
   }
 
     
-  .wishlist-button.remove::before {
+  .wishlist-button-remove::before {
     left: 5px;
   }
   
-  .wishlist-button.remove::after {
+  .wishlist-button-remove::after {
     right: 5px;
-    transform: rotate(45deg);
-  }
+    transform: rotate(45deg); }
   
