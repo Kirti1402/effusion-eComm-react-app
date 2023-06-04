@@ -1,25 +1,26 @@
 import React from "react";
-import { useContext,useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useContext} from "react";
 import { ProductListingcontext } from "../../Context/ProductListContext";
 import styles from "./SearchBar.css"
-import { useNavigate } from "react-router-dom";
 
 export default function SearchBar() {
-  const { productList ,searchQuery, setSearchQuery} = useContext(ProductListingcontext);
+  const { searchQuery, setSearchQuery} = useContext(ProductListingcontext);
 const navigate =useNavigate()
   const searchHandle = (e) =>{
     navigate("/product")
     setSearchQuery(e.target.value)
   }
 
-  return <div>
+  return <div className="search-container">
+    <label>
   Search:
   <input  
           type="text"
-          className={styles.textbox}
-          placeholder="Search data..."
+          placeholder="Search here..."
           value={searchQuery}
           onChange={searchHandle}
         />
+        </label>
 </div>;
 }
