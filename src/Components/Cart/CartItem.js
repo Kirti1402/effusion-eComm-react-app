@@ -101,20 +101,51 @@ const handleToggleWishlist = (productItem) => {
 };
 
   return <>
-  <div>{cartList.length>0 ? <div>{cartList.map(cartItem =>{
-    const {_id, title,qty,price} = cartItem
-     return <div>
-      {_id}
-      {title}
-      <p>Price: {price}</p>
+  <div >{cartList.length>0 ? <div className="product-container">{cartList.map(cartItem =>{
+    const {
+      _id,
+      id,
+      url,
+      title,
+      rating,
+      price,
+      discount,
+      qty
+    } = cartItem;
+    let discountedPrice = (price - price * (discount / 100)).toFixed(2);
+     return <div className="card-container">
+      <div className="card-detail-container">
+      <div className="image-conatiner">
+                      <img src={url} />
+                      <div className="rating-container">
+                        <span className="star">&#9733;</span>
+                        <p className="rating">{rating}</p>
+                      </div>
+                    </div>
+                    <div className="card-detail">
+                      <p>{title}</p>
+                      <div className="price-discount">
+                        <div>
+                        <span><span>&#8377;</span>{discountedPrice}</span>
+                        <span className="discount" style={{ textDecoration: "line-through" }}>
+                          <span>&#8377;</span>
+                          {price}
+                        </span>
+                        </div>
+                        <div><span>{discount}% Off</span></div>
+                      </div>
+                    </div>
+
       <p>Quantity:<button onClick={()=>onclickHandleQty(_id,'decrement')} >-</button>{qty}<button onClick={()=>onclickHandleQty(_id,'increment')}>+</button></p>
+      </div>
+      <div className="wishList-container">
       <button
                   onClick={() => handleToggleWishlist(cartItem)}
-                  className={wishlist.includes(_id) ? 'wishlist-button active' : 'wishlist-button'}
+                  className={wishlist.includes(_id) ? 'wishlist-button-added' : 'wishlist-button-remove'}
                 >
-                  {wishlist.includes(_id) ? 'Remove from Wishlist' : 'Add to Wishlist'}
                 </button>
-      <button onClick={()=> onClickRemoveFromCart(_id,title)}>Remove from Cart</button>
+                </div>
+      <button className="cart-btn" onClick={()=> onClickRemoveFromCart(_id,title)}>Remove from Cart</button>
     </div>
     })}
     <div>
