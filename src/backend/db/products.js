@@ -42,7 +42,7 @@ export const products = [
   {
     _id: uuid(),
     title: "Floral Jumpsuit for Girls",
-    description: "Arshia Fashions Knee Length Cotton Floral Jumpsuit for Girls",
+    description: "Arshia Fashions Knee Length Cotton Floral Jumpsuit",
     url:"https://m.media-amazon.com/images/I/915Z4E-SIvL._UL1500_.jpg",
     rating:3.2,
     price: 1000,
@@ -107,7 +107,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "CALM DOWN Oversized T-Shirt",
+    title: "Oversized T-Shirt",
     description: "CALM DOWN Drop Shoulder T-Shirt for Women",
     url:"https://m.media-amazon.com/images/I/61q-DoKtFpL._UL1490_.jpg",
     rating:3,

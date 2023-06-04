@@ -27,7 +27,6 @@ export const ProductItem = () => {
     setselectedRadioFilter,
     searchQuery,
     setProductId,
-    storeProductId,
   } = useContext(ProductListingcontext);
   const { category } = useContext(ProductCategoryContext);
   // new array to store unique size from product object
@@ -64,10 +63,7 @@ export const ProductItem = () => {
   };
   //storing productiD for product detail page
   const productOnClickHandle = (id) => {
-    console.log("id", id);
     setProductId(id);
-    // getProductDetail()
-    console.log("ProductID ProductItem", storeProductId);
   };
   //implemented filter logic
   const filteredProducts =
@@ -214,6 +210,8 @@ export const ProductItem = () => {
               discount,
               size,
             } = productItem;
+
+            let discountedPrice = price -(price *(discount/100))
             return (
 
                 <div className="card-container" key={id}>
@@ -227,16 +225,15 @@ export const ProductItem = () => {
                     <p>{title}</p>
                     <p>{description}</p>
                     <p>{rating}</p>
-                    <p><span>{ price -(price *(discount/100)) }</span><span style={{textDecoration:'line-through'}}>{price}</span></p>
+                    <p><span>{ discountedPrice }</span><span style={{textDecoration:'line-through'}}>{price}</span></p>
                     <p>{discount}% Off</p>
                     </div>
                   </Link>
-                  <div>
+                  <div className="wishList-container">
                   <button
                   onClick={() => handleToggleWishlist(productItem)}
-                  className={wishlist.includes(_id) ? 'wishlist-button active' : 'wishlist-button'}
+                  className={wishlist.includes(_id) ? 'wishlist-button added' : 'wishlist-button remove'}
                 >
-                  {wishlist.includes(_id) ? 'Remove from Wishlist' : 'Add to Wishlist'}
                 </button>
                   </div>
                   <button  className="cart-btn active" onClick={() => CartBtnHandle(productItem)}>
@@ -247,7 +244,7 @@ export const ProductItem = () => {
             );
           })
         ) : (
-          <p>No Product found</p>
+          <p className="product-not-found">No Product found</p>
         )}
       </aside>
     </div>
