@@ -100,6 +100,7 @@ export const ProductItem = () => {
       setAddedToCartList([...addedToCartList, productItem._id]);
       toast.success(`${productItem.title} added to cart!`, {
         position: toast.POSITION.BOTTOM_LEFT,
+        autoClose: 1000,
       });
     } else {
       navigate("/cart");
@@ -117,17 +118,20 @@ export const ProductItem = () => {
         RemoveFromWishList(productItem._id);
         toast.warn(`${productItem.title} removed from wishlist!`, {
           position: toast.POSITION.BOTTOM_LEFT,
+          autoClose: 1000,
         });
       } else {
         addWishList(wishListProduct);
         setWishlist([...wishlist, productItem._id]);
         toast.success(`${productItem.title} added to wishlist!`, {
           position: toast.POSITION.BOTTOM_LEFT,
+          autoClose: 1000,
         });
       }
     } else {
       toast.error("Please Login", {
         position: toast.POSITION.BOTTOM_LEFT,
+        autoClose: 1000,
       });
     }
   };

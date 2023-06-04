@@ -36,6 +36,7 @@ export const WishList = () => {
     RemoveFromWishList(productItem._id);
     toast.warn(`${productItem.title} removed from wishlist!`, {
       position: toast.POSITION.TOP_RIGHT,
+      autoClose: 1000,
     });
   };
   const CartBtnHandle = (productItem) => {
