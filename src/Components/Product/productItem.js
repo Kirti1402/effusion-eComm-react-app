@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { ProductCategoryContext } from "../../Context/ProductCategoryContext";
 import { ProductListingcontext } from "../../Context/ProductListContext";
@@ -8,17 +8,15 @@ import { AddToCart } from "../Cart/AddToCart";
 import { wishListContext } from "../../Context/wishListContext";
 import { addWishList } from "../WishList/AddWishlist";
 import "./Product.css";
-import {  toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import { RemoveFromWishList } from "../WishList/RemoveWishList";
 import { LoginAuthContext } from "../../Context/LoginAuthContext";
 
-
-
 export const ProductItem = () => {
   const navigate = useNavigate();
-  const {addedToCartList,setAddedToCartList} = useContext(cartContext);
-  const {wishlist, setWishlist} = useContext(wishListContext);
-  const {isLoggedIn} = useContext(LoginAuthContext);
+  const { addedToCartList, setAddedToCartList } = useContext(cartContext);
+  const { wishlist, setWishlist } = useContext(wishListContext);
+  const { isLoggedIn } = useContext(LoginAuthContext);
 
   const ratingNumber = [1, 2, 3, 4, 5];
   const {
@@ -95,45 +93,43 @@ export const ProductItem = () => {
   //storing length for validating and rendering the item
   const filterProductLength = filteredProducts && filteredProducts.length;
 
-  const CartBtnHandle = (productItem) =>{
-    let CardProduct = { product:productItem}
-    if(!addedToCartList.includes(productItem._id)){
-      AddToCart(CardProduct)
-      setAddedToCartList([...addedToCartList,productItem._id])
+  const CartBtnHandle = (productItem) => {
+    let CardProduct = { product: productItem };
+    if (!addedToCartList.includes(productItem._id)) {
+      AddToCart(CardProduct);
+      setAddedToCartList([...addedToCartList, productItem._id]);
       toast.success(`${productItem.title} added to cart!`, {
-        position: toast.POSITION.TOP_RIGHT
+        position: toast.POSITION.BOTTOM_LEFT,
       });
-    }else{
-      navigate('/cart')
+    } else {
+      navigate("/cart");
     }
-
-   
-  }
+  };
 
   const handleToggleWishlist = (productItem) => {
-    let wishListProduct = { product:productItem}
-    if(isLoggedIn){
+    let wishListProduct = { product: productItem };
+    if (isLoggedIn) {
       if (wishlist.includes(productItem._id)) {
-        const updatedWishlist = wishlist.filter((item) => item !== productItem._id);
+        const updatedWishlist = wishlist.filter(
+          (item) => item !== productItem._id
+        );
         setWishlist(updatedWishlist);
-        RemoveFromWishList(productItem._id)
+        RemoveFromWishList(productItem._id);
         toast.warn(`${productItem.title} removed from wishlist!`, {
-          position: toast.POSITION.TOP_RIGHT
+          position: toast.POSITION.BOTTOM_LEFT,
         });
       } else {
-        addWishList(wishListProduct)
+        addWishList(wishListProduct);
         setWishlist([...wishlist, productItem._id]);
         toast.success(`${productItem.title} added to wishlist!`, {
-          position: toast.POSITION.TOP_RIGHT
+          position: toast.POSITION.BOTTOM_LEFT,
         });
       }
-    }else{
+    } else {
       toast.error("Please Login", {
-        position: toast.POSITION.TOP_RIGHT
+        position: toast.POSITION.BOTTOM_LEFT,
       });
     }
-
-   
   };
 
   return (
@@ -211,36 +207,55 @@ export const ProductItem = () => {
               size,
             } = productItem;
 
-            let discountedPrice = price -(price *(discount/100))
+            let discountedPrice = price - price * (discount / 100);
             return (
-
-                <div className="card-container" key={id}>
-                  <div className="card-detail">
+              <div className="card-container" key={id}>
+                <div className="card-detail-container">
                   <Link
+                    className="link-product"
                     to="/productDetail"
                     onClick={() => productOnClickHandle(productItem._id)}
                   >
-                    <img src={url}/>
-                    <div>
-                    <p>{title}</p>
-                    <p>{description}</p>
-                    <p>{rating}</p>
-                    <p><span>{ discountedPrice }</span><span style={{textDecoration:'line-through'}}>{price}</span></p>
-                    <p>{discount}% Off</p>
+                    <div className="image-conatiner">
+                      <img src={url} />
+                      <div className="rating-container">
+                        <span className="star">&#9733;</span>
+                        <p className="rating">{rating}</p>
+                      </div>
+                    </div>
+                    <div className="card-detail">
+                      <p>{title}</p>
+                      <p>{description}</p>
+
+                      <p>
+                        <span>{discountedPrice}</span>
+                        <span style={{ textDecoration: "line-through" }}>
+                          {price}
+                        </span>
+                      </p>
+                      <p>{discount}% Off</p>
                     </div>
                   </Link>
                   <div className="wishList-container">
+                    <button
+                      onClick={() => handleToggleWishlist(productItem)}
+                      className={
+                        wishlist.includes(_id)
+                          ? "wishlist-button-added"
+                          : "wishlist-button-remove"
+                      }
+                    ></button>
+                  </div>
                   <button
-                  onClick={() => handleToggleWishlist(productItem)}
-                  className={wishlist.includes(_id) ? 'wishlist-button-added' : 'wishlist-button-remove'}
-                >
-                </button>
-                  </div>
-                  <button  className="cart-btn" onClick={() => CartBtnHandle(productItem)}>
-                   {addedToCartList.includes(_id) ? 'Go To Cart' : 'Add To Cart' }
+                    className="cart-btn"
+                    onClick={() => CartBtnHandle(productItem)}
+                  >
+                    {addedToCartList.includes(_id)
+                      ? "Go To Cart"
+                      : "Add To Cart"}
                   </button>
-                  </div>
                 </div>
+              </div>
             );
           })
         ) : (

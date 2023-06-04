@@ -68,7 +68,7 @@ export const WishList = () => {
             let discountedPrice = price -(price *(discount/100))
             return (
               <div className="card-container">
-                <div className="card-detail">
+                <div className="card-detail-container">
                   <Link
                     to="/productDetail"
                     onClick={() => setProductId(_id)}
