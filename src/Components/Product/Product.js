@@ -8,9 +8,7 @@ import { Loader } from "../Loader/Loader";
 export const Product = () => {
   const { isLoading } = useContext(ProductListingcontext);
   return (
-    <div>
-      <p>Product Page</p>
-      {/* <FilterCategory /> */}
+    <div className="product-page">
       {isLoading ? <Loader /> : <ProductItem />}
     </div>
   );

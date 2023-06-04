@@ -70,21 +70,30 @@ export const WishList = () => {
               <div className="card-container">
                 <div className="card-detail-container">
                   <Link
+                  className="link-product"
                     to="/productDetail"
                     onClick={() => setProductId(_id)}
                   >
-                    <img src={url} />
-                    <div>
+                    <div className="image-conatiner">
+                      <img src={url} />
+                      <div className="rating-container">
+                        <span className="star">&#9733;</span>
+                        <p className="rating">{rating}</p>
+                      </div>
+                    </div>
+                    <div  className="card-detail">
                       <p>{title}</p>
                       <p>{description}</p>
-                      <p>{rating}</p>
-                      <p>
-                        <span>{discountedPrice}</span>
-                        <span style={{ textDecoration: "line-through" }}>
+                      <div className="price-discount">
+                        <div>
+                        <span><span>&#8377;</span>{discountedPrice}</span>
+                        <span className="discount" style={{ textDecoration: "line-through" }}>
+                          <span>&#8377;</span>
                           {price}
                         </span>
-                      </p>
-                      <p>{discount}% Off</p>
+                        </div>
+                        <div><span>{discount}% Off</span></div>
+                      </div>
                     </div>
                   </Link>
                   <div className="wishList-container">

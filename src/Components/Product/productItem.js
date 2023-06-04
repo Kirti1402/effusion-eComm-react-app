@@ -135,7 +135,8 @@ export const ProductItem = () => {
   return (
     <div className="product-page-container">
       <div className="filter-container">
-        <div>
+        <p className="text-product">{(filterProductLength === (productList && productList.length)) ?'Showing All Product': <span>Product found : {filterProductLength }</span>}</p>
+        <div className="category-filter">
           {category &&
             category.map(({ id, categoryName }) => (
               <label key={id}>
@@ -150,16 +151,18 @@ export const ProductItem = () => {
               </label>
             ))}
         </div>
-        <div>
+        <div className="sorting-filter">
           <label>
             Sort Order:
             <select value={sortOrder} onChange={handleSortChange}>
+              <div className="dropdown-content">
               <option value="ascending">Price: Low-to-High</option>
               <option value="descending">Price: High-to-Low</option>
+              </div>
             </select>
           </label>
         </div>
-        <div>
+        <div className="size-filter">
           {uniqueSize &&
             uniqueSize.map((size) => (
               <label>
@@ -174,8 +177,7 @@ export const ProductItem = () => {
               </label>
             ))}
         </div>
-
-        <div>
+        <div className="rating-filter">
           {ratingNumber &&
             ratingNumber.map((ratingnum) => (
               <label>
@@ -190,7 +192,6 @@ export const ProductItem = () => {
             ))}
         </div>
       </div>
-
       <aside className="product-container">
         {filterProductLength ? (
           filteredProducts.map((productItem) => {
@@ -203,7 +204,6 @@ export const ProductItem = () => {
               rating,
               price,
               discount,
-              size,
             } = productItem;
 
             let discountedPrice = (price - price * (discount / 100)).toFixed(2);

@@ -46,7 +46,7 @@ export const products = [
     url:"https://m.media-amazon.com/images/I/915Z4E-SIvL._UL1500_.jpg",
     rating:3.2,
     price: 1000,
-    discount:50,
+    discount:3,
     size:"S",
     categoryName: "Juniors",
   },
