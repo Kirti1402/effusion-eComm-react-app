@@ -21,6 +21,7 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 40px;
     justify-content: center;
+    
 }
 
 .card-container {
@@ -99,7 +100,16 @@
     font-size: 14px;
     color: #333;
   }
-  
+
+  .price-discount{
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+  }
+.discount{
+  color: grey;
+  margin: 5px;
+}
 
   .wishList-container{
     position: absolute; 

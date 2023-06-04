@@ -200,14 +200,13 @@ export const ProductItem = () => {
               id,
               url,
               title,
-              description,
               rating,
               price,
               discount,
               size,
             } = productItem;
 
-            let discountedPrice = price - price * (discount / 100);
+            let discountedPrice = (price - price * (discount / 100)).toFixed(2);
             return (
               <div className="card-container" key={id}>
                 <div className="card-detail-container">
@@ -225,15 +224,16 @@ export const ProductItem = () => {
                     </div>
                     <div className="card-detail">
                       <p>{title}</p>
-                      <p>{description}</p>
-
-                      <p>
-                        <span>{discountedPrice}</span>
-                        <span style={{ textDecoration: "line-through" }}>
+                      <div className="price-discount">
+                        <div>
+                        <span><span>&#8377;</span>{discountedPrice}</span>
+                        <span className="discount" style={{ textDecoration: "line-through" }}>
+                          <span>&#8377;</span>
                           {price}
                         </span>
-                      </p>
-                      <p>{discount}% Off</p>
+                        </div>
+                        <div><span>{discount}% Off</span></div>
+                      </div>
                     </div>
                   </Link>
                   <div className="wishList-container">
