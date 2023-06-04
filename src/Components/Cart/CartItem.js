@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { wishListContext } from "../../Context/wishListContext";
 import { RemoveFromWishList } from "../WishList/RemoveWishList";
 import { addWishList } from "../WishList/AddWishlist";
-import "./cart.css"
+import "./cart.css";
 
 export const CartItems = () => {
   const [type, setType] = useState("increment");
@@ -70,21 +70,27 @@ export const CartItems = () => {
 
   const totalPrice =
     cartList.length > 0 &&
-    cartList.reduce((total, {qty,price,discount}) => {
-      total = total + (qty *  price);
+    cartList.reduce((total, { qty, price, discount }) => {
+      total = total + qty * price;
       return total;
     }, 0);
 
-    const totalItem = cartList.length>0 && cartList.reduce((totalItem,{qty})=>{
-      totalItem = totalItem + qty
-      return totalItem
-    },0)
+  const totalItem =
+    cartList.length > 0 &&
+    cartList.reduce((totalItem, { qty }) => {
+      totalItem = totalItem + qty;
+      return totalItem;
+    }, 0);
 
-    const discountedPrice = cartList.length >0 && totalPrice - cartList.reduce((discountPrice,{qty,price,discount})=>{
-      console.log(qty,price,discount);
-      discountPrice =discountPrice + (qty *  Math.ceil(price - (price * (discount/100))))
-      return discountPrice
-    },0)
+  const discountedPrice =
+    cartList.length > 0 &&
+    totalPrice -
+      cartList.reduce((discountPrice, { qty, price, discount }) => {
+        console.log(qty, price, discount);
+        discountPrice =
+          discountPrice + qty * Math.ceil(price - price * (discount / 100));
+        return discountPrice;
+      }, 0);
 
   const handleToggleWishlist = (productItem) => {
     let wishListProduct = { product: productItem };
@@ -112,20 +118,21 @@ export const CartItems = () => {
         {cartList.length > 0 ? (
           <div className="cart-product-container">
             {cartList.map((cartItem) => {
-              const { _id, id, url, title, rating, price, discount, qty } =
+              const { _id, size, url, title, rating, price, discount, qty } =
                 cartItem;
-                let discountedPrice = Math.ceil((price - price * (discount / 100)));
+              let discountedPrice = Math.ceil(price - price * (discount / 100));
               return (
-                <div className="card-container">
-                  <div className="card-detail-container">
-                    <div className="image-conatiner">
+                <div className="cart-card-container">
+                  <div className="cart-card-detail-container">
+                    <div className="cart-image-conatiner">
                       <img src={url} />
                       <div className="rating-container">
                         <span className="star">&#9733;</span>
                         <p className="rating">{rating}</p>
                       </div>
                     </div>
-                    <div className="card-detail">
+                    <div className="cart-card-detail">
+                      <div></div>
                       <p>{title}</p>
                       <div className="price-discount">
                         <div>
@@ -145,54 +152,65 @@ export const CartItems = () => {
                           <span>{discount}% Off</span>
                         </div>
                       </div>
-                    </div>
+                      <p>
+                        Quantity:
+                        <button
+                          onClick={() => onclickHandleQty(_id, "decrement")}
+                        >
+                          -
+                        </button>
+                        {qty}
+                        <button
+                          onClick={() => onclickHandleQty(_id, "increment")}
+                        >
+                          +
+                        </button>
+                      </p>
+                      <div className="wishList-container">
+                        <button
+                          onClick={() => handleToggleWishlist(cartItem)}
+                          className={
+                            wishlist.includes(_id)
+                              ? "wishlist-button-added"
+                              : "wishlist-button-remove"
+                          }
+                        ></button>
+                      </div>
+                      <div></div>
 
-                    <p>
-                      Quantity:
                       <button
-                        onClick={() => onclickHandleQty(_id, "decrement")}
+                        className="remove-btn"
+                        onClick={() => onClickRemoveFromCart(_id, title)}
                       >
-                        -
+                        Remove from Cart
                       </button>
-                      {qty}
-                      <button
-                        onClick={() => onclickHandleQty(_id, "increment")}
-                      >
-                        +
-                      </button>
-                    </p>
+                    </div>
                   </div>
-                  <div className="wishList-container">
-                    <button
-                      onClick={() => handleToggleWishlist(cartItem)}
-                      className={
-                        wishlist.includes(_id)
-                          ? "wishlist-button-added"
-                          : "wishlist-button-remove"
-                      }
-                    ></button>
-                  </div>
-                  <button
-                    className="cart-btn"
-                    onClick={() => onClickRemoveFromCart(_id, title)}
-                  >
-                    Remove from Cart
-                  </button>
                 </div>
               );
             })}
-            
           </div>
         ) : (
           <p>Your Cart is Empty</p>
         )}
-        {cartList.length >0 && <div className="checkout-detail">
-            <p>Total Item : <span>{totalItem}</span></p>
-            <p>Total Price : <span>&#8377;{totalPrice}</span></p> 
-            <p>Discount: <span>-&#8377;{discountedPrice}</span></p>
-            <p>Total Amount : <span>&#8377;{totalPrice - discountedPrice}</span></p>
+        {cartList.length > 0 && (
+          <div className="price-detail">
+            <p>
+              Total Item : <span>{totalItem}</span>
+            </p>
+            <p>
+              Total Price : <span>&#8377;{totalPrice}</span>
+            </p>
+            <p>
+              Discount: <span>-&#8377;{discountedPrice}</span>
+            </p>
+            <p>
+              Total Amount : <span>&#8377;{totalPrice - discountedPrice}</span>
+            </p>
+
             <button>CheckOut</button>
-        </div>}
+          </div>
+        )}
       </div>
     </>
   );
