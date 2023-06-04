@@ -71,7 +71,7 @@ export const CartItems = () => {
   const totalPrice =
     cartList.length > 0 &&
     cartList.reduce((total, {qty,price,discount}) => {
-      total = total + qty *  Math.ceil((price - (price * (discount/100))));
+      total = total + (qty *  price);
       return total;
     }, 0);
 
@@ -80,9 +80,9 @@ export const CartItems = () => {
       return totalItem
     },0)
 
-    const discountedPrice = cartList.length >0 && cartList.reduce((discountPrice,{qty,price,discount})=>{
-      discountPrice =(price * qty) -(qty *  Math.ceil((price - (price * (discount/100)))))
-
+    const discountedPrice = cartList.length >0 && totalPrice - cartList.reduce((discountPrice,{qty,price,discount})=>{
+      console.log(qty,price,discount);
+      discountPrice =discountPrice + (qty *  Math.ceil(price - (price * (discount/100))))
       return discountPrice
     },0)
 
@@ -186,11 +186,13 @@ export const CartItems = () => {
         ) : (
           <p>Your Cart is Empty</p>
         )}
-        <div className="checkout-detail">
+        {cartList.length >0 && <div className="checkout-detail">
             <p>Total Item : <span>{totalItem}</span></p>
-            <p>Total Price : <span>{totalPrice}</span></p> 
-            <p>Discount: <span>{discountedPrice}</span></p>
-        </div>
+            <p>Total Price : <span>&#8377;{totalPrice}</span></p> 
+            <p>Discount: <span>-&#8377;{discountedPrice}</span></p>
+            <p>Total Amount : <span>&#8377;{totalPrice - discountedPrice}</span></p>
+            <button>CheckOut</button>
+        </div>}
       </div>
     </>
   );
