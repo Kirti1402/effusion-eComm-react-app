@@ -6,6 +6,7 @@ import { AddToCart } from "../Cart/AddToCart";
 import { toast } from "react-toastify";
 import { RemoveFromWishList } from "./RemoveWishList";
 import { ProductListingcontext } from "../../Context/ProductListContext";
+import "./wishlist.css"
 
 export const WishList = () => {
   const navigate = useNavigate();
@@ -50,8 +51,8 @@ export const WishList = () => {
   console.log("wishlist", wishlistItem);
   return (
     <div>
-      <p>WishList Page</p>
-      <div className="product-container">
+      <p className="wishList-text">My WishList ({wishlistItem.length})</p>
+      <div className="wishlist-product-container">
         {wishlistItem.length > 0 &&
           wishlistItem.map((wishListProduct) => {
             const {
@@ -83,7 +84,6 @@ export const WishList = () => {
                     </div>
                     <div  className="card-detail">
                       <p>{title}</p>
-                      <p>{description}</p>
                       <div className="price-discount">
                         <div>
                         <span><span>&#8377;</span>{discountedPrice}</span>
