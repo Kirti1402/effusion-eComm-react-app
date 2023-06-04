@@ -1,0 +1,39 @@
+.productDetail-container {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+.card {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 500px;
+  }
+  
+  .card-image {
+    flex: 0 0 auto;
+    margin-right: 10px;
+  }
+  
+  .card-image img {
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .card-details {
+    flex: 1 1 auto;
+  }
+  
+  .card-details h2 {
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 5px;
+  }
+  
+  .card-details p {
+    font-size: 14px;
+    margin: 0;
+  }
+  
