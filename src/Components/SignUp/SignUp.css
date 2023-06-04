@@ -5,7 +5,7 @@
 	justify-content: center;
 	align-items: center;
 	background: hsl(218deg 50% 91%);
-	height: 100vh;    
+	height: 80vh;    
 }
 input {
     outline: none;
@@ -17,7 +17,6 @@ input {
 }
 
 .heading{
-    /* margin-top: 70px; */
     text-align: center;
 }
 .password,.email,.firstName,.lastName,.confirmPassword {
@@ -47,7 +46,6 @@ input {
 .disabledSignupBtn{
     width: 100%;
     padding: 1em;
-    /* background: hsl(233deg 36% 38%); */
     color: white;
     border: none;
     border-radius: 30px;

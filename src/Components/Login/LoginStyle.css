@@ -1,5 +1,5 @@
 .heading{
-    /* margin-top: 70px; */
+
     text-align: center;
 }
 
@@ -8,7 +8,7 @@
 	justify-content: center;
 	align-items: center;
 	background: hsl(218deg 50% 91%);
-	height: 100vh;    
+	height: 80vh;    
 }
 
 .loginBtn{
@@ -33,4 +33,16 @@
     justify-content: flex-end;
     padding: 0.3rem;
     color: grey;
+}
+
+.loginAsGuest{
+    text-align: center;
+    width: 100%;
+    padding: 0.5em;
+    background: hsl(233deg 36% 38%);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 300;
+    cursor: pointer;
 }

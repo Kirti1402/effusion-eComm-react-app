@@ -3,6 +3,7 @@ import { useNavigate ,useLocation} from "react-router-dom";
 
 import { LoginAuthContext } from "../../Context/LoginAuthContext";
 import "./LoginStyle.css"
+import Footer from "../Home/Footer";
 
 export const Login = () => {
   const { state } = useLocation();
@@ -26,8 +27,8 @@ const submitForm = (e) =>{
 
 }
   return (
+    <div>
     <div className="login-container">
-      
       <form onSubmit={submitForm}>
       <p className="heading">Login</p> 
         <div className="email">
@@ -47,7 +48,10 @@ const submitForm = (e) =>{
           <span >Dont have an Account?</span>
           <span className="signUpLink" onClick={()=> navigate('/signup')}> Sign Up</span>
         </div>
+        <div className="loginAsGuest">Login As Guest</div>
       </form>
+    </div>
+    <Footer/>
     </div>
   );
 };

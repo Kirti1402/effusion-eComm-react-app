@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { SignUpAuthContext } from "../../Context/SignupAuthContext";
 import "./SignUp.css"
+import Footer from "../Home/Footer";
 
 export const SignUp = () => {
 
@@ -40,7 +41,8 @@ export const SignUp = () => {
         signupHandler();
         navigate('/')
     }
-    return <div className="signup-container">
+    return <div>
+    <div className="signup-container">
     
     <form  onSubmit={submitForm}>
     <p className="heading">Sign UP</p>
@@ -72,5 +74,7 @@ export const SignUp = () => {
           <span >Already have account?</span>
           <span className="loginLink" onClick={()=> navigate('/login')}>Log In</span>
       </form>
+    </div>
+    <Footer/>
     </div>
 }

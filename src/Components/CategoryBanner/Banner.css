@@ -1,25 +1,53 @@
-/* Banner.css */
+.banner-container{
+position: relative;
+  display: flex;
+  justify-content: center;
 
-.banner-container {
-    display: flex;
-    height: 50vh;
-  }
-  
-  .banner {
-    width: 100%;
-    flex: 1;
-    background-color: #f2f2f2;
-    border-radius: 4px;
-    padding: 20px;
-    text-align: center;
-    transition: flex 0.1s;
-  }
-  
-  .banner h2 {
-    margin: 0;
-  }
-  
-  .banner.expanded {
-    flex-grow: 3;
-  }
-  
+}
+.category-images img{
+  width: 350px;
+  height: 400px;
+  margin-top: 10px;
+}
+
+.category-shop-btn button{
+  cursor: pointer;
+  top:50%;
+  position: absolute;
+  width:200px;
+  margin: 0 75px 0 75px;
+  height: 25px;
+  border-radius:10px;
+  border: none;
+}
+.category-shop-btn button:hover{
+  background-color: cadetblue;
+  color: white;
+}
+
+.category-name{
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top:30%;
+  width:100px;
+  margin: 0 125px 0 125px;
+  text-align: center;
+  background-color: aliceblue;
+  border-radius:0 10px 0 10px;
+  height: 50px;
+}
+
+.shop-all{
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  color: #27374d;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
