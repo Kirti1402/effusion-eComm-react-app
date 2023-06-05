@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { SignUpAuthContext } from "../../Context/SignupAuthContext";
 import "./SignUp.css"
 import Footer from "../Home/Footer";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 export const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -65,8 +67,8 @@ export const SignUp = () => {
         <div className="password">
           <label>Password</label>
           <input type={showPassword ? 'text' : 'password'}  id="password" name="password" placeholder="Enter Password" onKeyUp  ={updateForm} required />
-          <button onClick={handleTogglePassword}>
-        {showPassword ? 'Hide' : 'Show'} 
+          <button className="show-hide-btn" onClick={handleTogglePassword}>
+        <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
       </button>
         </div>
         <div className="confirmPassword">
@@ -80,7 +82,6 @@ export const SignUp = () => {
 
           <span >Already have account?</span>
           <span className="loginLink" onClick={()=> navigate('/login')}>Log In</span>
-          <div className="loginAsGuest" >Sign UP As Guest</div>
       </form>
     </div>
     <Footer/>

@@ -1,5 +1,4 @@
 .heading{
-
     text-align: center;
 }
 
@@ -7,23 +6,21 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: hsl(218deg 50% 91%);
+	background: #EFF7E1;
 	height: 80vh;    
 }
 
 .loginBtn{
     width: 100%;
     padding: 1em;
-    background: hsl(233deg 36% 38%);
-    color: white;
+    background: #A2D0C1;
     border: none;
     border-radius: 30px;
-    font-weight: 600;
     cursor: pointer;
 }
 
 .signUpLink{
-    color: hsl(233deg 36% 38%);;
+    color:blue;
     cursor: pointer;
     margin-left:0.3rem ;
 }
@@ -39,8 +36,7 @@
     text-align: center;
     width: 100%;
     padding: 0.5em;
-    background: hsl(233deg 36% 38%);
-    color: white;
+    background: #A2D0C1;
     border: none;
     border-radius: 30px;
     font-weight: 300;

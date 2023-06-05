@@ -57,7 +57,7 @@ img {
 }
 
 .card-detail-container {
-  background-color: aliceblue;
+  background-color: #E8F6EF;
 }
 .link-product {
   text-decoration: none;
@@ -69,15 +69,28 @@ img {
   padding: 5px;
 }
 
-.cart-btn {
-  background-color: #ffffff;
+
+.GoToCart-btn{
+  font-weight: 700;
+  background-color: #558776;
   width: 100%;
-  color: #27374d;
+  color: whitesmoke;
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
 }
+
+.AddToCartBtn{
+  font-weight: 700;
+  background-color: #B8DFD8;
+  width: 100%;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 
 .image-conatiner {
   position: relative;
@@ -89,7 +102,7 @@ img {
   display: flex;
   align-items: center;
   margin-top: 5px;
-  background-color: aliceblue;
+  background-color: #E8F6EF;
   width: 50px;
   border-radius: 5px;
 }

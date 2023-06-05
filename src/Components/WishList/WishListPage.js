@@ -46,6 +46,10 @@ export const WishList = () => {
     if (!addedToCartList.includes(productItem._id)) {
       AddToCart(CardProduct);
       setAddedToCartList([...addedToCartList, productItem._id]);
+      toast.success(`${productItem.title} added to cart!`, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 1000,
+      });
     } else {
       navigate("/cart");
     }
@@ -105,7 +109,7 @@ export const WishList = () => {
                 >
                 </button>
                 </div>
-                <button className="cart-btn" onClick={() => CartBtnHandle(wishListProduct)}>
+                <button className={addedToCartList.includes(_id)?'GoToCart-btn':'AddToCartBtn'}onClick={() => CartBtnHandle(wishListProduct)}>
                   {addedToCartList.includes(wishListProduct._id)
                     ? "Go To Cart"
                     : "Add To Cart"}

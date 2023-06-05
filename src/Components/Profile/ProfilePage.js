@@ -3,6 +3,7 @@ import { LoginAuthContext } from "../../Context/LoginAuthContext";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import { Address } from "./Address";
+import Footer from "../Home/Footer";
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ export const ProfilePage = () => {
   };
 
   return (
+    <>
     <div className="profile-page-container">
       <div className="btn-container">
       <button className={selecttab.profile ? 'btnBack' : 'none' } onClick={() => setSelectTab({ profile: true, address: false })}>Profile Information</button>
@@ -44,5 +46,6 @@ export const ProfilePage = () => {
       {selecttab.address && <Address />}
       </div>
     </div>
+    </>
   );
 };

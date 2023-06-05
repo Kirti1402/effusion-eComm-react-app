@@ -20,8 +20,8 @@
   justify-content: space-around;
   width: 300px;
   border-radius: 3px;
-  background-color: #f0edd4;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #CCD5AE;
+  box-shadow: 0 0 2px 2px #DDF7E3;
   margin-top: 20px;
 }
 
@@ -47,9 +47,8 @@
 }
 
 .checkout{
-background-color: skyblue;
+background-color: #DDF7E3;
   width: 100%;
-  color: whitesmoke;
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -58,7 +57,7 @@ background-color: skyblue;
 }
 .remove-btn{
     font-weight: 700;
-   background-color: coral;
+   background-color: #7FB77E;
   width: 100%;
   border: none;
   padding: 8px 16px;
@@ -79,6 +78,15 @@ background-color: skyblue;
   background-color: #867070;
  border: none;
  padding: 8px 16px;
+ border-radius: 4px;
+ cursor: pointer;
+}
+
+.increment-decrement{
+  color:whitesmoke;
+  background-color: #867070;
+ border: none;
+ padding: 2px 8px;
  border-radius: 4px;
  cursor: pointer;
 }

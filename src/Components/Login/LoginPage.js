@@ -55,7 +55,7 @@ const loginAsGuestHandle = () => {
           <span >Dont have an Account?</span>
           <span className="signUpLink" onClick={()=> navigate('/signup')}> Sign Up</span>
         </div>
-        <div className="loginAsGuest" onClick={loginAsGuestHandle}>Login As Guest</div>
+        <div className="loginAsGuest" onClick={loginAsGuestHandle}>Login with Guest Detail</div>
       </form>
     </div>
     <Footer/>

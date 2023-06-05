@@ -11,8 +11,8 @@ import PriceDetail from "./PriceDetail";
 
 
 export const CartItems = () => {
+  const [btnClicked,setBtnClicked] = useState(false);
   const navigate = useNavigate();
-  const [type, setType] = useState("increment");
   const { cartList, setCartList } = useContext(ProductListingcontext);
   const { addedToCartList, setAddedToCartList } = useContext(cartContext);
   const { wishlist, setWishlist,} =
@@ -23,7 +23,7 @@ export const CartItems = () => {
     const response = await fetch("/api/user/cart", {
       method: "GET",
       headers: {
-        authorization: `"${token}"`, // Assuming 'token' holds the actual token value
+        authorization: `"${token}"`, 
       },
     });
     const cartProduct = await response.json();
@@ -34,7 +34,7 @@ export const CartItems = () => {
 
   useEffect(() => {
     getCartItem();
-  }, [type]);
+  },[btnClicked]);
 
   const onClickRemoveFromCart = (id, title) => {
     const updatedList = addedToCartList.filter((item) => item !== id);
@@ -57,18 +57,29 @@ export const CartItems = () => {
     setCartList(cartProduct.cart);
   };
 
-  const onclickHandleQty = (id, type) => {
-    console.log(id, type);
-
-    incrementTheProduct(id, type);
+  const onclickHandleQty = (id, qty,inDec) => {
+    if(inDec === 'increment'){
+      qty++;
+    }else{
+      qty--;
+    }
+    if(qty <1){
+    const updatedList = addedToCartList.filter((item) => item !== id);
+    setAddedToCartList([...updatedList]);
+      RemoveFromCart(id);
+    }else{
+      incrementTheProduct(id, inDec); 
+    }
+    setBtnClicked(!btnClicked)
+         
   };
-  const incrementTheProduct = async (id, type) => {
+  const incrementTheProduct = async (id, typeID) => {
     const response = await fetch(`/api/user/cart/${id}`, {
       method: "Post",
       headers: {
         authorization: token,
       },
-      body: JSON.stringify({ action: { type: type } }),
+      body: JSON.stringify({ action: { type: `${typeID}` } }),
     });
     console.log("increment response", await response.json());
   };
@@ -139,16 +150,18 @@ export const CartItems = () => {
                           <span>{discount}% Off</span>
                         </div>
                       </div>
-                      <p>
+                      <p className="quantity">
                         Quantity:
                         <button
-                          onClick={() => onclickHandleQty(_id, "decrement")}
+                        className="increment-decrement"
+                          onClick={() => onclickHandleQty(_id,qty, "decrement")}
                         >
                           -
                         </button>
-                        {qty}
+                        {qty }
                         <button
-                          onClick={() => onclickHandleQty(_id, "increment")}
+                         className="increment-decrement"
+                          onClick={() => onclickHandleQty(_id,qty, "increment")}
                         >
                           +
                         </button>

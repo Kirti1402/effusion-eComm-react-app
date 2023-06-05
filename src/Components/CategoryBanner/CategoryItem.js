@@ -16,6 +16,7 @@ export const CategoryBanner = () => {
   };
   return (
     <section>
+      <h3 style={{textAlign:'center',margin:'10px'}}>Shop By Category</h3>
       {!isLoading && (
         <div className="banner-container">
           {category.map((categoryItem) => {

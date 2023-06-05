@@ -1,16 +1,17 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart ,faShoppingCart,faUser,faShoppingBag,faHome} from "@fortawesome/free-solid-svg-icons";
 import { LoginAuthContext } from "../../Context/LoginAuthContext";
 import "./headerStyle.css";
 import SearchBar from "../SearchBar/SearchBar";
+
 import { wishListContext } from "../../Context/wishListContext";
 import { cartContext } from "../../Context/CartContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart ,faShoppingCart,faUser,faShoppingBag,faHome} from "@fortawesome/free-solid-svg-icons";
 
 export const Header = () => {
+  const { addedToCartList} = useContext(cartContext);
   const { wishlist } = useContext(wishListContext);
-  const { addedToCartList } = useContext(cartContext);
   const { isEncodedToken } = useContext(LoginAuthContext);
   console.log("in header", isEncodedToken);
   return (

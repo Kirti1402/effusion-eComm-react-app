@@ -11,6 +11,7 @@ import "./Product.css";
 import { toast } from "react-toastify";
 import { RemoveFromWishList } from "../WishList/RemoveWishList";
 import { LoginAuthContext } from "../../Context/LoginAuthContext";
+import Footer from "../Home/Footer";
 
 export const ProductItem = () => {
   const navigate = useNavigate();
@@ -153,6 +154,7 @@ export const ProductItem = () => {
   }
 
   return (
+   <>
     <div className="product-page-container">
       <div className="filter-container">
         <p className="text-product">{(filterProductLength === (productList && productList.length)) ?'Showing All Product': <span>Product found : {filterProductLength }</span>}</p>
@@ -266,7 +268,7 @@ export const ProductItem = () => {
                     ></button>
                   </div>
                   <button
-                    className="cart-btn"
+                    className={addedToCartList.includes(_id)?'GoToCart-btn':'AddToCartBtn'}
                     onClick={() => CartBtnHandle(productItem)}
                   >
                     {addedToCartList.includes(_id)
@@ -282,5 +284,7 @@ export const ProductItem = () => {
         )}
       </aside>
     </div>
+    <Footer/>
+    </>
   );
 };
