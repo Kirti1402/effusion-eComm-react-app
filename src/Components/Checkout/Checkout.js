@@ -5,7 +5,7 @@ import { Address } from "../Profile/Address";
 import "./checkout.css"
 
 export default function Checkout() {
-  const { cartList, setCartList } = useContext(ProductListingcontext);
+  const { cartList } = useContext(ProductListingcontext);
   return (
     <div>
       {cartList.length > 0 && (

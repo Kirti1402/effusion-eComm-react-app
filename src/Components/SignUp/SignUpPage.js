@@ -6,7 +6,7 @@ import "./SignUp.css"
 import Footer from "../Home/Footer";
 
 export const SignUp = () => {
-
+  const [showPassword, setShowPassword] = useState(false);
   const [isDisable, setIsDisable] = useState(false)
   const [error,setError] = useState(false)
 
@@ -41,6 +41,10 @@ export const SignUp = () => {
         signupHandler();
         navigate('/')
     }
+
+    const handleTogglePassword = () => {
+      setShowPassword(!showPassword);
+    };
     return <div>
     <div className="signup-container">
     
@@ -60,19 +64,23 @@ export const SignUp = () => {
         </div>
         <div className="password">
           <label>Password</label>
-          <input type="password" id="password" name="password" placeholder="Enter Password" onKeyUp  ={updateForm} required />
+          <input type={showPassword ? 'text' : 'password'}  id="password" name="password" placeholder="Enter Password" onKeyUp  ={updateForm} required />
+          <button onClick={handleTogglePassword}>
+        {showPassword ? 'Hide' : 'Show'} 
+      </button>
         </div>
         <div className="confirmPassword">
-          <label>Password</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-Enter Password" onKeyUp  ={updateForm} required />
+          <label>Confirm Password</label>
+          <input id="confirmPassword" name="confirmPassword" placeholder="Re-Enter Password" onKeyUp  ={updateForm} required />
         </div>
-        {error ? <p>Please check your Password</p> : null}
+        {error ? <p style={{textAlign:'center',color:'red'}}>Please check your Password</p> : null}
           <button type="submit" className={!isDisable ? 'signupBtn': 'disabledSignupBtn' } disabled={isDisable}>
            Sign UP
           </button>
 
           <span >Already have account?</span>
           <span className="loginLink" onClick={()=> navigate('/login')}>Log In</span>
+          <div className="loginAsGuest" >Sign UP As Guest</div>
       </form>
     </div>
     <Footer/>

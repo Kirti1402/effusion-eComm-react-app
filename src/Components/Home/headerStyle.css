@@ -1,9 +1,10 @@
 .nav-container {
   padding: 1rem;
-  background-color: hsl(233deg 36% 38%);
+  background-color: #E3F4F4;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  border-bottom: 5px solid #40513B;
 }
 
 .link-icon {
@@ -28,8 +29,7 @@
   transform-origin: center left;
   transition: width 0.2s ease-in;
   text-decoration: none;
-  color: #fff;
-  color: aliceblue;
+  color: #025464;
   text-decoration: none;
 }
 
@@ -37,7 +37,7 @@
   position: relative;
   top: -8px;
   left: -10px;
-  background-color: #ff0000;
+  background-color: #8D7B68;
   color: #fff;
   padding: 1px 4px;
   border-radius: 50%;

@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react'
+import {useContext, useState} from 'react'
 import { ProductListingcontext } from '../../Context/ProductListContext';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';

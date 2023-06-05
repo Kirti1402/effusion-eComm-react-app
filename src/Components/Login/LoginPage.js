@@ -6,15 +6,16 @@ import "./LoginStyle.css"
 import Footer from "../Home/Footer";
 
 export const Login = () => {
-  const { state } = useLocation();
+  let { state } = useLocation();
+  const location = useLocation();
+  const currentPath = location.pathname;
+  console.log(currentPath)
   const { getLoginData ,setLoginInputData,loginInputData} = useContext(LoginAuthContext);
   const navigate = useNavigate();
 
 const  updateForm = (e) =>{
     let name = e.target.name;
     let value = e.target.value;
-    console.log("", loginInputData);
-    console.log("name:value",name,value)
     setLoginInputData({
         ...loginInputData,
         [name]:value})
@@ -23,7 +24,6 @@ const  updateForm = (e) =>{
 const submitForm = (e) =>{
     e.preventDefault();
     getLoginData();
-        console.log("state",state)
 }
 
 const loginAsGuestHandle = () => {
@@ -31,7 +31,6 @@ const loginAsGuestHandle = () => {
     email:'JohnDeo@gmail.com',
     password:'12345678'
   })
-
 }
   return (
     <div>
@@ -44,7 +43,8 @@ const loginAsGuestHandle = () => {
         </div>
         <div className="password">
           <label>Password</label>
-          <input type="password" id="password" value={loginInputData.password} placeholder="Enter your Password" name="password" onChange  ={updateForm} required />
+          <input type='password' id="password" value={loginInputData.password} placeholder="Enter your Password" name="password" onChange  ={updateForm} required />
+          
         </div>
         <span className="forgetPswd">Forget Password?</span>
         <div >

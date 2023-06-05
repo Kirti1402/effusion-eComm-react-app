@@ -8,11 +8,11 @@ export const SignUpAuthContextProvider = ({ children }) => {
   const { setIsLoggedIn, setIsEncodedToken, loginData, setLoginData } =
     useContext(LoginAuthContext);
   const [signUpInput, setSignUpInput] = useState({
-    firstName: null,
-    lastName: null,
-    email: null,
-    password: null,
-    confirmPassword:null,
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword:'',
   });
   useEffect(() => {
     const token = localStorage.getItem("Encodedtoken");
