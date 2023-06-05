@@ -8,11 +8,11 @@ export const SignUpAuthContextProvider = ({ children }) => {
   const { setIsLoggedIn, setIsEncodedToken, loginData, setLoginData } =
     useContext(LoginAuthContext);
   const [signUpInput, setSignUpInput] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword:'',
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
   useEffect(() => {
     const token = localStorage.getItem("Encodedtoken");
@@ -29,10 +29,8 @@ export const SignUpAuthContextProvider = ({ children }) => {
       body: JSON.stringify(cred),
     });
 
-    
     const response = await res.json();
     localStorage.setItem("SignUpItem", JSON.stringify(response));
-    console.log(response);
 
     if (!response.error) {
       setIsLoggedIn(true);
@@ -42,7 +40,6 @@ export const SignUpAuthContextProvider = ({ children }) => {
       localStorage.setItem("email", response.createdUser.email);
 
       setLoginData(response.createdUser);
-      console.log("logged in");
       //   navigate(state.path)
       setIsEncodedToken(response.encodedToken);
     } else {

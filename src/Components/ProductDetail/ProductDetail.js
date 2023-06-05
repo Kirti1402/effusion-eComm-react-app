@@ -1,15 +1,16 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 import { ProductListingcontext } from "../../Context/ProductListContext";
-import "./productDetail.css";
 import { Loader } from "../Loader/Loader";
 import { wishListContext } from "../../Context/wishListContext";
 import { LoginAuthContext } from "../../Context/LoginAuthContext";
-import { toast } from "react-toastify";
 import { addWishList } from "../WishList/AddWishlist";
 import { RemoveFromWishList } from "../WishList/RemoveWishList";
 import { cartContext } from "../../Context/CartContext";
 import { AddToCart } from "../Cart/AddToCart";
-import { useNavigate } from "react-router-dom";
+import "./productDetail.css";
 
 const ProductDetail = () => {
   const navigate = useNavigate();
@@ -25,7 +26,6 @@ const ProductDetail = () => {
   );
   //method to get productdetail from api
   const getProductDetail = async () => {
-    console.log("productId", storeProductId);
     const response = await fetch(`/api/products/${storeProductId}`, {
       method: "GET",
     });
@@ -66,7 +66,7 @@ const ProductDetail = () => {
   };
   const CartBtnHandle = (productItem) => {
     let CardProduct = { product: productItem };
-    if(isLoggedIn){
+    if (isLoggedIn) {
       if (!addedToCartList.includes(productItem._id)) {
         AddToCart(CardProduct);
         setAddedToCartList([...addedToCartList, productItem._id]);
@@ -77,15 +77,13 @@ const ProductDetail = () => {
       } else {
         navigate("/cart");
       }
-    } else{
+    } else {
       toast.error("Please Login!!!", {
         position: toast.POSITION.BOTTOM_LEFT,
         autoClose: 1000,
       });
     }
-    
   };
-
 
   return (
     <div className="productDetail-container">
@@ -94,12 +92,12 @@ const ProductDetail = () => {
           <div class="card-image">
             <img src={storeProductDetail.url} alt="Image" />
             <div className="product-detail-rating-container">
-                        <span className="star">&#9733;</span>
-                        <p className="rating">{storeProductDetail.rating}</p>
-                      </div>
-                      <div className="size-container">
-                        <p className="rating">{storeProductDetail.size}</p>
-                      </div>
+              <span className="star">&#9733;</span>
+              <p className="rating">{storeProductDetail.rating}</p>
+            </div>
+            <div className="size-container">
+              <p className="rating">{storeProductDetail.size}</p>
+            </div>
           </div>
           <div class="card-details">
             <h2>{storeProductDetail.title}</h2>
@@ -123,11 +121,13 @@ const ProductDetail = () => {
               </div>
             </div>
             <button
-            className="product-detail-cart-btn"
-            onClick={() => CartBtnHandle(storeProductDetail)}
-          >
-            {addedToCartList.includes(storeProductDetail._id) ? "Go To Cart" : "Add To Cart"}
-          </button>
+              className="product-detail-cart-btn"
+              onClick={() => CartBtnHandle(storeProductDetail)}
+            >
+              {addedToCartList.includes(storeProductDetail._id)
+                ? "Go To Cart"
+                : "Add To Cart"}
+            </button>
           </div>
           <div className="wishList-container">
             <button
@@ -139,9 +139,6 @@ const ProductDetail = () => {
               }
             ></button>
           </div>
-          
-
-          
         </div>
       ) : (
         <Loader />

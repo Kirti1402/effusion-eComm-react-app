@@ -1,6 +1,8 @@
 import "./App.css";
 import Mockman from "mockman-js";
-import { Routes, Route, Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Routes, Route } from "react-router-dom";
 import { Cart } from "./Components/Cart/CartPage";
 import { Home } from "./Components/Home/HomePage";
 import { ProfilePage } from "./Components/Profile/ProfilePage";
@@ -11,8 +13,6 @@ import { SignUp } from "./Components/SignUp/SignUpPage";
 import { PrivateRoutes } from "./PrivateRoutes";
 import { Product } from "./Components/Product/Product";
 import ProductDetail from "./Components/ProductDetail/ProductDetail";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Checkout from "./Components/Checkout/Checkout";
 
 function App() {
@@ -50,11 +50,11 @@ function App() {
             </PrivateRoutes>
           }
         />
-        <Route path="/product" element={<Product/>}/>
-        <Route path="/checkout" element={<Checkout/>}/>
+        <Route path="/product" element={<Product />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
-        <Route path="/productDetail" element={<ProductDetail/>}/>
+        <Route path="/productDetail" element={<ProductDetail />} />
       </Routes>
     </div>
   );

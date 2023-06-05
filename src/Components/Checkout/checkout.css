@@ -1,17 +1,17 @@
 .checkout-page {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
-.checkout-page > *{
-    margin: 40px;
+.checkout-page > * {
+  margin: 40px;
 }
 
 .checkout-address {
-    width: 300px;
+  width: 300px;
 }
 
 input[type="radio"]:checked {
-    color: red;
+  color: red;
   font-weight: bold;
   background: yellow;
 }

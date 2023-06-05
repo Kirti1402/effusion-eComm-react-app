@@ -11,7 +11,7 @@
 }
 
 .price-detail {
-    font-weight: 600;
+  font-weight: 600;
   padding: 20px;
   position: relative;
   display: flex;
@@ -20,13 +20,13 @@
   justify-content: space-around;
   width: 300px;
   border-radius: 3px;
-  background-color: #CCD5AE;
-  box-shadow: 0 0 2px 2px #DDF7E3;
+  background-color: #ccd5ae;
+  box-shadow: 0 0 2px 2px #ddf7e3;
   margin-top: 20px;
 }
 
-.item-price-detail{
-    float: right;
+.item-price-detail {
+  float: right;
 }
 .cart-product-container {
   display: flex;
@@ -46,8 +46,8 @@
   justify-content: space-between;
 }
 
-.checkout{
-background-color: #DDF7E3;
+.checkout {
+  background-color: #ddf7e3;
   width: 100%;
   border: none;
   padding: 8px 16px;
@@ -55,9 +55,9 @@ background-color: #DDF7E3;
   cursor: pointer;
   font-weight: 700;
 }
-.remove-btn{
-    font-weight: 700;
-   background-color: #7FB77E;
+.remove-btn {
+  font-weight: 700;
+  background-color: #7fb77e;
   width: 100%;
   border: none;
   padding: 8px 16px;
@@ -65,28 +65,28 @@ background-color: #DDF7E3;
   cursor: pointer;
 }
 
-.cart-text{
-    color: grey;
-    padding: 20px;
-    text-align: center;
-    font-size:20px ;
+.cart-text {
+  color: grey;
+  padding: 20px;
+  text-align: center;
+  font-size: 20px;
 }
 
-.shop-btn{
+.shop-btn {
   font-weight: 500;
-  color:whitesmoke;
+  color: whitesmoke;
   background-color: #867070;
- border: none;
- padding: 8px 16px;
- border-radius: 4px;
- cursor: pointer;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.increment-decrement{
-  color:whitesmoke;
+.increment-decrement {
+  color: whitesmoke;
   background-color: #867070;
- border: none;
- padding: 2px 8px;
- border-radius: 4px;
- cursor: pointer;
+  border: none;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
 }

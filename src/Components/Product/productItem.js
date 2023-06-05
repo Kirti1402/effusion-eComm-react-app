@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { ProductCategoryContext } from "../../Context/ProductCategoryContext";
 import { ProductListingcontext } from "../../Context/ProductListContext";
@@ -7,11 +8,10 @@ import { cartContext } from "../../Context/CartContext";
 import { AddToCart } from "../Cart/AddToCart";
 import { wishListContext } from "../../Context/wishListContext";
 import { addWishList } from "../WishList/AddWishlist";
-import "./Product.css";
-import { toast } from "react-toastify";
 import { RemoveFromWishList } from "../WishList/RemoveWishList";
 import { LoginAuthContext } from "../../Context/LoginAuthContext";
 import Footer from "../Home/Footer";
+import "./Product.css";
 
 export const ProductItem = () => {
   const navigate = useNavigate();
@@ -85,9 +85,17 @@ export const ProductItem = () => {
       })
       .sort((a, b) => {
         if (sortOrder === "ascending") {
-          return (a.price - (a.price * (a.discount /100))) - (b.price - (b.price * (b.discount/100)));
+          return (
+            a.price -
+            a.price * (a.discount / 100) -
+            (b.price - b.price * (b.discount / 100))
+          );
         } else if (sortOrder === "descending") {
-          return (b.price - (b.price * (b.discount/100))) - (a.price - (a.price * (a.discount/100)));
+          return (
+            b.price -
+            b.price * (b.discount / 100) -
+            (a.price - a.price * (a.discount / 100))
+          );
         }
         return 0;
       });
@@ -97,7 +105,7 @@ export const ProductItem = () => {
 
   const CartBtnHandle = (productItem) => {
     let CardProduct = { product: productItem };
-    if(isLoggedIn){
+    if (isLoggedIn) {
       if (!addedToCartList.includes(productItem._id)) {
         AddToCart(CardProduct);
         setAddedToCartList([...addedToCartList, productItem._id]);
@@ -108,13 +116,12 @@ export const ProductItem = () => {
       } else {
         navigate("/cart");
       }
-    } else{
+    } else {
       toast.error("Please Login!!!", {
         position: toast.POSITION.BOTTOM_LEFT,
         autoClose: 1000,
       });
     }
-    
   };
 
   const handleToggleWishlist = (productItem) => {
@@ -146,145 +153,163 @@ export const ProductItem = () => {
     }
   };
 
-  const onClickHandleClearFilter = () =>{
-    setselectedRadioFilter("")
-    setSizes("")
-    setRating(0)
-    setSearchQuery("")
-  }
+  const onClickHandleClearFilter = () => {
+    setselectedRadioFilter("");
+    setSizes("");
+    setRating(0);
+    setSearchQuery("");
+  };
 
   return (
-   <>
-    <div className="product-page-container">
-      <div className="filter-container">
-        <p className="text-product">{(filterProductLength === (productList && productList.length)) ?'Showing All Product': <span>Product found : {filterProductLength }</span>}</p>
-        <div className="clear-filter"><p>Filter</p><button className="clear-filter-btn" onClick={onClickHandleClearFilter}>Clear Filter</button></div>
-        <div className="category-filter">
-          {category &&
-            category.map(({ id, categoryName }) => (
-              <label key={id}>
-                <input
-                  type="radio"
-                  name="categoryfilter"
-                  value={categoryName}
-                  onChange={handleFilterChange}
-                  checked={selectedRadioFilter === categoryName}
-                />
-                {categoryName}
-              </label>
-            ))}
+    <>
+      <div className="product-page-container">
+        <div className="filter-container">
+          <p className="text-product">
+            {filterProductLength === (productList && productList.length) ? (
+              "Showing All Product"
+            ) : (
+              <span>Product found : {filterProductLength}</span>
+            )}
+          </p>
+          <div className="clear-filter">
+            <p>Filter</p>
+            <button
+              className="clear-filter-btn"
+              onClick={onClickHandleClearFilter}
+            >
+              Clear Filter
+            </button>
+          </div>
+          <div className="category-filter">
+            {category &&
+              category.map(({ id, categoryName }) => (
+                <label key={id}>
+                  <input
+                    type="radio"
+                    name="categoryfilter"
+                    value={categoryName}
+                    onChange={handleFilterChange}
+                    checked={selectedRadioFilter === categoryName}
+                  />
+                  {categoryName}
+                </label>
+              ))}
+          </div>
+          <div className="sorting-filter">
+            <label>
+              Sort Order:
+              <select value={sortOrder} onChange={handleSortChange}>
+                <option value="ascending">Price: Low-to-High</option>
+                <option value="descending">Price: High-to-Low</option>
+              </select>
+            </label>
+          </div>
+          <div className="size-filter">
+            {uniqueSize &&
+              uniqueSize.map((size) => (
+                <label>
+                  <input
+                    type="checkbox"
+                    name="size"
+                    value={size}
+                    checked={sizes.includes(size)}
+                    onChange={handleSizeChange}
+                  />
+                  {size}
+                </label>
+              ))}
+          </div>
+          <div className="rating-filter">
+            {ratingNumber &&
+              ratingNumber.map((ratingnum) => (
+                <label>
+                  <input
+                    type="radio"
+                    name="rating"
+                    value={ratingnum}
+                    onChange={handleRatingChange}
+                  />
+                  {ratingnum} & above
+                </label>
+              ))}
+          </div>
         </div>
-        <div className="sorting-filter">
-          <label>
-            Sort Order:
-            <select value={sortOrder} onChange={handleSortChange}>
-              <option value="ascending">Price: Low-to-High</option>
-              <option value="descending">Price: High-to-Low</option>
-            </select>
-          </label>
-        </div>
-        <div className="size-filter">
-          {uniqueSize &&
-            uniqueSize.map((size) => (
-              <label>
-                <input
-                  type="checkbox"
-                  name="size"
-                  value={size}
-                  checked={sizes.includes(size)}
-                  onChange={handleSizeChange}
-                />
-                {size}
-              </label>
-            ))}
-        </div>
-        <div className="rating-filter">
-          {ratingNumber &&
-            ratingNumber.map((ratingnum) => (
-              <label>
-                <input
-                  type="radio"
-                  name="rating"
-                  value={ratingnum}
-                  onChange={handleRatingChange}
-                />
-                {ratingnum} & above
-              </label>
-            ))}
-        </div>
-      </div>
-      <aside className="product-container">
-        {filterProductLength ? (
-          filteredProducts.map((productItem) => {
-            console.log(productItem._id);
-            const {
-              _id,
-              id,
-              url,
-              title,
-              rating,
-              price,
-              discount,
-            } = productItem;
+        <aside className="product-container">
+          {filterProductLength ? (
+            filteredProducts.map((productItem) => {
+              const { _id, id, url, title, rating, price, discount } =
+                productItem;
 
-            let discountedPrice = Math.ceil((price - price * (discount / 100)));
-            return (
-              <div className="card-container" key={id}>
-                <div className="card-detail-container">
-                  <Link
-                    className="link-product"
-                    to="/productDetail"
-                    onClick={() => productOnClickHandle(productItem._id)}
-                  >
-                    <div className="image-conatiner">
-                      <img src={url} />
-                      <div className="rating-container">
-                        <span className="star">&#9733;</span>
-                        <p className="rating">{rating}</p>
-                      </div>
-                    </div>
-                    <div className="card-detail">
-                      <p>{title}</p>
-                      <div className="price-discount">
-                        <div>
-                        <span><span>&#8377;</span>{discountedPrice}</span>
-                        <span className="discount" style={{ textDecoration: "line-through" }}>
-                          <span>&#8377;</span>
-                          {price}
-                        </span>
+              let discountedPrice = Math.ceil(price - price * (discount / 100));
+              return (
+                <div className="card-container" key={id}>
+                  <div className="card-detail-container">
+                    <Link
+                      className="link-product"
+                      to="/productDetail"
+                      onClick={() => productOnClickHandle(productItem._id)}
+                    >
+                      <div className="image-conatiner">
+                        <img src={url} />
+                        <div className="rating-container">
+                          <span className="star">&#9733;</span>
+                          <p className="rating">{rating}</p>
                         </div>
-                        <div><span>{discount}% Off</span></div>
                       </div>
+                      <div className="card-detail">
+                        <p>{title}</p>
+                        <div className="price-discount">
+                          <div>
+                            <span>
+                              <span>&#8377;</span>
+                              {discountedPrice}
+                            </span>
+                            <span
+                              className="discount"
+                              style={{ textDecoration: "line-through" }}
+                            >
+                              <span>&#8377;</span>
+                              {price}
+                            </span>
+                          </div>
+                          <div>
+                            <span>{discount}% Off</span>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                    <div className="wishList-container">
+                      <button
+                        onClick={() => handleToggleWishlist(productItem)}
+                        className={
+                          wishlist.includes(_id)
+                            ? "wishlist-button-added"
+                            : "wishlist-button-remove"
+                        }
+                      ></button>
                     </div>
-                  </Link>
-                  <div className="wishList-container">
                     <button
-                      onClick={() => handleToggleWishlist(productItem)}
                       className={
-                        wishlist.includes(_id)
-                          ? "wishlist-button-added"
-                          : "wishlist-button-remove"
+                        addedToCartList.includes(_id)
+                          ? "GoToCart-btn"
+                          : "AddToCartBtn"
                       }
-                    ></button>
+                      onClick={() => CartBtnHandle(productItem)}
+                    >
+                      {addedToCartList.includes(_id)
+                        ? "Go To Cart"
+                        : "Add To Cart"}
+                    </button>
                   </div>
-                  <button
-                    className={addedToCartList.includes(_id)?'GoToCart-btn':'AddToCartBtn'}
-                    onClick={() => CartBtnHandle(productItem)}
-                  >
-                    {addedToCartList.includes(_id)
-                      ? "Go To Cart"
-                      : "Add To Cart"}
-                  </button>
                 </div>
-              </div>
-            );
-          })
-        ) : (
-          <p className="product-not-found">No Product found</p>
-        )}
-      </aside>
-    </div>
-    <Footer/>
+              );
+            })
+          ) : (
+            <p className="product-not-found">No Product found</p>
+          )}
+        </aside>
+      </div>
+      <Footer />
     </>
   );
 };

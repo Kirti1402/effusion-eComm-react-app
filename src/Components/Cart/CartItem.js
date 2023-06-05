@@ -1,40 +1,37 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+import "./cart.css";
 import { ProductListingcontext } from "../../Context/ProductListContext";
 import { cartContext } from "../../Context/CartContext";
-import { toast } from "react-toastify";
 import { wishListContext } from "../../Context/wishListContext";
 import { RemoveFromWishList } from "../WishList/RemoveWishList";
 import { addWishList } from "../WishList/AddWishlist";
-import "./cart.css";
-import { useNavigate } from "react-router-dom";
 import PriceDetail from "./PriceDetail";
 
-
 export const CartItems = () => {
-  const [btnClicked,setBtnClicked] = useState(false);
+  const [btnClicked, setBtnClicked] = useState(false);
   const navigate = useNavigate();
   const { cartList, setCartList } = useContext(ProductListingcontext);
   const { addedToCartList, setAddedToCartList } = useContext(cartContext);
-  const { wishlist, setWishlist,} =
-    useContext(wishListContext);
+  const { wishlist, setWishlist } = useContext(wishListContext);
   const token = localStorage.getItem("Encodedtoken");
 
   const getCartItem = async () => {
     const response = await fetch("/api/user/cart", {
       method: "GET",
       headers: {
-        authorization: `"${token}"`, 
+        authorization: `"${token}"`,
       },
     });
     const cartProduct = await response.json();
     setCartList(cartProduct.cart);
   };
 
-  console.log("CartList", cartList);
-
   useEffect(() => {
     getCartItem();
-  },[btnClicked]);
+  }, [btnClicked]);
 
   const onClickRemoveFromCart = (id, title) => {
     const updatedList = addedToCartList.filter((item) => item !== id);
@@ -57,21 +54,20 @@ export const CartItems = () => {
     setCartList(cartProduct.cart);
   };
 
-  const onclickHandleQty = (id, qty,inDec) => {
-    if(inDec === 'increment'){
+  const onclickHandleQty = (id, qty, inDec) => {
+    if (inDec === "increment") {
       qty++;
-    }else{
+    } else {
       qty--;
     }
-    if(qty <1){
-    const updatedList = addedToCartList.filter((item) => item !== id);
-    setAddedToCartList([...updatedList]);
+    if (qty < 1) {
+      const updatedList = addedToCartList.filter((item) => item !== id);
+      setAddedToCartList([...updatedList]);
       RemoveFromCart(id);
-    }else{
-      incrementTheProduct(id, inDec); 
+    } else {
+      incrementTheProduct(id, inDec);
     }
-    setBtnClicked(!btnClicked)
-         
+    setBtnClicked(!btnClicked);
   };
   const incrementTheProduct = async (id, typeID) => {
     const response = await fetch(`/api/user/cart/${id}`, {
@@ -83,7 +79,6 @@ export const CartItems = () => {
     });
     console.log("increment response", await response.json());
   };
-
 
   const handleToggleWishlist = (productItem) => {
     let wishListProduct = { product: productItem };
@@ -109,8 +104,18 @@ export const CartItems = () => {
 
   return (
     <>
-
-          {cartList.length >0 ? <p className="cart-text" style={{color:'black'}}>My Cart ({cartList.length})</p>:<div className="cart-text"><p>There is Nothing in your cart.Let's add some items.</p><button className="shop-btn" onClick = {() =>navigate("/product")}>SHOP</button></div>}
+      {cartList.length > 0 ? (
+        <p className="cart-text" style={{ color: "black" }}>
+          My Cart ({cartList.length})
+        </p>
+      ) : (
+        <div className="cart-text">
+          <p>There is Nothing in your cart.Let's add some items.</p>
+          <button className="shop-btn" onClick={() => navigate("/product")}>
+            SHOP
+          </button>
+        </div>
+      )}
 
       <div className="cart-page-container">
         {cartList.length > 0 && (
@@ -153,15 +158,19 @@ export const CartItems = () => {
                       <p className="quantity">
                         Quantity:
                         <button
-                        className="increment-decrement"
-                          onClick={() => onclickHandleQty(_id,qty, "decrement")}
+                          className="increment-decrement"
+                          onClick={() =>
+                            onclickHandleQty(_id, qty, "decrement")
+                          }
                         >
                           -
                         </button>
-                        {qty }
+                        {qty}
                         <button
-                         className="increment-decrement"
-                          onClick={() => onclickHandleQty(_id,qty, "increment")}
+                          className="increment-decrement"
+                          onClick={() =>
+                            onclickHandleQty(_id, qty, "increment")
+                          }
                         >
                           +
                         </button>
@@ -191,9 +200,7 @@ export const CartItems = () => {
             })}
           </div>
         )}
-        {cartList.length > 0 && (
-          <PriceDetail/>
-        )}
+        {cartList.length > 0 && <PriceDetail />}
       </div>
     </>
   );

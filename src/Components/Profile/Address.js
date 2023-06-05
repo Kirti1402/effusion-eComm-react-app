@@ -20,72 +20,50 @@ export const Address = () => {
     pincode: 234567,
     state: "Punjab",
   });
-  let add;
 
   const updateForm = (e) => {
     let name = e.target.name;
-    console.log(name);
     let value = e.target.value;
-    console.log("name:value", name, value);
     setAddObject({
       ...addObject,
       [name]: value,
     });
   };
-  console.log("updateForm",addObject);
 
   const [isAddBtn, setIsAddBtn] = useState(false);
 
   const onClickAddAddress = (event) => {
     event.preventDefault();
-    console.log('clicked add button')
-    console.log("addrss", address);
     const updatedAddress = [...address, addObject];
-    console.log("updatedAddress", updatedAddress);
     localStorage.setItem("DefaultAddress", JSON.stringify([...updatedAddress]));
     setAddress([...address, addObject]);
     setIsAddBtn(!isAddBtn);
   };
-  console.log(address);
 
   const deleteAddress = (index) => {
-    console.log("addressDeleteAddres", address);
     const updatedAddress = address;
     updatedAddress.splice(index, 1);
-    console.log("UpdatedAdressaftersplice", updatedAddress);
     setAddress([...updatedAddress]);
     localStorage.setItem("DefaultAddress", JSON.stringify([...updatedAddress]));
   };
 
   let getAddress = JSON.parse(localStorage.getItem("DefaultAddress"));
-  console.log("getAddressLocalStorage", getAddress);
 
   const onClickEditBtn = (index) => {
     setIsEditing(!isEditing);
-    console.log("address", address, "addObject", addObject);
     const addr = address[index];
-    console.log("Edit", addr);
     setAddObject(addr);
   };
 
   const onClickUpdateAddress = (event) => {
     event.preventDefault();
-    console.log("AddObject", addObject, "address", address);
 
     const updatedAddress = address.map((item) => {
-      console.log("item", item);
-      console.log(
-        "bool",
-        item.name === addObject.name,
-        item.name,
-        addObject.name
-      );
       if (item.name === addObject.name) {
-        return { ...addObject }; 
+        return { ...addObject };
       }
       return item;
     });
-    console.log("updated Address", updatedAddress);
 
     localStorage.setItem("DefaultAddress", JSON.stringify([...updatedAddress]));
     setAddress([...updatedAddress]);
@@ -96,13 +74,13 @@ export const Address = () => {
     <div>
       {!isAddBtn && (
         <div>
-        <button
-          className="add-button"
-          type="submit"
-          onClick={() => setIsAddBtn(!isAddBtn)}
-        >
-          Add Address
-        </button>
+          <button
+            className="add-button"
+            type="submit"
+            onClick={() => setIsAddBtn(!isAddBtn)}
+          >
+            Add Address
+          </button>
         </div>
       )}
       {isAddBtn && (
@@ -247,9 +225,8 @@ export const Address = () => {
       {getAddress &&
         getAddress.map(
           ({ name, phone, city, pincode, state, address }, index) => (
-            
             <div className="address-detail-display ">
-              <input type="radio" name='address'/>
+              <input type="radio" name="address" />
               <p>
                 <span className="address-title">Name:</span>
                 <span className="address-value">{name}</span>

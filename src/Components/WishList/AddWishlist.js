@@ -1,12 +1,12 @@
 export const addWishList = async (productItem) => {
-    const token = localStorage.getItem("Encodedtoken");
-    const response = await fetch('/api/user/wishlist', {
-        method: 'POST',
-        headers: {
-            authorization: `"${token}"`, // Assuming 'token' holds the actual token value
-          },
-        body: JSON.stringify(productItem)
-    })
+  const token = localStorage.getItem("Encodedtoken");
+  const response = await fetch("/api/user/wishlist", {
+    method: "POST",
+    headers: {
+      authorization: `"${token}"`, // Assuming 'token' holds the actual token value
+    },
+    body: JSON.stringify(productItem),
+  });
 
-    console.log(await response.json())
-}
+  console.log(await response.json());
+};

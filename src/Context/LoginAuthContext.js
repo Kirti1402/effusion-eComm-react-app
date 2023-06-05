@@ -5,6 +5,7 @@ export const LoginAuthContext = createContext();
 export const LoginProvider = ({ children }) => {
   const navigate = useNavigate();
   const { state } = useLocation();
+  const [error, setError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isEncodedToken, setIsEncodedToken] = useState("");
   const [loginData, setLoginData] = useState();
@@ -15,39 +16,35 @@ export const LoginProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("Encodedtoken");
-    if(token){ 
+    if (token) {
       setIsLoggedIn(true);
       setIsEncodedToken(token);
     }
-  },[])
+  }, []);
 
   const getLoginData = async () => {
-    let cred = loginInputData
-    
-    console.log(cred);
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        body: JSON.stringify(cred),
-      });
-      const response = await res.json();
-      localStorage.setItem("LoginItem", JSON.stringify(response));
-      console.log(response);
+    let cred = loginInputData;
 
-      if(!response.errors){
-        setIsLoggedIn(true);
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      body: JSON.stringify(cred),
+    });
+    const response = await res.json();
+    if (res.ok) {
+      localStorage.setItem("LoginItem", JSON.stringify(response));
+      setIsLoggedIn(true);
       localStorage.setItem("loginItem", response.foundUser);
       localStorage.setItem("firstName", response.foundUser.firstName);
       localStorage.setItem("lastName", response.foundUser.lastName);
       localStorage.setItem("email", response.foundUser.email);
       localStorage.setItem("Encodedtoken", response.encodedToken);
-      console.log("logged in")
-      navigate(state.path)      
+      navigate(state.path);
       setIsEncodedToken(response.encodedToken);
       setLoginData(response.foundUser);
-      }else {
-        console.log("error")
-      }
-
+    } else if (!res.ok) {
+      console.log(response.errors);
+      setError(response.errors[0]);
+    }
   };
 
   return (
@@ -62,8 +59,8 @@ export const LoginProvider = ({ children }) => {
           isEncodedToken,
           setIsLoggedIn,
           setIsEncodedToken,
-          setLoginData
-
+          setLoginData,
+          error,
         }}
       >
         {children}

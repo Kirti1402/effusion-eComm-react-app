@@ -1,64 +1,84 @@
 import { useContext } from "react";
-import { useNavigate ,useLocation} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 import { LoginAuthContext } from "../../Context/LoginAuthContext";
-import "./LoginStyle.css"
 import Footer from "../Home/Footer";
+import "./LoginStyle.css";
 
 export const Login = () => {
-  let { state } = useLocation();
-  const location = useLocation();
-  const currentPath = location.pathname;
-  console.log(currentPath)
-  const { getLoginData ,setLoginInputData,loginInputData} = useContext(LoginAuthContext);
+  const { getLoginData, setLoginInputData, loginInputData, error } =
+    useContext(LoginAuthContext);
+
   const navigate = useNavigate();
 
-const  updateForm = (e) =>{
+  const updateForm = (e) => {
     let name = e.target.name;
     let value = e.target.value;
     setLoginInputData({
-        ...loginInputData,
-        [name]:value})
-}
+      ...loginInputData,
+      [name]: value,
+    });
+  };
 
-const submitForm = (e) =>{
+  const submitForm = (e) => {
     e.preventDefault();
     getLoginData();
-}
+  };
 
-const loginAsGuestHandle = () => {
-  setLoginInputData({
-    email:'JohnDeo@gmail.com',
-    password:'12345678'
-  })
-}
+  const loginAsGuestHandle = () => {
+    setLoginInputData({
+      email: "JohnDeo@gmail.com",
+      password: "12345678",
+    });
+  };
+  
   return (
     <div>
-    <div className="login-container">
-      <form onSubmit={submitForm}>
-      <p className="heading">Login</p> 
-        <div className="email">
-          <label >Email</label>
-          <input type="text" id="useremail" value={loginInputData.email} placeholder="Enter your Email" name="email" onChange={updateForm} required />
-        </div>
-        <div className="password">
-          <label>Password</label>
-          <input type='password' id="password" value={loginInputData.password} placeholder="Enter your Password" name="password" onChange  ={updateForm} required />
-          
-        </div>
-        <span className="forgetPswd">Forget Password?</span>
-        <div >
-          <button type="submit"  className="loginBtn">
-            Log In
-          </button>
-
-          <span >Dont have an Account?</span>
-          <span className="signUpLink" onClick={()=> navigate('/signup')}> Sign Up</span>
-        </div>
-        <div className="loginAsGuest" onClick={loginAsGuestHandle}>Login with Guest Detail</div>
-      </form>
-    </div>
-    <Footer/>
+      <div className="login-container">
+        <form onSubmit={submitForm}>
+          <p className="heading">Login</p>
+          <div className="email">
+            <label>Email</label>
+            <input
+              type="text"
+              id="useremail"
+              value={loginInputData.email}
+              placeholder="Enter your Email"
+              name="email"
+              onChange={updateForm}
+              required
+            />
+          </div>
+          <div className="password">
+            <label>Password</label>
+            <input
+              type="password"
+              id="password"
+              value={loginInputData.password}
+              placeholder="Enter your Password"
+              name="password"
+              onChange={updateForm}
+              required
+            />
+          </div>
+          <span className="forgetPswd">Forget Password?</span>
+          <div>
+            <button type="submit" className="loginBtn">
+              Log In
+            </button>
+            <span className="error">{error ? error : ""}</span>
+            <span>Dont have an Account?</span>
+            <span className="signUpLink" onClick={() => navigate("/signup")}>
+              {" "}
+              Sign Up
+            </span>
+          </div>
+          <div className="loginAsGuest" onClick={loginAsGuestHandle}>
+            Login with Guest Detail
+          </div>
+        </form>
+      </div>
+      <Footer />
     </div>
   );
 };

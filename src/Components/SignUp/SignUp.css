@@ -1,72 +1,69 @@
-
 .signup-container {
-	display: flex;
-    flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	background: #EFF7E1;
-	height: 80vh;    
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #eff7e1;
+  height: 80vh;
 }
 input {
-    outline: none;
-    border: none;
-    &::placeholder {
-        color: hsl(0deg 0% 0%);
-        font-size: 0.7rem;
-    }
+  outline: none;
+  border: none;
+  &::placeholder {
+    color: hsl(0deg 0% 0%);
+    font-size: 0.7rem;
+  }
 }
 
-.heading{
-    text-align: center;
+.heading {
+  text-align: center;
 }
-.password,.email,.firstName,.lastName,.confirmPassword {
-    position: relative;
-    width: 300px;
-    background: hsl(0deg 0% 100%);
-    box-shadow: 0 0 2em #EFF7E1;
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    border-radius: 10px;
-    color: hsl(0deg 0% 30%);
-    margin: 0.5rem;
-}
-
-
-.signupBtn{
-    width: 100%;
-    padding: 1em;
-    background: hsl(233deg 36% 38%);
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-weight: 600;
-    cursor: pointer;
-}
-.disabledSignupBtn{
-    width: 100%;
-    padding: 1em;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-weight: 600;
-    cursor: pointer;
-
-}
-.loginLink{
-    color: hsl(233deg 36% 38%);;
-    cursor: pointer;
-    margin-left:0.3rem ;
+.password,
+.email,
+.firstName,
+.lastName,
+.confirmPassword {
+  position: relative;
+  width: 300px;
+  background: hsl(0deg 0% 100%);
+  box-shadow: 0 0 2em #eff7e1;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 10px;
+  color: hsl(0deg 0% 30%);
+  margin: 0.5rem;
 }
 
-.show-hide-btn{
-    position: absolute;
-    right: 0;
-    top:30%;
-    border:none;
-    
+.signupBtn {
+  width: 100%;
+  padding: 1em;
+  background: #a2d0c1;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.disabledSignupBtn {
+  width: 100%;
+  padding: 1em;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.loginLink {
+  color: green;
+  cursor: pointer;
+  margin-left: 0.3rem;
 }
 
-
-
+.show-hide-btn {
+  position: absolute;
+  right: 0;
+  top: 30%;
+  border: none;
+}

@@ -1,44 +1,50 @@
-.heading{
-    text-align: center;
+.heading {
+  text-align: center;
 }
 
 .login-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: #EFF7E1;
-	height: 80vh;    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eff7e1;
+  height: 80vh;
 }
 
-.loginBtn{
-    width: 100%;
-    padding: 1em;
-    background: #A2D0C1;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
+.loginBtn {
+  width: 100%;
+  padding: 1em;
+  background: #a2d0c1;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
 }
 
-.signUpLink{
-    color:blue;
-    cursor: pointer;
-    margin-left:0.3rem ;
+.signUpLink {
+  color: blue;
+  cursor: pointer;
+  margin-left: 0.3rem;
 }
 
-.forgetPswd{
-    display: flex;
-    justify-content: flex-end;
-    padding: 0.3rem;
-    color: grey;
+.forgetPswd {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.3rem;
+  color: grey;
 }
 
-.loginAsGuest{
-    text-align: center;
-    width: 100%;
-    padding: 0.5em;
-    background: #A2D0C1;
-    border: none;
-    border-radius: 30px;
-    font-weight: 300;
-    cursor: pointer;
+.loginAsGuest {
+  text-align: center;
+  width: 100%;
+  padding: 0.5em;
+  background: #a2d0c1;
+  border: none;
+  border-radius: 30px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.error {
+  width: 300px;
+  color: red;
+  text-align: center;
 }

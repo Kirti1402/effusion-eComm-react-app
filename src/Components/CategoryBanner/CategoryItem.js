@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import "./Banner.css";
-import { ProductListingcontext } from "../../Context/ProductListContext";
 import { useNavigate } from "react-router-dom";
 
+import "./Banner.css";
+import { ProductListingcontext } from "../../Context/ProductListContext";
 import { ProductCategoryContext } from "../../Context/ProductCategoryContext";
 
 export const CategoryBanner = () => {
@@ -16,7 +16,7 @@ export const CategoryBanner = () => {
   };
   return (
     <section>
-      <h3 style={{textAlign:'center',margin:'10px'}}>Shop By Category</h3>
+      <h3 style={{ textAlign: "center", margin: "10px" }}>Shop By Category</h3>
       {!isLoading && (
         <div className="banner-container">
           {category.map((categoryItem) => {
@@ -27,22 +27,24 @@ export const CategoryBanner = () => {
                   <img src={url} alt={categoryName} />
                 </div>
                 <div className="category-name">
-                <p>{categoryName}</p>
+                  <p>{categoryName}</p>
                 </div>
-                  <div className="category-shop-btn">
-                <button
-                  value={categoryName}
-                  onClick={handleCategoryWiseShopBtn}
-                >
-                  Shop
-                </button>
+                <div className="category-shop-btn">
+                  <button
+                    value={categoryName}
+                    onClick={handleCategoryWiseShopBtn}
+                  >
+                    Shop
+                  </button>
                 </div>
               </div>
             );
           })}
         </div>
       )}
-      <button className="shop-all" onClick={()=> navigate('/product')}>Explore</button>
+      <button className="shop-all" onClick={() => navigate("/product")}>
+        Explore
+      </button>
     </section>
   );
 };
