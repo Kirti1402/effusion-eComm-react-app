@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 
 import { ProductListingcontext } from "../../Context/ProductListContext";
-
+import "./SearchBar.css"
 
 export default function SearchBar() {
   const { searchQuery, setSearchQuery } = useContext(ProductListingcontext);
@@ -18,6 +18,7 @@ export default function SearchBar() {
       <label>
         Search:
         <input
+        className="searchbar-input"
           type="text"
           placeholder="Search here..."
           value={searchQuery}

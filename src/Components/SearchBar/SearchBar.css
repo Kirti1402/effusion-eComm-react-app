@@ -16,13 +16,14 @@
   border: 1px solid #ccc;
   border-radius: 50px;
   font-size: 16px;
-  width: 400px;
+  width:400px
 }
 
 .search-container input[type="text"]:focus {
   outline: none;
   border-color: aliceblue;
 }
+
 
 @media (max-width: 768px) {
   .search-container {
@@ -35,6 +36,6 @@
     padding: 3px;
     border-radius: 20px;
     font-size: 12px;
-    width: 100%;
+    width:100%
   }
 }
