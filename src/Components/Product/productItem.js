@@ -24,6 +24,7 @@ export const ProductItem = () => {
     selectedRadioFilter,
     setselectedRadioFilter,
     searchQuery,
+    setSearchQuery,
     setProductId,
   } = useContext(ProductListingcontext);
   const { category } = useContext(ProductCategoryContext);
@@ -64,7 +65,7 @@ export const ProductItem = () => {
     setProductId(id);
   };
   //implemented filter logic
-  const filteredProducts =
+  let filteredProducts =
     productList &&
     productList
       .filter((product) => {
@@ -144,10 +145,18 @@ export const ProductItem = () => {
     }
   };
 
+  const onClickHandleClearFilter = () =>{
+    setselectedRadioFilter("")
+    setSizes("")
+    setRating(0)
+    setSearchQuery("")
+  }
+
   return (
     <div className="product-page-container">
       <div className="filter-container">
         <p className="text-product">{(filterProductLength === (productList && productList.length)) ?'Showing All Product': <span>Product found : {filterProductLength }</span>}</p>
+        <div className="clear-filter"><p>Filter</p><button className="clear-filter-btn" onClick={onClickHandleClearFilter}>Clear Filter</button></div>
         <div className="category-filter">
           {category &&
             category.map(({ id, categoryName }) => (
