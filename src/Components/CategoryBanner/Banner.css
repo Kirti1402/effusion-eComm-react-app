@@ -40,6 +40,7 @@
 }
 
 .shop-all {
+  background-color: #a2d0c1;
   font-weight: 700;
   display: flex;
   justify-content: center;
@@ -53,24 +54,29 @@
 
 @media (max-width: 768px) {
   .banner-container {
-    /* position: relative; */
+    position: relative;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+  }
+  .category-name {
+    font-weight: 600;
+    display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top: 40%;
+    width: 100px;
+    margin: 0 50px 0 50px;
+    text-align: center;
+    background-color: aliceblue;
+    border-radius: 0 10px 0 10px;
+    height: 20px;
   }
-
   .category-images img {
-    width: 300px;
-    height: 400px;
+    width: 200px;
+    height: 300px;
     margin-top: 10px;
   }
-  .category-shop-btn button {
-    cursor: pointer;
-    border-radius: 10px;
-    border: none;
-  }
-
   .shop-all {
     font-weight: 700;
     display: flex;
@@ -84,7 +90,18 @@
     cursor: pointer;
     height: 25px;
   }
+
+  .category-shop-btn button {
+    cursor: pointer;
+    top: 50%;
+    position: absolute;
+    width: 80px;
+    margin: 0 60px 0 60px;
+    height: 25px;
+    border-radius: 10px;
+    border: none;
+  }
   .shop-all:hover {
-    background-color: cornflowerblue;
+    background-color: #eff7e1;
   }
 }
