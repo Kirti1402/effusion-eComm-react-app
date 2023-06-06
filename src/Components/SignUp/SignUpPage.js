@@ -35,7 +35,6 @@ export const SignUp = () => {
   };
   const submitForm = (e) => {
     e.preventDefault();
-    alert("success");
     signupHandler();
     navigate("/");
   };
