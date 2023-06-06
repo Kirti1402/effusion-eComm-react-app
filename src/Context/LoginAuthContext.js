@@ -31,6 +31,7 @@ export const LoginProvider = ({ children }) => {
     });
     const response = await res.json();
     if (res.ok) {
+      console.log("inside logging",state)
       localStorage.setItem("LoginItem", JSON.stringify(response));
       setIsLoggedIn(true);
       localStorage.setItem("loginItem", response.foundUser);
@@ -38,7 +39,11 @@ export const LoginProvider = ({ children }) => {
       localStorage.setItem("lastName", response.foundUser.lastName);
       localStorage.setItem("email", response.foundUser.email);
       localStorage.setItem("Encodedtoken", response.encodedToken);
-      navigate(state.path);
+      if(state === null){
+        navigate("/")
+      }else{
+        navigate(state.path)
+      }
       setIsEncodedToken(response.encodedToken);
       setLoginData(response.foundUser);
     } else if (!res.ok) {
