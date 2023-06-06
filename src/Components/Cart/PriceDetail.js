@@ -6,7 +6,6 @@ import { ProductListingcontext } from "../../Context/ProductListContext";
 export default function PriceDetail() {
   const location = useLocation();
   const currentPath = location.pathname;
-  // const [setIsCheckout] = useState("Checkout");
   const navigate = useNavigate();
   const { cartList } = useContext(ProductListingcontext);
   const { price, qty, discount } = cartList;

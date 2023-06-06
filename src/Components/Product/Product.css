@@ -244,3 +244,10 @@ img {
   cursor: pointer;
   font-weight: 500;
 }
+
+.product-not-found{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
