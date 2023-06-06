@@ -228,6 +228,7 @@ export const ProductItem = () => {
                     name="rating"
                     value={ratingnum}
                     onChange={handleRatingChange}
+                    checked={rating === ratingnum}
                   />
                   {ratingnum} & above
                 </label>
