@@ -6,7 +6,7 @@ import { ProductListingcontext } from "../../Context/ProductListContext";
 export default function PriceDetail() {
   const location = useLocation();
   const currentPath = location.pathname;
-  const [setIsCheckout] = useState("Checkout");
+  // const [setIsCheckout] = useState("Checkout");
   const navigate = useNavigate();
   const { cartList } = useContext(ProductListingcontext);
   const { price, qty, discount } = cartList;
@@ -37,7 +37,7 @@ export default function PriceDetail() {
 
   const onClickCheckoutHandle = () => {
     if (currentPath === "/checkout") {
-      setIsCheckout("Place Order");
+      // setIsCheckout("Place Order");
       navigate("/");
       window.location.reload();
     } else {
