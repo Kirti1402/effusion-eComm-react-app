@@ -66,10 +66,9 @@ export const Login = () => {
             <button type="submit" className="loginBtn">
               Log In
             </button>
-            <span className="error">{error ? error : ""}</span>
+            <p className="error">{error ? error : ""}</p>
             <span>Dont have an Account?</span>
             <span className="signUpLink" onClick={() => navigate("/signup")}>
-              {" "}
               Sign Up
             </span>
           </div>

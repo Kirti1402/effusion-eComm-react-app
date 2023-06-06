@@ -44,6 +44,7 @@
 }
 
 .error {
+  text-align: center;
   width: 300px;
   color: red;
   text-align: center;
