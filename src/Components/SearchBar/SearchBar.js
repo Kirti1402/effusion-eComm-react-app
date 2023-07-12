@@ -16,11 +16,11 @@ export default function SearchBar() {
   return (
     <div className="search-container">
       <label>
-        Search:
+        <span className="search-text">Search:</span>
         <input
         className="searchbar-input"
           type="text"
-          placeholder="Search here..."
+          placeholder="Search product here..."
           value={searchQuery}
           onChange={searchHandle}
         />

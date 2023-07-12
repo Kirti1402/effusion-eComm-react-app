@@ -27,9 +27,7 @@
 
 @media (max-width: 768px) {
   .search-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
+    margin: auto ;
     color: #025464;
   }
   .search-container input[type="text"] {
@@ -37,5 +35,8 @@
     border-radius: 20px;
     font-size: 12px;
     width:100%
+  }
+  .search-text{
+    font-size: 10px;
   }
 }

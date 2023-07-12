@@ -47,7 +47,21 @@
 @media (max-width: 768px) {
   .nav-container {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  }
+  .right-container{
+    display: flex;
+    margin: 0;
+  }
+  .link{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 50px;
+    transform-origin: center left;
+    transition: width 0.2s ease-in;
+    text-decoration: none;
+    color: #025464;
+    text-decoration: none;
   }
 }

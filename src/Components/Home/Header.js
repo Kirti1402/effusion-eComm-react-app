@@ -9,7 +9,6 @@ import {
   faHome,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { LoginAuthContext } from "../../Context/LoginAuthContext";
 import SearchBar from "../SearchBar/SearchBar";
 import { wishListContext } from "../../Context/wishListContext";
 import { cartContext } from "../../Context/CartContext";
