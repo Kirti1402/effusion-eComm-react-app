@@ -24,7 +24,7 @@ export const LoginProvider = ({ children }) => {
   
   const getLoginData = async () => {
     let cred = loginInputData;
-    console.log('check')
+    console.log('check');
 
     const res = await fetch("/api/auth/login", {
       method: "POST",
