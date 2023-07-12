@@ -8,7 +8,12 @@ margin-top:20px;
     height: auto;
     color: #025464;
     border-top: 2px solid #025464;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
+
 .footer-container > *{
     margin: 10px;
 }
