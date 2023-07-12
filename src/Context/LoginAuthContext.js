@@ -13,7 +13,7 @@ export const LoginProvider = ({ children }) => {
     email: null,
     password: null,
   });
-
+  
   useEffect(() => {
     const token = localStorage.getItem("Encodedtoken");
     if (token) {
@@ -21,7 +21,7 @@ export const LoginProvider = ({ children }) => {
       setIsEncodedToken(token);
     }
   }, []);
-
+  
   const getLoginData = async () => {
     let cred = loginInputData;
 
