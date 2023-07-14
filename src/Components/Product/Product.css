@@ -192,9 +192,7 @@ img {
 }
 
 .filter-container {
-  flex: 0 0 auto;
-  width: 250px;
-  font-size: 18px;
+
   box-shadow: 8px 0 10px -6px rgba(0, 0, 0, 0.5);
   height: 90vh;
 }
@@ -250,4 +248,10 @@ img {
   justify-content: center;
   align-items: center;
   font-weight: 700;
+}
+
+.price-range-filter label{
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
 }

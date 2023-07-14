@@ -18,7 +18,8 @@ export const ProductItem = () => {
   const { addedToCartList, setAddedToCartList } = useContext(cartContext);
   const { wishlist, setWishlist } = useContext(wishListContext);
   const { isLoggedIn } = useContext(LoginAuthContext);
-
+  const [max, setMax] = useState(2000);
+  const [maxValue, setMaxValue] = useState(2000);
   const ratingNumber = [1, 2, 3, 4, 5];
   const {
     productList,
@@ -65,10 +66,22 @@ export const ProductItem = () => {
   const productOnClickHandle = (id) => {
     setProductId(id);
   };
+  console.log("productlist",productList);
+  let discountedPrice = productList &&  productList.map(product =>{
+
+    const discountedProduct = { ...product };
+    const discountPercentage = product.discount / 100;
+  const discountedAmount = product.price * discountPercentage;
+  discountedProduct.discountedPrice = product.price - discountedAmount;
+  
+  return discountedProduct;
+
+  })
+
   //implemented filter logic
   let filteredProducts =
-    productList &&
-    productList
+  discountedPrice &&
+  discountedPrice
       .filter((product) => {
         const isGenderMatched =
           selectedRadioFilter === "" ||
@@ -79,8 +92,9 @@ export const ProductItem = () => {
         const isSearchMatched =
           searchQuery === "" ||
           product.title.toLowerCase().includes(searchQuery.toLowerCase());
+        const isPriceRangeMatch =  product.discountedPrice >0 && product.discountedPrice <= maxValue
         return (
-          isGenderMatched && isSizeMatched && isRatingMatched && isSearchMatched
+          isGenderMatched && isSizeMatched && isRatingMatched && isSearchMatched && isPriceRangeMatch
         );
       })
       .sort((a, b) => {
@@ -158,7 +172,17 @@ export const ProductItem = () => {
     setSizes("");
     setRating(0);
     setSearchQuery("");
+    setMaxValue(2000);
   };
+
+
+  const handleRangeChange = (event) => {
+
+    const {  value } = event.target;
+
+    setMaxValue(Number(value));
+  };
+
 
   return (
     <>
@@ -194,6 +218,21 @@ export const ProductItem = () => {
                   {categoryName}
                 </label>
               ))}
+          </div>
+          <div className="price-range-filter">
+            {/* <p>Price:</p> */}
+          <label>
+          Price
+        <input
+          type="range"
+          name="max"
+          min="0"
+          max={max}
+          value={maxValue}
+          onChange={(event) => handleRangeChange(event)}
+        />
+       <span>&#8377; {maxValue}</span> 
+      </label>
           </div>
           <div className="sorting-filter">
             <label>
