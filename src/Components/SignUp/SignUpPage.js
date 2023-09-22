@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 import { SignUpAuthContext } from "../../Context/SignupAuthContext";
-import Footer from "../Home/Footer";
 import "./SignUp.css";
 
 export const SignUp = () => {
@@ -123,7 +122,6 @@ export const SignUp = () => {
           </span>
         </form>
       </div>
-      <Footer />
     </div>
   );
 };

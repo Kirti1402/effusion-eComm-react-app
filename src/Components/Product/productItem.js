@@ -10,7 +10,6 @@ import { wishListContext } from "../../Context/wishListContext";
 import { addWishList } from "../WishList/AddWishlist";
 import { RemoveFromWishList } from "../WishList/RemoveWishList";
 import { LoginAuthContext } from "../../Context/LoginAuthContext";
-import Footer from "../Home/Footer";
 import "./Product.css";
 
 export const ProductItem = () => {
@@ -349,7 +348,6 @@ export const ProductItem = () => {
           )}
         </aside>
       </div>
-      <Footer />
     </>
   );
 };

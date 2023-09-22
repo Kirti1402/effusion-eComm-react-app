@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { useNavigate} from "react-router-dom";
 
 import { LoginAuthContext } from "../../Context/LoginAuthContext";
-import Footer from "../Home/Footer";
 import "./LoginStyle.css";
 
 export const Login = () => {
@@ -77,7 +76,6 @@ export const Login = () => {
           </div>
         </form>
       </div>
-      <Footer />
     </div>
   );
 };
